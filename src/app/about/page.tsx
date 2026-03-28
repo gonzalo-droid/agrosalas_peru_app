@@ -4,7 +4,7 @@ import { Target, Eye, Heart, Users } from "lucide-react";
 export const metadata: Metadata = {
   title: "Nosotros",
   description:
-    "Conoce la historia, misión, visión y valores de Agrosalas Peru, empresa agroindustrial peruana con más de 25 años de trayectoria.",
+    "Conoce la historia, misión, visión y valores de Agrosalas Peru, empresa agroindustrial peruana con más de 4 años de trayectoria.",
 };
 
 const VALUES = [

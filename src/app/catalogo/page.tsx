@@ -27,8 +27,8 @@ export default function CatalogoPage() {
             Nuestros productos
           </h1>
           <p className="text-brand-200 max-w-xl mx-auto text-lg">
-            Enlatados, conservas y congelados con calidad de exportación,
-            directamente del mar y el campo peruano.
+            Enlatados y conservas con calidad de exportación,
+            directamente del campo peruano.
           </p>
         </div>
       </div>

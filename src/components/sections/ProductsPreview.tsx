@@ -15,11 +15,10 @@ export function ProductsPreview() {
             Nuestros productos
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-            Lo mejor del mar y el campo
+            Lo mejor del campo
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            Seleccionamos los ingredientes más frescos para garantizar enlatados,
-            conservas y congelados con calidad de exportación.
+            Seleccionamos los ingredientes más frescos para garantizar enlatados y conservas con calidad de exportación.
           </p>
         </div>
 
