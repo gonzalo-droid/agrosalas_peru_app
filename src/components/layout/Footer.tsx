@@ -10,9 +10,9 @@ const NAV_LINKS = [
 ];
 
 const CATEGORIES = [
-  { href: "/catalogo?categoria=enlatados",  label: "Enlatados"  },
+  //{ href: "/catalogo?categoria=enlatados",  label: "Enlatados"  },
   { href: "/catalogo?categoria=conservas",  label: "Conservas"  },
-  { href: "/catalogo?categoria=congelados", label: "Congelados" },
+  //{ href: "/catalogo?categoria=congelados", label: "Congelados" },
 ];
 
 export function Footer() {
