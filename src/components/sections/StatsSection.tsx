@@ -1,7 +1,7 @@
 const STATS = [
-  { value: "25+",  label: "Años de experiencia",     suffix: "" },
-  { value: "300+", label: "Productos en catálogo",    suffix: "" },
-  { value: "15",   label: "Países de exportación",   suffix: "+" },
+  { value: "4+",  label: "Años de experiencia",     suffix: "" },
+  { value: "10+", label: "Productos en catálogo",    suffix: "" },
+  { value: "5",   label: "Países de exportación",   suffix: "+" },
   { value: "98",   label: "Clientes satisfechos",    suffix: "%" },
 ];
 

@@ -12,13 +12,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://agrosalas.com"),
+  metadataBase: new URL("https://agrosalasperu.com"),
   title: {
-    default: "AgroSalas — Agroindustria del Pacífico",
-    template: "%s | AgroSalas",
+    default: "Agrosalas Peru — Agroindustria del Pacífico",
+    template: "%s | Agrosalas Peru",
   },
   description:
-    "AgroSalas es una empresa agroindustrial peruana especializada en enlatados, conservas y congelados del mar y del campo, con estándares de calidad para exportación.",
+    "Agrosalas Peru es una empresa agroindustrial peruana especializada en enlatados, conservas y congelados del mar y del campo, con estándares de calidad para exportación.",
   keywords: [
     "agroindustria peruana",
     "enlatados",
@@ -28,16 +28,16 @@ export const metadata: Metadata = {
     "espárragos",
     "langostinos",
     "exportación",
-    "AgroSalas",
+    "Agrosalas Peru",
   ],
-  authors: [{ name: "AgroSalas" }],
-  creator: "AgroSalas",
+  authors: [{ name: "Agrosalas Peru" }],
+  creator: "Agrosalas Peru",
   openGraph: {
     type: "website",
     locale: "es_PE",
-    url: "https://agrosalas.com",
-    siteName: "AgroSalas",
-    title: "AgroSalas — Agroindustria del Pacífico",
+    url: "https://agrosalasperu.com",
+    siteName: "Agrosalas Peru",
+    title: "Agrosalas Peru — Agroindustria del Pacífico",
     description:
       "Enlatados, conservas y congelados peruanos con calidad de exportación.",
     images: [
@@ -45,13 +45,13 @@ export const metadata: Metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "AgroSalas — Agroindustria del Pacífico",
+        alt: "Agrosalas Peru — Agroindustria del Pacífico",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AgroSalas — Agroindustria del Pacífico",
+    title: "Agrosalas Peru — Agroindustria del Pacífico",
     description:
       "Enlatados, conservas y congelados peruanos con calidad de exportación.",
     images: ["/images/og-image.jpg"],

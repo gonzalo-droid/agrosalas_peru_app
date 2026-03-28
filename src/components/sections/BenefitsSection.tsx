@@ -51,7 +51,7 @@ export function BenefitsSection() {
             Comprometidos con la excelencia
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            Cada proceso en AgroSalas está diseñado para ofrecerte el mejor
+            Cada proceso en Agrosalas Peru está diseñado para ofrecerte el mejor
             producto, con el mejor servicio.
           </p>
         </div>

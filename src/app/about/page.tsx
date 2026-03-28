@@ -4,15 +4,15 @@ import { Target, Eye, Heart, Users } from "lucide-react";
 export const metadata: Metadata = {
   title: "Nosotros",
   description:
-    "Conoce la historia, misión, visión y valores de AgroSalas, empresa agroindustrial peruana con más de 25 años de trayectoria.",
+    "Conoce la historia, misión, visión y valores de Agrosalas Peru, empresa agroindustrial peruana con más de 25 años de trayectoria.",
 };
 
 const VALUES = [
   {
     icon: Heart,
-    title: "Calidad sin compromiso",
+    title: "Calidad",
     description:
-      "Cada producto que sale de nuestras plantas lleva el sello de calidad que nos ha caracterizado por más de dos décadas. No aceptamos nada menos que lo mejor.",
+      "Cada producto que sale de nuestras plantas lleva el sello de calidad que nos ha caracterizado por años. No aceptamos nada menos que lo mejor.",
   },
   {
     icon: Users,
@@ -35,7 +35,7 @@ const VALUES = [
 ];
 
 const TIMELINE = [
-  { year: "1999", event: "Fundación de AgroSalas por la familia Salas en Lima, Perú." },
+  { year: "1999", event: "Fundación de Agrosalas Peru por la familia Salas en Lima, Perú." },
   { year: "2003", event: "Primera planta de procesamiento de enlatados con capacidad para 500 TM/mes." },
   { year: "2008", event: "Certificación HACCP y primer contrato de exportación a Chile y Ecuador." },
   { year: "2012", event: "Apertura de planta de congelados IQF y expansión a conservas vegetales." },
@@ -63,11 +63,10 @@ export default function NosotrosPage() {
             Nuestra historia
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-            25 años cultivando confianza
+            Cultivando confianza
           </h1>
           <p className="text-brand-200 max-w-2xl mx-auto text-lg">
-            Nacimos en Lima en 1999 con una visión clara: llevar lo mejor del
-            Perú a las mesas del mundo, sin renunciar jamás a la calidad.
+            Somos una empresa agroindustrial familiar que nació en 2021 con el propósito de llevar conservas de legumbres saludables y de calidad desde el Perú al mundo.
           </p>
         </div>
       </div>
@@ -81,11 +80,7 @@ export default function NosotrosPage() {
             </div>
             <h2 className="text-2xl font-extrabold text-gray-900 mb-4">Nuestra misión</h2>
             <p className="text-gray-600 leading-relaxed">
-              Producir y comercializar alimentos agroindustriales de alta calidad —
-              enlatados, conservas y congelados — que satisfagan las necesidades
-              nutricionales y gastronómicas de consumidores nacionales e
-              internacionales, generando valor sostenible para nuestros clientes,
-              colaboradores y el medio ambiente.
+              Ser una empresa líder en la agroexportación de conservas de legumbres sanas y saludables, impulsando la innovación continua en nuestros productos y procesos, garantizando calidad e inocuidad, y proyectándonos al desarrollo de productos deshidratados y congelados.
             </p>
           </div>
 
@@ -95,10 +90,7 @@ export default function NosotrosPage() {
             </div>
             <h2 className="text-2xl font-extrabold text-gray-900 mb-4">Nuestra visión</h2>
             <p className="text-gray-600 leading-relaxed">
-              Ser reconocidos en 2030 como el principal exportador agroindustrial
-              del Perú, líder en innovación y sostenibilidad, con presencia en
-              más de 30 países y posicionados como referente de calidad en los
-              mercados internacionales más exigentes.
+              Desarrollar y comercializar, junto a nuestros clientes y proveedores, alimentos de alta calidad para la agroexportación y el mercado local, logrando un crecimiento sostenido de la empresa, generando valor para nuestros accionistas, bienestar para nuestros colaboradores y contribuyendo al desarrollo y la imagen del Perú, con una proyección de diversificación hacia productos deshidratados y congelados.
             </p>
           </div>
         </div>
@@ -134,6 +126,8 @@ export default function NosotrosPage() {
       </section>
 
       {/* Historia / Timeline */}
+      
+      {/*
       <section className="section-padding bg-white">
         <div className="container-section max-w-3xl">
           <div className="text-center mb-14">
@@ -144,7 +138,7 @@ export default function NosotrosPage() {
           </div>
 
           <div className="relative">
-            {/* Line */}
+         
             <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-brand-100" />
 
             <div className="space-y-8">
@@ -163,14 +157,16 @@ export default function NosotrosPage() {
           </div>
         </div>
       </section>
+     */}
 
       {/* Equipo */}
+      {/*
       <section className="section-padding bg-gray-50">
         <div className="container-section">
           <div className="text-center mb-14">
             <span className="badge bg-brand-100 text-brand-700 mb-3">Nuestro equipo</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-              Las personas detrás de AgroSalas
+              Las personas detrás de Agrosalas Peru
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto mt-4">
               Un equipo apasionado y comprometido que hace posible llevar la
@@ -191,6 +187,7 @@ export default function NosotrosPage() {
           </div>
         </div>
       </section>
+      */}
     </>
   );
 }

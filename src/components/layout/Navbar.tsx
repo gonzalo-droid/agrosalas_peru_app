@@ -8,8 +8,8 @@ import { Menu, X, Leaf } from "lucide-react";
 const NAV_LINKS = [
   { href: "/",          label: "Inicio"    },
   { href: "/catalogo",  label: "Catálogo"  },
-  { href: "/nosotros",  label: "Nosotros"  },
-  { href: "/contacto",  label: "Contacto"  },
+  { href: "/about",  label: "Nosotros"  },
+  { href: "/contact",  label: "Contacto"  },
 ];
 
 export function Navbar() {
@@ -42,7 +42,7 @@ export function Navbar() {
               scrolled ? "text-gray-900" : "text-white drop-shadow"
             }`}
           >
-            Agro<span className="text-brand-500">Salas</span>
+            Agrosalas<span className="text-brand-500">Peru</span>
           </span>
         </Link>
 

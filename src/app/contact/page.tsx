@@ -12,20 +12,20 @@ const CONTACT_INFO = [
   {
     icon: Phone,
     label: "Teléfono / WhatsApp",
-    value: "+51 924 262 747",
-    href: "tel:+51924262747",
+    value: "+51 905 600 449",
+    href: "tel:+905600449",
   },
   {
     icon: Mail,
     label: "Correo electrónico",
-    value: "ventas@agrosalas.com",
-    href: "mailto:ventas@agrosalas.com",
+    value: "ventas@agrosalasperu.com",
+    href: "mailto:ventas@agrosalasperu.com",
   },
   {
     icon: MapPin,
     label: "Dirección",
-    value: "Av. Agroindustrial 1250, Lima, Perú",
-    href: "https://maps.google.com",
+    value: "Camino Rural a Chonto S/N - (Fdo Mi Chelita) SALAS-LAMBAYEQUE-LAMBAYEQUE",
+    href: "https://maps.app.goo.gl/k7ijGFZQdVBH3VYA9",
   },
   {
     icon: Clock,
@@ -87,7 +87,7 @@ export default function ContactoPage() {
 
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/51924262747?text=Hola%2C%20me%20interesa%20información%20sobre%20sus%20productos."
+                href="https://wa.me/905600449?text=Hola%2C%20me%20interesa%20información%20sobre%20sus%20productos."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-5 bg-[#25D366] text-white rounded-2xl font-semibold hover:bg-[#20ba59] transition-colors"

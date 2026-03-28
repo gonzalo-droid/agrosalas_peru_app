@@ -5,7 +5,7 @@ const TESTIMONIALS = [
     name: "Carlos Mendoza",
     role: "Gerente de Compras — Supermercados del Sur",
     quote:
-      "Trabajamos con AgroSalas desde hace 8 años. La consistencia en la calidad de sus enlatados y la puntualidad en los despachos hacen que sean nuestro proveedor preferente.",
+      "Trabajamos con Agrosalas Peru desde hace 8 años. La consistencia en la calidad de sus enlatados y la puntualidad en los despachos hacen que sean nuestro proveedor preferente.",
     country: "🇵🇪 Lima, Perú",
   },
   {
@@ -19,7 +19,7 @@ const TESTIMONIALS = [
     name: "John Kim",
     role: "Procurement Manager — Pacific Foods Inc.",
     quote:
-      "AgroSalas' frozen shrimp quality is outstanding. Their IQF process preserves texture and freshness better than any other Peruvian supplier we've worked with.",
+      "Agrosalas Peru' frozen shrimp quality is outstanding. Their IQF process preserves texture and freshness better than any other Peruvian supplier we've worked with.",
     country: "🇺🇸 Miami, USA",
   },
 ];
@@ -36,7 +36,7 @@ export function TestimonialsSection() {
             Lo que dicen nuestros clientes
           </h2>
           <p className="text-brand-200 max-w-xl mx-auto">
-            Más de 200 clientes en todo el mundo confían en la calidad de AgroSalas.
+            Más de 200 clientes en todo el mundo confían en la calidad de Agrosalas Peru.
           </p>
         </div>
 

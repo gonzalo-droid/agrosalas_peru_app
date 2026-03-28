@@ -25,11 +25,11 @@ export function CtaSection() {
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <a
-                href="tel:+51924262747"
+                href="tel:+905600449"
                 className="flex items-center gap-2 text-white/80 hover:text-white transition-colors font-medium"
               >
                 <Phone className="w-5 h-5" />
-                +51 924 262 747
+                +51 905 600 449
               </a>
             </div>
           </div>

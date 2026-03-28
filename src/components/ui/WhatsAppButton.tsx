@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 
-const WA_LINK = "https://wa.me/51924262747?text=Hola%2C%20me%20interesa%20obtener%20información%20sobre%20sus%20productos.";
+const WA_LINK = "https://wa.me/905600449?text=Hola%2C%20me%20interesa%20obtener%20información%20sobre%20sus%20productos.";
 
 export function WhatsAppButton() {
   return (

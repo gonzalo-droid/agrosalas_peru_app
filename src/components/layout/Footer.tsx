@@ -4,8 +4,8 @@ import { Leaf, Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide
 const NAV_LINKS = [
   { href: "/",         label: "Inicio"   },
   { href: "/catalogo", label: "Catálogo" },
-  { href: "/nosotros", label: "Nosotros" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/about", label: "Nosotros" },
+  { href: "/contact", label: "Contacto" },
 ];
 
 const CATEGORIES = [
@@ -32,8 +32,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400 mb-6">
-              Agroindustria peruana con más de 25 años llevando lo mejor del
-              mar y el campo a su mesa, con calidad de exportación.
+              Agroindustria peruana comprometida llevando lo mejor del campo a su mesa, con calidad de exportación.
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -112,21 +111,21 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm">
                 <MapPin className="w-4 h-4 mt-0.5 text-brand-400 shrink-0" />
-                <span>Av. Agroindustrial 1250, Lima, Perú</span>
+                <span>Camino Rural a Chonto S/N - (Fdo Mi Chelita) SALAS-LAMBAYEQUE-LAMBAYEQUE</span>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Phone className="w-4 h-4 text-brand-400 shrink-0" />
-                <a href="tel:+51924262747" className="hover:text-brand-400 transition-colors">
-                  +51 924 262 747
+                <a href="tel:+905600449" className="hover:text-brand-400 transition-colors">
+                  +51 905 600 449
                 </a>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Mail className="w-4 h-4 text-brand-400 shrink-0" />
                 <a
-                  href="mailto:ventas@agrosalas.com"
+                  href="mailto:ventas@agrosalasperu.com"
                   className="hover:text-brand-400 transition-colors"
                 >
-                  ventas@agrosalas.com
+                  ventas@agrosalasperu.com
                 </a>
               </li>
             </ul>
@@ -137,7 +136,7 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-gray-800">
         <div className="container-section py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
-          <span>© {year} AgroSalas. Todos los derechos reservados.</span>
+          <span>© {year} Agrosalas Peru. Todos los derechos reservados.</span>
           <span>Hecho con ❤️ en Perú 🇵🇪</span>
         </div>
       </div>

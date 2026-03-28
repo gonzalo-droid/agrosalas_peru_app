@@ -31,13 +31,12 @@ export function HeroSection() {
           </span>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-            Del mar y el campo{" "}
-            <span className="text-earth-300">a tu mesa</span>
+            Agrosalas Peru{" "}
+            <span className="text-earth-300">E.R.L</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Más de 25 años produciendo enlatados, conservas y congelados con
-            estándares internacionales. Calidad que se siente en cada bocado.
+            Dedicada a la exportación de conservas de legumbres, elaboradas bajo altos estándares de calidad e inocuidad, con presencia en España, Estados Unidos y Panamá. 
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -51,6 +50,7 @@ export function HeroSection() {
           </div>
 
           {/* Certifications */}
+          {/*
           <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-white/60 text-sm">
             {["ISO 22000", "HACCP", "BRC Food", "Exportación certificada"].map((cert) => (
               <span key={cert} className="flex items-center gap-2">
@@ -59,6 +59,7 @@ export function HeroSection() {
               </span>
             ))}
           </div>
+          */}
         </div>
       </div>
 

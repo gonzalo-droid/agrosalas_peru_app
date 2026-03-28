@@ -3,8 +3,8 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "ventas@agrosalas.com";
-const FROM_EMAIL    = process.env.FROM_EMAIL    ?? "no-reply@agrosalas.com";
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "ventas@agrosalasperu.com";
+const FROM_EMAIL    = process.env.FROM_EMAIL    ?? "no-reply@agrosalasperu.com";
 
 function sanitize(str: string): string {
   return str.replace(/[<>]/g, "").trim().slice(0, 500);
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
       <head><meta charset="UTF-8"></head>
       <body style="font-family: Arial, sans-serif; color: #1f2937; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="background: linear-gradient(135deg, #166534, #15803d); padding: 32px; border-radius: 12px 12px 0 0; text-align: center;">
-          <h1 style="color: white; margin: 0; font-size: 24px;">AgroSalas</h1>
+          <h1 style="color: white; margin: 0; font-size: 24px;">Agrosalas Peru</h1>
           <p style="color: #bbf7d0; margin: 8px 0 0; font-size: 14px;">Nuevo mensaje de contacto</p>
         </div>
         <div style="background: #f9fafb; padding: 32px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 12px 12px;">
@@ -79,7 +79,7 @@ export async function POST(req: Request) {
           </div>
 
           <p style="font-size: 12px; color: #9ca3af; margin-top: 24px; text-align: center;">
-            Este correo fue enviado desde el formulario de contacto de agrosalas.com
+            Este correo fue enviado desde el formulario de contacto de agrosalasperu.com
           </p>
         </div>
       </body>
@@ -90,7 +90,7 @@ export async function POST(req: Request) {
       from:    FROM_EMAIL,
       to:      CONTACT_EMAIL,
       replyTo: safeEmail,
-      subject: `[AgroSalas] ${safeSubject} — ${safeName}`,
+      subject: `[Agrosalas Peru] ${safeSubject} — ${safeName}`,
       html,
     });
 

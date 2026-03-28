@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Explora nuestro catálogo completo de enlatados, conservas y congelados peruanos con calidad de exportación.",
   openGraph: {
-    title: "Catálogo | AgroSalas",
+    title: "Catálogo | Agrosalas Peru",
     description:
       "Enlatados, conservas y congelados del mar y el campo peruano.",
   },
@@ -21,7 +21,7 @@ export default function CatalogoPage() {
       <div className="bg-gradient-to-br from-brand-800 to-brand-700 pt-32 pb-16">
         <div className="container-section text-center">
           <span className="badge bg-white/10 text-brand-100 border border-white/20 mb-4">
-            Catálogo 2025
+            Catálogo 2026
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
             Nuestros productos
