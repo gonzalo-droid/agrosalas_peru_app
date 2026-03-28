@@ -34,7 +34,7 @@ Next.js 16 App Router. All routes live under `src/app/`. The project splits conc
 **Layout**
 - `Navbar` is transparent at the top of the page and transitions to white/opaque on scroll (`scrollY > 20`). It is a client component.
 - `Footer` and `WhatsAppButton` are server/shared components in `src/components/layout/` and `src/components/ui/`.
-- WhatsApp number: `+905600449` — hardcoded in `WhatsAppButton.tsx` and `contacto/page.tsx`.
+- WhatsApp number: `+905600449` — hardcoded in `WhatsAppButton.tsx` and `contact/page.tsx`.
 
 ### Adding a new page
 

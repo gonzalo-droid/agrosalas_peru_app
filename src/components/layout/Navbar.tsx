@@ -78,7 +78,7 @@ export function Navbar() {
 
         {/* CTA Desktop */}
         <div className="hidden md:block">
-          <Link href="/contacto" className="btn-primary text-sm py-2">
+          <Link href="/contact" className="btn-primary text-sm py-2">
             Solicitar cotización
           </Link>
         </div>
@@ -120,7 +120,7 @@ export function Navbar() {
             })}
             <li className="pt-2">
               <Link
-                href="/contacto"
+                href="/contact"
                 className="btn-primary w-full justify-center text-sm"
               >
                 Solicitar cotización

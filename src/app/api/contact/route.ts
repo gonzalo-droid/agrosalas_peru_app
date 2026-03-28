@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
 
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "ventas@agrosalasperu.com";
-const FROM_EMAIL    = process.env.FROM_EMAIL    ?? "no-reply@agrosalasperu.com";
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "gonzalo.lozg@gmail.com";
 
 function sanitize(str: string): string {
   return str.replace(/[<>]/g, "").trim().slice(0, 500);
@@ -15,7 +20,6 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, email, phone, subject, message } = body;
 
-    // Validation
     if (!name || !email || !message || !subject) {
       return NextResponse.json(
         { error: "Faltan campos obligatorios." },
@@ -31,7 +35,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Sanitize inputs
     const safeName    = sanitize(name);
     const safeEmail   = sanitize(email);
     const safePhone   = sanitize(phone ?? "");
@@ -86,11 +89,11 @@ export async function POST(req: Request) {
       </html>
     `;
 
-    await resend.emails.send({
-      from:    FROM_EMAIL,
-      to:      CONTACT_EMAIL,
-      replyTo: safeEmail,
-      subject: `[Agrosalas Peru] ${safeSubject} — ${safeName}`,
+    await transporter.sendMail({
+      from:     `"Agrosalas Peru" <${process.env.GMAIL_USER}>`,
+      to:       CONTACT_EMAIL,
+      replyTo:  safeEmail,
+      subject:  `[Agrosalas Peru] ${safeSubject} — ${safeName}`,
       html,
     });
 

@@ -20,7 +20,7 @@ export function CtaSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contacto" className="btn-outline-white text-base px-8 py-4">
+              <Link href="/contact" className="btn-outline-white text-base px-8 py-4">
                 Enviar consulta
                 <ArrowRight className="w-5 h-5" />
               </Link>

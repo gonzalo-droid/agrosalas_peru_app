@@ -44,7 +44,7 @@ export function HeroSection() {
               Ver catálogo completo
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link href="/contacto" className="btn-outline-white text-base px-8 py-4">
+            <Link href="/contact" className="btn-outline-white text-base px-8 py-4">
               Solicitar cotización
             </Link>
           </div>
