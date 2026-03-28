@@ -27,12 +27,12 @@ export function HeroSection() {
       <div className="relative z-10 container-section text-center py-32">
         <div className="max-w-4xl mx-auto">
           <span className="inline-block badge bg-brand-500/30 text-brand-200 border border-brand-400/40 mb-6">
-            🌊 Agroindustria Peruana de Exportación
+            Agroindustria Peruana de Exportación
           </span>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
             Agrosalas Peru{" "}
-            <span className="text-earth-300">E.R.L</span>
+            <span className="text-earth-300">S.R.L</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">

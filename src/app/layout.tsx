@@ -56,6 +56,9 @@ export const metadata: Metadata = {
       "Enlatados, conservas y congelados peruanos con calidad de exportación.",
     images: ["/images/og-image.jpg"],
   },
+  icons: {
+    icon: "/images/favicon.ico",
+  },
   robots: {
     index: true,
     follow: true,

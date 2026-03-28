@@ -5,31 +5,31 @@ const BENEFITS = [
     icon: ShieldCheck,
     title: "Calidad garantizada",
     description:
-      "Certificados ISO 22000, HACCP y BRC Food. Cada lote pasa por rigurosos controles de calidad antes de salir al mercado.",
+      "Cada lote pasa por rigurosos controles de calidad antes de salir al mercado.",
   },
   {
     icon: Leaf,
     title: "Sostenibilidad",
     description:
-      "Trabajamos con pesca responsable y agricultura sostenible, cuidando los recursos naturales para las próximas generaciones.",
+      "Trabajamos con agricultura sostenible, cuidando los recursos naturales para las próximas generaciones.",
   },
   {
     icon: Globe2,
     title: "Alcance global",
     description:
-      "Exportamos a más de 15 países en América, Europa y Asia, con logística especializada para productos perecederos.",
+      "Exportamos a España, Estados Unidos y Panamá, con logística especializada para productos perecederos.",
   },
   {
     icon: Award,
-    title: "25 años de experiencia",
+    title: "4 años de experiencia",
     description:
-      "Más de dos décadas perfeccionando nuestros procesos y construyendo relaciones duraderas con clientes y proveedores.",
+      "Mejorando nuestros procesos y construyendo relaciones duraderas con clientes y proveedores.",
   },
   {
     icon: Truck,
-    title: "Cadena de frío continua",
+    title: "Coordinación logística",
     description:
-      "Tecnología IQF y cadena de frío desde la captura hasta la entrega, garantizando la frescura y seguridad alimentaria.",
+      "Equipo dedicado a coordinar envíos, asegurando entregas puntuales y en óptimas condiciones.",
   },
   {
     icon: HeartHandshake,

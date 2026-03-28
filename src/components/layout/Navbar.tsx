@@ -3,19 +3,20 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Leaf } from "lucide-react";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/",          label: "Inicio"    },
-  { href: "/catalogo",  label: "Catálogo"  },
-  { href: "/about",  label: "Nosotros"  },
-  { href: "/contact",  label: "Contacto"  },
+  { href: "/", label: "Inicio" },
+  { href: "/catalogo", label: "Catálogo" },
+  { href: "/about", label: "Nosotros" },
+  { href: "/contact", label: "Contacto" },
 ];
 
 export function Navbar() {
-  const [open, setOpen]       = useState(false);
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname              = usePathname();
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -32,10 +33,16 @@ export function Navbar() {
       }`}
     >
       <nav className="container-section h-16 flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center group-hover:bg-brand-700 transition-colors">
-            <Leaf className="w-5 h-5 text-white" />
+          <div className="w-9 h-9 bg-white/95 rounded-lg flex items-center justify-center transition-colors">
+            <Image
+              src="/images/logo.png"
+              alt="Agrosalas Peru"
+              width={140}
+              height={56}
+              className="h-12 w-auto object-contain"
+              priority
+            />
           </div>
           <span
             className={`text-xl font-bold transition-colors ${
@@ -58,8 +65,8 @@ export function Navbar() {
                     active
                       ? "bg-brand-600 text-white"
                       : scrolled
-                      ? "text-gray-700 hover:text-brand-600 hover:bg-brand-50"
-                      : "text-white/90 hover:text-white hover:bg-white/15"
+                        ? "text-gray-700 hover:text-brand-600 hover:bg-brand-50"
+                        : "text-white/90 hover:text-white hover:bg-white/15"
                   }`}
                 >
                   {label}
@@ -81,7 +88,9 @@ export function Navbar() {
           onClick={() => setOpen(!open)}
           aria-label="Abrir menú"
           className={`md:hidden p-2 rounded-lg transition-colors ${
-            scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/15"
+            scrolled
+              ? "text-gray-700 hover:bg-gray-100"
+              : "text-white hover:bg-white/15"
           }`}
         >
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -110,7 +119,10 @@ export function Navbar() {
               );
             })}
             <li className="pt-2">
-              <Link href="/contacto" className="btn-primary w-full justify-center text-sm">
+              <Link
+                href="/contacto"
+                className="btn-primary w-full justify-center text-sm"
+              >
                 Solicitar cotización
               </Link>
             </li>

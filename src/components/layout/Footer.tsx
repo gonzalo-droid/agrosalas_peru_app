@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Leaf, Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/",         label: "Inicio"   },
@@ -24,11 +25,20 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center">
-                <Leaf className="w-5 h-5 text-white" />
-              </div>
+              <div className="w-9 h-9 bg-white/95 rounded-lg flex items-center justify-center transition-colors">
+                          <Image
+                            src="/images/logo.png"
+                            alt="Agrosalas Peru"
+                            width={140}
+                            height={56}
+                            className="h-12 w-auto object-contain"
+                            priority
+                          />
+                        </div>
+
+              
               <span className="text-xl font-bold text-white">
-                Agro<span className="text-brand-400">Salas</span>
+                Agrosalas<span className="text-brand-400">Peru</span>
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400 mb-6">
@@ -136,7 +146,7 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-gray-800">
         <div className="container-section py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
-          <span>© {year} Agrosalas Peru. Todos los derechos reservados.</span>
+          <span>© {year} AgrosalasPeru S.R.L. Todos los derechos reservados.</span>
           <span>Hecho con ❤️ en Perú 🇵🇪</span>
         </div>
       </div>
