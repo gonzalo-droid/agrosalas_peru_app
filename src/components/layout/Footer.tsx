@@ -55,7 +55,7 @@ export function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/agrosalasperusrl/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -64,7 +64,7 @@ export function Footer() {
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/agrosalas-per%C3%BA-s-r-l/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
