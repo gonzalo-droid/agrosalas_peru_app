@@ -1,21 +1,23 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const NAV_LINKS = [
-  { href: "/",         label: "Inicio"   },
-  { href: "/catalogo", label: "Catálogo" },
-  { href: "/about", label: "Nosotros" },
-  { href: "/contact", label: "Contacto" },
+  { href: "/",         labelKey: "nav.home"    },
+  { href: "/catalogo", labelKey: "nav.catalog" },
+  { href: "/about",    labelKey: "nav.about"   },
+  { href: "/contact",  labelKey: "nav.contact" },
 ];
 
 const CATEGORIES = [
-  //{ href: "/catalogo?categoria=enlatados",  label: "Enlatados"  },
-  { href: "/catalogo?categoria=conservas",  label: "Conservas"  },
-  //{ href: "/catalogo?categoria=congelados", label: "Congelados" },
+  { href: "/catalogo?categoria=conservas", labelKey: "category.conservas" },
 ];
 
 export function Footer() {
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
 
   return (
@@ -26,23 +28,21 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-9 h-9 bg-white/95 rounded-lg flex items-center justify-center transition-colors">
-                          <Image
-                            src="/images/logo.png"
-                            alt="Agrosalas Peru"
-                            width={140}
-                            height={56}
-                            className="h-12 w-auto object-contain"
-                            priority
-                          />
-                        </div>
-
-              
+                <Image
+                  src="/images/logo.png"
+                  alt="Agrosalas Peru"
+                  width={140}
+                  height={56}
+                  className="h-12 w-auto object-contain"
+                  priority
+                />
+              </div>
               <span className="text-xl font-bold text-white">
                 Agrosalas<span className="text-brand-400">Peru</span>
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400 mb-6">
-              Agroindustria peruana comprometida llevando lo mejor del campo a su mesa, con calidad de exportación.
+              {t("footer.tagline")}
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -78,16 +78,16 @@ export function Footer() {
           {/* Navigation */}
           <div>
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
-              Navegación
+              {t("footer.navigation")}
             </h3>
             <ul className="space-y-2">
-              {NAV_LINKS.map(({ href, label }) => (
+              {NAV_LINKS.map(({ href, labelKey }) => (
                 <li key={href}>
                   <Link
                     href={href}
                     className="text-sm hover:text-brand-400 transition-colors"
                   >
-                    {label}
+                    {t(labelKey)}
                   </Link>
                 </li>
               ))}
@@ -97,16 +97,16 @@ export function Footer() {
           {/* Categories */}
           <div>
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
-              Productos
+              {t("footer.products")}
             </h3>
             <ul className="space-y-2">
-              {CATEGORIES.map(({ href, label }) => (
+              {CATEGORIES.map(({ href, labelKey }) => (
                 <li key={href}>
                   <Link
                     href={href}
                     className="text-sm hover:text-brand-400 transition-colors"
                   >
-                    {label}
+                    {t(labelKey)}
                   </Link>
                 </li>
               ))}
@@ -116,7 +116,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
-              Contacto
+              {t("footer.contact")}
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm">
@@ -146,8 +146,8 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-gray-800">
         <div className="container-section py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
-          <span>© {year} AgrosalasPeru S.R.L. Todos los derechos reservados.</span>
-          <span>Hecho con ❤️ en Perú 🇵🇪</span>
+          <span>© {year} {t("footer.copyright")}</span>
+          <span>{t("footer.madeIn")}</span>
         </div>
       </div>
     </footer>

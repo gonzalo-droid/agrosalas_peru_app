@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { CatalogoClient } from "./CatalogoClient";
+import { CatalogoHeader } from "./CatalogoHeader";
 import { Loader2 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -17,21 +18,7 @@ export const metadata: Metadata = {
 export default function CatalogoPage() {
   return (
     <>
-      {/* Page header */}
-      <div className="bg-gradient-to-br from-brand-800 to-brand-700 pt-32 pb-16">
-        <div className="container-section text-center">
-          <span className="badge bg-white/10 text-brand-100 border border-white/20 mb-4">
-            Catálogo 2026
-          </span>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-            Nuestros productos
-          </h1>
-          <p className="text-brand-200 max-w-xl mx-auto text-lg">
-            Enlatados y conservas con calidad de exportación,
-            directamente del campo peruano.
-          </p>
-        </div>
-      </div>
+      <CatalogoHeader />
 
       <Suspense
         fallback={

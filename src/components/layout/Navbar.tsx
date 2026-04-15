@@ -5,18 +5,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 const NAV_LINKS = [
-  { href: "/", label: "Inicio" },
-  { href: "/catalogo", label: "Catálogo" },
-  { href: "/about", label: "Nosotros" },
-  { href: "/contact", label: "Contacto" },
+  { href: "/", labelKey: "nav.home" },
+  { href: "/catalogo", labelKey: "nav.catalog" },
+  { href: "/about", labelKey: "nav.about" },
+  { href: "/contact", labelKey: "nav.contact" },
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -55,7 +58,7 @@ export function Navbar() {
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map(({ href, label }) => {
+          {NAV_LINKS.map(({ href, labelKey }) => {
             const active = pathname === href;
             return (
               <li key={href}>
@@ -69,39 +72,43 @@ export function Navbar() {
                         : "text-white/90 hover:text-white hover:bg-white/15"
                   }`}
                 >
-                  {label}
+                  {t(labelKey)}
                 </Link>
               </li>
             );
           })}
         </ul>
 
-        {/* CTA Desktop */}
-        <div className="hidden md:block">
+        {/* Right side — Desktop */}
+        <div className="hidden md:flex items-center gap-3">
+          <LanguageSwitcher scrolled={scrolled} />
           <Link href="/contact" className="btn-primary text-sm py-2">
-            Solicitar cotización
+            {t("nav.quote")}
           </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          aria-label="Abrir menú"
-          className={`md:hidden p-2 rounded-lg transition-colors ${
-            scrolled
-              ? "text-gray-700 hover:bg-gray-100"
-              : "text-white hover:bg-white/15"
-          }`}
-        >
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile controls */}
+        <div className="md:hidden flex items-center gap-2">
+          <LanguageSwitcher scrolled={scrolled} />
+          <button
+            onClick={() => setOpen(!open)}
+            aria-label={t("nav.menu")}
+            className={`p-2 rounded-lg transition-colors ${
+              scrolled
+                ? "text-gray-700 hover:bg-gray-100"
+                : "text-white hover:bg-white/15"
+            }`}
+          >
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg animate-fade-in">
           <ul className="container-section py-4 flex flex-col gap-1">
-            {NAV_LINKS.map(({ href, label }) => {
+            {NAV_LINKS.map(({ href, labelKey }) => {
               const active = pathname === href;
               return (
                 <li key={href}>
@@ -113,7 +120,7 @@ export function Navbar() {
                         : "text-gray-700 hover:bg-brand-50 hover:text-brand-700"
                     }`}
                   >
-                    {label}
+                    {t(labelKey)}
                   </Link>
                 </li>
               );
@@ -123,7 +130,7 @@ export function Navbar() {
                 href="/contact"
                 className="btn-primary w-full justify-center text-sm"
               >
-                Solicitar cotización
+                {t("nav.quote")}
               </Link>
             </li>
           </ul>

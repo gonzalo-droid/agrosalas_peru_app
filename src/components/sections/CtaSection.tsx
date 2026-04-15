@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export function CtaSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="section-padding bg-white">
       <div className="container-section">
@@ -12,16 +17,15 @@ export function CtaSection() {
 
           <div className="relative z-10">
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
-              ¿Listo para hacer tu pedido?
+              {t("cta.title")}
             </h2>
             <p className="text-white/80 max-w-xl mx-auto mb-8 text-lg">
-              Contáctanos hoy y recibe una cotización personalizada para tu negocio.
-              Atendemos distribuidores, supermercados y restaurantes.
+              {t("cta.description")}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact" className="btn-outline-white text-base px-8 py-4">
-                Enviar consulta
+                {t("cta.button")}
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <a

@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export function HeroSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient overlay */}
@@ -27,39 +32,27 @@ export function HeroSection() {
       <div className="relative z-10 container-section text-center py-32">
         <div className="max-w-4xl mx-auto">
           <span className="inline-block badge bg-brand-500/30 text-brand-200 border border-brand-400/40 mb-6">
-            Agroindustria Peruana de Exportación
+            {t("hero.badge")}
           </span>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-            Agrosalas Peru{" "}
-            <span className="text-earth-300">S.R.L</span>
+            {t("hero.title")}{" "}
+            <span className="text-earth-300">{t("hero.titleAccent")}</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Dedicada a la exportación de conservas de legumbres, elaboradas bajo altos estándares de calidad e inocuidad, con presencia en España, Estados Unidos y Panamá. 
+            {t("hero.description")}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/catalogo" className="btn-primary text-base px-8 py-4">
-              Ver catálogo completo
+              {t("hero.ctaCatalog")}
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link href="/contact" className="btn-outline-white text-base px-8 py-4">
-              Solicitar cotización
+              {t("hero.ctaQuote")}
             </Link>
           </div>
-
-          {/* Certifications */}
-          {/*
-          <div className="mt-16 flex flex-wrap items-center justify-center gap-6 text-white/60 text-sm">
-            {["ISO 22000", "HACCP", "BRC Food", "Exportación certificada"].map((cert) => (
-              <span key={cert} className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-brand-400 rounded-full" />
-                {cert}
-              </span>
-            ))}
-          </div>
-          */}
         </div>
       </div>
 
@@ -67,7 +60,7 @@ export function HeroSection() {
       <a
         href="#stats"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"
-        aria-label="Scrollear hacia abajo"
+        aria-label={t("hero.scroll")}
       >
         <ChevronDown className="w-8 h-8" />
       </a>
