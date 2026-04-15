@@ -9,7 +9,7 @@ export const products: Product[] = [
       "Frijol castilla peruano cocido y conservado en salmuera.",
     description:
       "Frijol Castilla en presentación conserva de 425 gr x 24 latas. Es un producto versátil, conocido internacionalmente como Blackeye Beans, adecuado para distintas preparaciones alimenticias y de uso comercial.",
-    image: "/images/products/frijol-castilla.jpg",
+    image: "",
     unit: "Conserva 425 gr",
     available: true,
   },
@@ -21,7 +21,7 @@ export const products: Product[] = [
       "Frejol Rojo en conserva, práctico y listo para múltiples recetas.",
     description:
       "Frejol Rojo en presentación conserva de 425 gr x 24 latas. Conocido en inglés como Light Red Kidney, es una opción ideal para platos nutritivos, con buen rendimiento y facilidad de almacenamiento.",
-    image: "",
+    image: "/images/products/frejol-rojo.png",
     unit: "Conserva 425g",
     available: true,
   },
@@ -45,7 +45,7 @@ export const products: Product[] = [
     shortDescription: "Frijol negro cocido en salmuera, listo para usar.",
     description:
       "Frijol negro seleccionado, cocido y conservado en salmuera natural. Rico en proteínas, fibra y antioxidantes. Ideal para sopas, arroces y guisos.",
-    image: "/images/products/frijol-negro.jpg",
+    image: "/images/products/frejol-negro.png",
     unit: "Conserva 425g",
     available: true,
   },
@@ -57,7 +57,7 @@ export const products: Product[] = [
     shortDescription: "Granos de gandul cocidos y conservados en agua con sal.",
     description:
       "Granos de gandul seleccionados, cocidos en su punto justo y conservados en agua con sal natural. Listos para usar, ideales para guisos, sopas y ensaladas.",
-    image: "/images/products/gandul-agua-sal.jpg",
+    image: "",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -70,7 +70,7 @@ export const products: Product[] = [
       "Gandul cocido en leche de coco, sabor tropical y cremoso.",
     description:
       "Granos de gandul cocinados en leche de coco natural, con un sabor suave y aromático. Perfecto como acompañamiento o base para preparaciones caribeñas y tropicales.",
-    image: "/images/products/gandul-coco.jpg",
+    image: "",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -83,7 +83,7 @@ export const products: Product[] = [
       "Granos de gandul secos seleccionados, listos para cocinar.",
     description:
       "Gandul seco de alta calidad, cultivado y secado de forma natural. Excelente fuente de proteína vegetal. Ideal para sopas, guisos y potajes tradicionales.",
-    image: "/images/products/gandul-seco.jpg",
+    image: "",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -97,7 +97,7 @@ export const products: Product[] = [
       "Pallar Americano en conserva, ideal para recetas nutritivas y de buen rendimiento.",
     description:
       "Pallar peruano de primera selección, cocido en su punto y conservado en salmuera natural. Listo para usar en guisos, ensaladas y platos tradicionales.",
-    image: "/images/products/pallar-americano.jpg",
+    image: "/images/products/pallar.png",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -109,7 +109,7 @@ export const products: Product[] = [
     shortDescription: "Pallar bebé peruano en salmuera, tierno y nutritivo.",
     description:
       "Pallar bebé de pequeño calibre, cosechado tierno y conservado en salmuera. De sabor suave y textura cremosa, ideal para ensaladas, guarniciones y cremas.",
-    image: "/images/products/pallar-bebe.jpg",
+    image: "",
     unit: "Conserva 425g",
     available: true,
   },
@@ -121,7 +121,7 @@ export const products: Product[] = [
     shortDescription: "Pallar peruano cocido y conservado en salmuera natural.",
     description:
       "Pallar peruano de primera selección, cocido en su punto y conservado en salmuera natural. Listo para usar en guisos, ensaladas y platos tradicionales.",
-    image: "/images/products/pallar-salmuera.jpg",
+    image: "",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -135,7 +135,7 @@ export const products: Product[] = [
       "Pimiento Morrón en conserva, ideal para complementar diversas recetas.",
     description:
       "Pimiento Morrón en presentación conserva de 290 gr. Conocido en inglés como Bell Pepper, es un producto práctico para uso gastronómico, con buen aprovechamiento y facilidad de almacenamiento.",
-    image: "",
+    image: "/images/products/pimiento-morron.png",
     unit: "Conserva 290g",
     available: true,
   },
@@ -158,7 +158,7 @@ export const products: Product[] = [
     shortDescription: "Garbanzo cocido en salmuera, versátil y nutritivo.",
     description:
       "Garbanzo seleccionado, cocido y conservado en salmuera natural. Alto contenido en proteínas y fibra. Perfecto para hummus, ensaladas, guisos y sopas.",
-    image: "/images/products/garbanzo.jpg",
+    image: "/images/products/garbanzo.png",
     unit: "Conserva 425g",
     available: true,
   },

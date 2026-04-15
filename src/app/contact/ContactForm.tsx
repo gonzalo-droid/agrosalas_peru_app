@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -22,8 +23,18 @@ const SUBJECTS = [
 ];
 
 export function ContactForm() {
+  const searchParams = useSearchParams();
+  const initialSubject = SUBJECTS.includes(searchParams.get("asunto") ?? "")
+    ? (searchParams.get("asunto") as string)
+    : "";
+  const initialMessage = searchParams.get("mensaje") ?? "";
+
   const [form, setForm] = useState<FormData>({
-    name: "", email: "", phone: "", subject: "", message: "",
+    name: "",
+    email: "",
+    phone: "",
+    subject: initialSubject,
+    message: initialMessage,
   });
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError]   = useState("");

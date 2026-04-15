@@ -1,5 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Product } from "@/types";
+
+const PLACEHOLDER = "/images/products/placeholder.svg";
 
 const CATEGORY_LABELS: Record<string, string> = {
   enlatados:  "Enlatados",
@@ -12,12 +15,17 @@ interface Props {
 }
 
 export function ProductCard({ product }: Props) {
+  const image = product.image?.trim() ? product.image : PLACEHOLDER;
+
   return (
-    <article className="card group flex flex-col">
+    <Link
+      href={`/catalogo/${product.id}`}
+      className="card group flex flex-col focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+    >
       {/* Image */}
-      <div className="relative h-48 bg-gradient-to-br from-brand-50 to-brand-100 overflow-hidden">
+      <div className="relative h-60 bg-gradient-to-br from-brand-50 to-brand-100 overflow-hidden">
         <Image
-          src={`/images/products/placeholder.svg`}
+          src={image}
           alt={product.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -51,6 +59,6 @@ export function ProductCard({ product }: Props) {
           </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { ContactForm } from "./ContactForm";
 
@@ -106,7 +107,9 @@ export default function ContactoPage() {
                 <h2 className="text-xl font-bold text-gray-900 mb-6">
                   Envíanos un mensaje
                 </h2>
-                <ContactForm />
+                <Suspense fallback={null}>
+                  <ContactForm />
+                </Suspense>
               </div>
             </div>
           </div>
