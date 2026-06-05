@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, FileText, Package } from "lucide-react";
+import { ArrowLeft, Check, CheckCircle2, FileText, Package, Share2 } from "lucide-react";
 import type { Product } from "@/types";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { getProductText } from "@/i18n/productsI18n";
@@ -35,6 +36,23 @@ export function ProductDetailClient({ product, related }: Props) {
       : `Hola, me interesa cotizar el producto: ${text.name} (${text.unit}).`;
 
   const whatsappHref = `https://wa.me/905600449?text=${encodeURIComponent(waText)}`;
+
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      await navigator.share({
+        title: text.name,
+        text: text.shortDescription,
+        url,
+      });
+    } else {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   return (
     <>
@@ -147,6 +165,13 @@ export function ProductDetailClient({ product, related }: Props) {
                 >
                   {t("detail.whatsappCta")}
                 </a>
+                <button
+                  onClick={handleShare}
+                  className="btn-outline-white shrink-0 px-4 justify-center"
+                  aria-label={t("detail.share")}
+                >
+                  {copied ? <Check className="w-5 h-5" /> : <Share2 className="w-5 h-5" />}
+                </button>
               </div>
             </div>
           </div>
