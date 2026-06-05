@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -67,6 +68,20 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Agrosalas Peru",
+  url: "https://agrosalasperu.com",
+  logo: "https://agrosalasperu.com/images/logo.png",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+905600449",
+    contactType: "sales",
+    availableLanguage: ["Spanish", "English"],
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -75,6 +90,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={inter.variable}>
       <body className="flex flex-col min-h-screen">
+        <JsonLd data={organizationSchema} />
         <LanguageProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
