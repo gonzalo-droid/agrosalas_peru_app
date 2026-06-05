@@ -72,9 +72,7 @@ export function ProductDetailClient({ product, related }: Props) {
                   className="object-cover"
                   priority
                 />
-                <span className={`absolute top-4 left-4 badge badge-${product.category}`}>
-                  {t(`category.${product.category}`)}
-                </span>
+              
               </div>
             </div>
 
