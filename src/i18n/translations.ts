@@ -101,6 +101,7 @@ const es: Dict = {
   "detail.description": "Descripción del producto",
   "detail.quoteCta": "Solicitar cotización",
   "detail.whatsappCta": "WhatsApp",
+  "detail.share": "Compartir",
   "detail.related": "Productos relacionados",
   "detail.notFound": "Producto no encontrado",
 
@@ -282,6 +283,7 @@ const en: Dict = {
   "detail.description": "Product description",
   "detail.quoteCta": "Request a quote",
   "detail.whatsappCta": "WhatsApp",
+  "detail.share": "Share",
   "detail.related": "Related products",
   "detail.notFound": "Product not found",
 
