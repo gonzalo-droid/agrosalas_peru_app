@@ -42,11 +42,15 @@ export function ProductDetailClient({ product, related }: Props) {
   const handleShare = async () => {
     const url = window.location.href;
     if (navigator.share) {
-      await navigator.share({
-        title: text.name,
-        text: text.shortDescription,
-        url,
-      });
+      try {
+        await navigator.share({
+          title: text.name,
+          text: text.shortDescription,
+          url,
+        });
+      } catch (err) {
+        if (err instanceof Error && err.name !== "AbortError") throw err;
+      }
     } else {
       await navigator.clipboard.writeText(url);
       setCopied(true);
