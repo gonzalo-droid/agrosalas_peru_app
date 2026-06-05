@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Contacto",
   description:
     "Contáctanos para solicitar cotizaciones, información sobre nuestros productos o resolver cualquier consulta. Respondemos en menos de 24 horas.",
+  alternates: {
+    canonical: "https://agrosalasperu.com/contact",
+  },
 };
 
 export default function ContactoPage() {

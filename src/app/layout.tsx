@@ -43,7 +43,7 @@ export const metadata: Metadata = {
       "Enlatados, conservas y congelados peruanos con calidad de exportación.",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Agrosalas Peru — Agroindustria del Pacífico",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: "Agrosalas Peru — Agroindustria del Pacífico",
     description:
       "Enlatados, conservas y congelados peruanos con calidad de exportación.",
-    images: ["/images/og-image.jpg"],
+    images: ["/opengraph-image"],
   },
   icons: {
     icon: "/images/favicon.ico",

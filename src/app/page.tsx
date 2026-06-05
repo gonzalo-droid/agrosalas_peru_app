@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Agrosalas Peru — Agroindustria del Pacífico",
   description:
     "Somos una empresa agroindustrial peruana especializada en enlatados, conservas y congelados con más de 4 años de experiencia y calidad de exportación.",
+  alternates: {
+    canonical: "https://agrosalasperu.com",
+  },
 };
 
 export default function HomePage() {

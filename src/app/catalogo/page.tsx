@@ -8,10 +8,21 @@ export const metadata: Metadata = {
   title: "Catálogo de productos",
   description:
     "Explora nuestro catálogo completo de enlatados, conservas y congelados peruanos con calidad de exportación.",
+  alternates: {
+    canonical: "https://agrosalasperu.com/catalogo",
+  },
   openGraph: {
     title: "Catálogo | Agrosalas Peru",
     description:
       "Enlatados, conservas y congelados del mar y el campo peruano.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Catálogo Agrosalas Peru",
+      },
+    ],
   },
 };
 
