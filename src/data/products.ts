@@ -57,7 +57,7 @@ export const products: Product[] = [
     shortDescription: "Granos de gandul cocidos y conservados en agua con sal.",
     description:
       "Granos de gandul seleccionados, cocidos en su punto justo y conservados en agua con sal natural. Listos para usar, ideales para guisos, sopas y ensaladas.",
-    image: "/images/products/frejol-negro.png",
+    image: "/images/products/gandul-agua-sal.png",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -70,7 +70,7 @@ export const products: Product[] = [
       "Gandul cocido en leche de coco, sabor tropical y cremoso.",
     description:
       "Granos de gandul cocinados en leche de coco natural, con un sabor suave y aromático. Perfecto como acompañamiento o base para preparaciones caribeñas y tropicales.",
-    image: "/images/products/frejol-negro.png",
+    image: "/images/products/gandul-coco.png",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -121,7 +121,7 @@ export const products: Product[] = [
     shortDescription: "Pallar peruano cocido y conservado en salmuera natural.",
     description:
       "Pallar peruano de primera selección, cocido en su punto y conservado en salmuera natural. Listo para usar en guisos, ensaladas y platos tradicionales.",
-    image: "/images/products/frejol-negro.png",
+    image: "/images/products/pallar-salmuera.png",
     unit: "Conserva 425g",
     available: true,
     featured: true,
