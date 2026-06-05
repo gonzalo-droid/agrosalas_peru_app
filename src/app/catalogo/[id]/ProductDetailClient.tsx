@@ -52,9 +52,13 @@ export function ProductDetailClient({ product, related }: Props) {
         if (err instanceof Error && err.name !== "AbortError") throw err;
       }
     } else {
-      await navigator.clipboard.writeText(url);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      try {
+        await navigator.clipboard.writeText(url);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        // clipboard not available (HTTP or sandboxed context)
+      }
     }
   };
 
@@ -171,7 +175,7 @@ export function ProductDetailClient({ product, related }: Props) {
                 </a>
                 <button
                   onClick={handleShare}
-                  className="btn-outline-white shrink-0 px-4 justify-center"
+                  className="btn-secondary shrink-0 px-4 justify-center"
                   aria-label={t("detail.share")}
                 >
                   {copied ? <Check className="w-5 h-5" /> : <Share2 className="w-5 h-5" />}
