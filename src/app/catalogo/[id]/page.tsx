@@ -71,6 +71,7 @@ export default async function ProductDetailPage({ params }: Params) {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
       priceCurrency: "USD",
+      priceRange: "A consultar",
       seller: {
         "@type": "Organization",
         name: "Agrosalas Peru",
