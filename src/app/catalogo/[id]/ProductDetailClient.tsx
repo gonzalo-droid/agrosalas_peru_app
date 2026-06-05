@@ -175,10 +175,17 @@ export function ProductDetailClient({ product, related }: Props) {
                 </a>
                 <button
                   onClick={handleShare}
-                  className="btn-secondary shrink-0 px-4 justify-center"
+                  className="btn-secondary flex-1 sm:flex-none sm:px-4 justify-center"
                   aria-label={t("detail.share")}
                 >
-                  {copied ? <Check className="w-5 h-5" /> : <Share2 className="w-5 h-5" />}
+                  {copied ? (
+                    <Check className="w-5 h-5" />
+                  ) : (
+                    <>
+                      <span className="sm:hidden">{t("detail.share")}</span>
+                      <Share2 className="w-5 h-5" />
+                    </>
+                  )}
                 </button>
               </div>
             </div>
