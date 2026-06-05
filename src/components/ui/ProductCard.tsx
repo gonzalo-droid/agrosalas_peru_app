@@ -32,12 +32,7 @@ export function ProductCard({ product }: Props) {
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-        {/* Category badge */}
-        <span
-          className={`absolute top-3 left-3 badge badge-${product.category}`}
-        >
-          {t(`category.${product.category}`)}
-        </span>
+       
       </div>
 
       {/* Content */}

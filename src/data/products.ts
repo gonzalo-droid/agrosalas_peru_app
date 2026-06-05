@@ -2,20 +2,20 @@ import type { Product } from "@/types";
 
 export const products: Product[] = [
   {
-    id: "frijol-castilla",
-    name: "Frijol Castilla",
+    id: "frejol-castilla",
+    name: "Frejol Castilla",
     category: "conservas",
     shortDescription:
-      "Frijol castilla peruano cocido y conservado en salmuera.",
+      "Frejol castilla peruano cocido y conservado en salmuera.",
     description:
-      "Frijol Castilla en presentación conserva de 425 gr x 24 latas. Es un producto versátil, conocido internacionalmente como Blackeye Beans, adecuado para distintas preparaciones alimenticias y de uso comercial.",
-    image: "",
+      "Frejol Castilla en presentación conserva de 425 gr x 24 latas. Es un producto versátil, conocido internacionalmente como Blackeye Beans, adecuado para distintas preparaciones alimenticias y de uso comercial.",
+    image: "/images/products/frejol-castilla.png",
     unit: "Conserva 425 gr",
     available: true,
   },
   {
     id: "frejol-rojo",
-    name: "Frijol Rojo",
+    name: "Frejol Rojo",
     category: "conservas",
     shortDescription:
       "Frejol Rojo en conserva, práctico y listo para múltiples recetas.",
@@ -26,25 +26,25 @@ export const products: Product[] = [
     available: true,
   },
   {
-    id: "frijol-canario",
-    name: "Frijol Canario",
+    id: "frejol-canario",
+    name: "Frejol Canario",
     category: "conservas",
     shortDescription:
-      "Frijol Canario en conserva, de textura suave y excelente para preparaciones tradicionales.",
+      "Frejol Canario en conserva, de textura suave y excelente para preparaciones tradicionales.",
     description:
-      "Frijol Canario en presentación conserva de 425 gr x 24 latas. También conocido como Canary Bean, destaca por su sabor agradable y su uso frecuente en recetas caseras e industriales.",
-    image: "",
+      "Frejol Canario en presentación conserva de 425 gr x 24 latas. También conocido como Canary Bean, destaca por su sabor agradable y su uso frecuente en recetas caseras e industriales.",
+    image: "/images/products/frejol-canario.png",
     unit: "Conserva 425g",
     available: true,
   },
 
   {
-    id: "frijol-negro",
-    name: "Frijol Negro",
+    id: "frejol-negro",
+    name: "Frejol Negro",
     category: "conservas",
-    shortDescription: "Frijol negro cocido en salmuera, listo para usar.",
+    shortDescription: "Frejol negro cocido en salmuera, listo para usar.",
     description:
-      "Frijol negro seleccionado, cocido y conservado en salmuera natural. Rico en proteínas, fibra y antioxidantes. Ideal para sopas, arroces y guisos.",
+      "Frejol negro seleccionado, cocido y conservado en salmuera natural. Rico en proteínas, fibra y antioxidantes. Ideal para sopas, arroces y guisos.",
     image: "/images/products/frejol-negro.png",
     unit: "Conserva 425g",
     available: true,
@@ -57,7 +57,7 @@ export const products: Product[] = [
     shortDescription: "Granos de gandul cocidos y conservados en agua con sal.",
     description:
       "Granos de gandul seleccionados, cocidos en su punto justo y conservados en agua con sal natural. Listos para usar, ideales para guisos, sopas y ensaladas.",
-    image: "",
+    image: "/images/products/frejol-negro.png",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -70,7 +70,7 @@ export const products: Product[] = [
       "Gandul cocido en leche de coco, sabor tropical y cremoso.",
     description:
       "Granos de gandul cocinados en leche de coco natural, con un sabor suave y aromático. Perfecto como acompañamiento o base para preparaciones caribeñas y tropicales.",
-    image: "",
+    image: "/images/products/frejol-negro.png",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -83,7 +83,7 @@ export const products: Product[] = [
       "Granos de gandul secos seleccionados, listos para cocinar.",
     description:
       "Gandul seco de alta calidad, cultivado y secado de forma natural. Excelente fuente de proteína vegetal. Ideal para sopas, guisos y potajes tradicionales.",
-    image: "",
+    image: "/images/products/gandul-seco.png",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -97,7 +97,7 @@ export const products: Product[] = [
       "Pallar Americano en conserva, ideal para recetas nutritivas y de buen rendimiento.",
     description:
       "Pallar peruano de primera selección, cocido en su punto y conservado en salmuera natural. Listo para usar en guisos, ensaladas y platos tradicionales.",
-    image: "/images/products/pallar.png",
+    image: "/images/products/pallar-americano.png",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -109,7 +109,7 @@ export const products: Product[] = [
     shortDescription: "Pallar bebé peruano en salmuera, tierno y nutritivo.",
     description:
       "Pallar bebé de pequeño calibre, cosechado tierno y conservado en salmuera. De sabor suave y textura cremosa, ideal para ensaladas, guarniciones y cremas.",
-    image: "",
+    image: "/images/products/pallar-bebe.png",
     unit: "Conserva 425g",
     available: true,
   },
@@ -121,7 +121,7 @@ export const products: Product[] = [
     shortDescription: "Pallar peruano cocido y conservado en salmuera natural.",
     description:
       "Pallar peruano de primera selección, cocido en su punto y conservado en salmuera natural. Listo para usar en guisos, ensaladas y platos tradicionales.",
-    image: "",
+    image: "/images/products/frejol-negro.png",
     unit: "Conserva 425g",
     available: true,
     featured: true,
@@ -146,8 +146,8 @@ export const products: Product[] = [
     shortDescription:
       "Zarandaja en conserva, una legumbre versátil y lista para su uso.",
     description:
-      "Zarandaja en presentación conserva de 425 gr x 24 latas. Conocida también como Frijol Zarandaja o Val Bean, es una opción práctica para distintas preparaciones culinarias y abastecimiento comercial.",
-    image: "",
+      "Zarandaja en presentación conserva de 425 gr x 24 latas. Conocida también como Frejol Zarandaja o Val Bean, es una opción práctica para distintas preparaciones culinarias y abastecimiento comercial.",
+    image: "/images/products/zarandaja.png",
     unit: "Conserva 425g",
     available: true,
   },
