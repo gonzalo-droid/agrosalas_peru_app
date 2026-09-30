@@ -31,3 +31,16 @@ export interface CompanyValue {
   title: string;
   description: string;
 }
+
+export interface EventItem {
+  slug: string;        // URL /eventos/<slug> y carpeta public/images/event/<slug>/
+  title: string;       // ES
+  startDate: string;   // "YYYY-MM-DD"
+  endDate?: string;    // "YYYY-MM-DD"; ausente = evento de un día
+  city: string;
+  venue?: string;
+  summary: string;     // 1–2 frases: lead del detalle, SEO y texto al compartir
+  body: string[];      // párrafos del detalle
+  cover: string;       // "" = placeholder
+  gallery: string[];
+}

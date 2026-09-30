@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Check, CheckCircle2, FileText, Package, Share2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2, FileText, Package } from "lucide-react";
 import type { Product } from "@/types";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { getProductText } from "@/i18n/productsI18n";
+import { ShareButton } from "@/components/ui/ShareButton";
 
 const PLACEHOLDER = "/images/products/placeholder.svg";
 
@@ -36,31 +36,6 @@ export function ProductDetailClient({ product, related }: Props) {
       : `Hola, me interesa cotizar el producto: ${text.name} (${text.unit}).`;
 
   const whatsappHref = `https://wa.me/905600449?text=${encodeURIComponent(waText)}`;
-
-  const [copied, setCopied] = useState(false);
-
-  const handleShare = async () => {
-    const url = window.location.href;
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: text.name,
-          text: text.shortDescription,
-          url,
-        });
-      } catch (err) {
-        if (err instanceof Error && err.name !== "AbortError") throw err;
-      }
-    } else {
-      try {
-        await navigator.clipboard.writeText(url);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      } catch {
-        // clipboard not available (HTTP or sandboxed context)
-      }
-    }
-  };
 
   return (
     <>
@@ -173,20 +148,7 @@ export function ProductDetailClient({ product, related }: Props) {
                 >
                   {t("detail.whatsappCta")}
                 </a>
-                <button
-                  onClick={handleShare}
-                  className="btn-secondary flex-1 sm:flex-none sm:px-4 justify-center"
-                  aria-label={t("detail.share")}
-                >
-                  {copied ? (
-                    <Check className="w-5 h-5" />
-                  ) : (
-                    <>
-                      <span className="sm:hidden">{t("detail.share")}</span>
-                      <Share2 className="w-5 h-5" />
-                    </>
-                  )}
-                </button>
+                <ShareButton title={text.name} text={text.shortDescription} />
               </div>
             </div>
           </div>

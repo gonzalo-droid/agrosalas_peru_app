@@ -6,6 +6,7 @@ const es: Dict = {
   // Nav
   "nav.home": "Inicio",
   "nav.catalog": "Catálogo",
+  "nav.events": "Eventos",
   "nav.about": "Nosotros",
   "nav.contact": "Contacto",
   "nav.quote": "Solicitar cotización",
@@ -105,6 +106,24 @@ const es: Dict = {
   "detail.related": "Productos relacionados",
   "detail.notFound": "Producto no encontrado",
 
+  // Events
+  "events.headerBadge": "Presencia comercial",
+  "events.headerTitle": "Eventos",
+  "events.headerDesc": "Ferias y encuentros comerciales donde presentamos nuestras conservas.",
+  "events.upcoming": "Próximos eventos",
+  "events.past": "Participaciones",
+  "events.upcomingBadge": "Próximo",
+  "events.empty": "Pronto publicaremos nuestros eventos.",
+  "events.back": "Volver a eventos",
+  "events.date": "Fecha",
+  "events.place": "Lugar",
+  "events.gallery": "Galería",
+  "events.others": "Otros eventos",
+  "events.photo": "foto",
+  "events.lightbox.prev": "Foto anterior",
+  "events.lightbox.next": "Foto siguiente",
+  "events.lightbox.close": "Cerrar",
+
   // About page
   "about.headerBadge": "Nuestra historia",
   "about.headerTitle": "Cultivando confianza",
@@ -188,6 +207,7 @@ const en: Dict = {
   // Nav
   "nav.home": "Home",
   "nav.catalog": "Catalog",
+  "nav.events": "Events",
   "nav.about": "About us",
   "nav.contact": "Contact",
   "nav.quote": "Request a quote",
@@ -286,6 +306,24 @@ const en: Dict = {
   "detail.share": "Share",
   "detail.related": "Related products",
   "detail.notFound": "Product not found",
+
+  // Events
+  "events.headerBadge": "Trade presence",
+  "events.headerTitle": "Events",
+  "events.headerDesc": "Trade shows and business meetings where we showcase our canned products.",
+  "events.upcoming": "Upcoming events",
+  "events.past": "Past participations",
+  "events.upcomingBadge": "Upcoming",
+  "events.empty": "We'll publish our events soon.",
+  "events.back": "Back to events",
+  "events.date": "Date",
+  "events.place": "Location",
+  "events.gallery": "Gallery",
+  "events.others": "Other events",
+  "events.photo": "photo",
+  "events.lightbox.prev": "Previous photo",
+  "events.lightbox.next": "Next photo",
+  "events.lightbox.close": "Close",
 
   // About page
   "about.headerBadge": "Our story",
