@@ -17,7 +17,7 @@ const EN: Record<string, ProductText> = {
       "Castilla Bean in a 425 g can x 24 cans presentation. A versatile product, internationally known as Blackeye Beans, suitable for a wide range of food preparations and commercial use.",
     unit: "Canned 425 g",
   },
-  "frejol-rojo": {
+  "frijol-rojo": {
     name: "Red Kidney Bean",
     shortDescription:
       "Red Kidney Bean in a can, practical and ready for multiple recipes.",

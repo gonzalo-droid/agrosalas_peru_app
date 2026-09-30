@@ -2,50 +2,50 @@ import type { Product } from "@/types";
 
 export const products: Product[] = [
   {
-    id: "frejol-castilla",
-    name: "Frejol Castilla",
+    id: "frijol-castilla",
+    name: "Frijol Castilla",
     category: "conservas",
     shortDescription:
-      "Frejol castilla peruano cocido y conservado en salmuera.",
+      "Frijol castilla peruano cocido y conservado en salmuera.",
     description:
-      "Frejol Castilla en presentación conserva de 425 gr x 24 latas. Es un producto versátil, conocido internacionalmente como Blackeye Beans, adecuado para distintas preparaciones alimenticias y de uso comercial.",
-    image: "/images/products/frejol-castilla.png",
+      "Frijol Castilla en presentación conserva de 425 gr x 24 latas. Es un producto versátil, conocido internacionalmente como Blackeye Beans, adecuado para distintas preparaciones alimenticias y de uso comercial.",
+    image: "/images/products/frijol-castilla.png",
     unit: "Conserva 425 gr",
     available: true,
   },
   {
-    id: "frejol-rojo",
-    name: "Frejol Rojo",
+    id: "frijol-rojo",
+    name: "Frijol Rojo",
     category: "conservas",
     shortDescription:
-      "Frejol Rojo en conserva, práctico y listo para múltiples recetas.",
+      "Frijol Rojo en conserva, práctico y listo para múltiples recetas.",
     description:
-      "Frejol Rojo en presentación conserva de 425 gr x 24 latas. Conocido en inglés como Light Red Kidney, es una opción ideal para platos nutritivos, con buen rendimiento y facilidad de almacenamiento.",
-    image: "/images/products/frejol-rojo.png",
+      "Frijol Rojo en presentación conserva de 425 gr x 24 latas. Conocido en inglés como Light Red Kidney, es una opción ideal para platos nutritivos, con buen rendimiento y facilidad de almacenamiento.",
+    image: "/images/products/frijol-rojo.png",
     unit: "Conserva 425g",
     available: true,
   },
   {
-    id: "frejol-canario",
-    name: "Frejol Canario",
+    id: "frijol-canario",
+    name: "Frijol Canario",
     category: "conservas",
     shortDescription:
-      "Frejol Canario en conserva, de textura suave y excelente para preparaciones tradicionales.",
+      "Frijol Canario en conserva, de textura suave y excelente para preparaciones tradicionales.",
     description:
-      "Frejol Canario en presentación conserva de 425 gr x 24 latas. También conocido como Canary Bean, destaca por su sabor agradable y su uso frecuente en recetas caseras e industriales.",
-    image: "/images/products/frejol-canario.png",
+      "Frijol Canario en presentación conserva de 425 gr x 24 latas. También conocido como Canary Bean, destaca por su sabor agradable y su uso frecuente en recetas caseras e industriales.",
+    image: "/images/products/frijol-canario.png",
     unit: "Conserva 425g",
     available: true,
   },
 
   {
-    id: "frejol-negro",
-    name: "Frejol Negro",
+    id: "frijol-negro",
+    name: "Frijol Negro",
     category: "conservas",
-    shortDescription: "Frejol negro cocido en salmuera, listo para usar.",
+    shortDescription: "Frijol negro cocido en salmuera, listo para usar.",
     description:
-      "Frejol negro seleccionado, cocido y conservado en salmuera natural. Rico en proteínas, fibra y antioxidantes. Ideal para sopas, arroces y guisos.",
-    image: "/images/products/frejol-negro.png",
+      "Frijol negro seleccionado, cocido y conservado en salmuera natural. Rico en proteínas, fibra y antioxidantes. Ideal para sopas, arroces y guisos.",
+    image: "/images/products/frijol-negro.png",
     unit: "Conserva 425g",
     available: true,
   },
@@ -146,7 +146,7 @@ export const products: Product[] = [
     shortDescription:
       "Zarandaja en conserva, una legumbre versátil y lista para su uso.",
     description:
-      "Zarandaja en presentación conserva de 425 gr x 24 latas. Conocida también como Frejol Zarandaja o Val Bean, es una opción práctica para distintas preparaciones culinarias y abastecimiento comercial.",
+      "Zarandaja en presentación conserva de 425 gr x 24 latas. Conocida también como Frijol Zarandaja o Val Bean, es una opción práctica para distintas preparaciones culinarias y abastecimiento comercial.",
     image: "/images/products/zarandaja.png",
     unit: "Conserva 425g",
     available: true,
