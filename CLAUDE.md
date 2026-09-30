@@ -48,7 +48,7 @@ Next.js 16 App Router. All routes live under `src/app/`. The project splits conc
 
 **Layout**
 - `Navbar` is transparent at the top of the page and transitions to white/opaque on scroll (`scrollY > 20`). It is a client component.
-- WhatsApp/phone `+905600449` is hardcoded in many places: `WhatsAppButton.tsx`, `ContactPageClient.tsx`, `ProductDetailClient.tsx` (prefilled per-product message + Web Share button), `CtaSection.tsx`, `Footer.tsx`, and the Organization schema in `layout.tsx`. `grep -rn 905600449 src` before changing it.
+- WhatsApp/phone `+51 905 600 449` is hardcoded in many places: `WhatsAppButton.tsx`, `ContactPageClient.tsx`, `ProductDetailClient.tsx` (prefilled per-product message + Web Share button), `CtaSection.tsx`, `Footer.tsx`, and the Organization schema in `layout.tsx`. Always use the international form (`wa.me/51905600449`, `tel:+51905600449`) — without `51` WhatsApp routes to +90 (Turkey). `grep -rn 905600449 src` before changing it.
 
 ### Adding a new page
 

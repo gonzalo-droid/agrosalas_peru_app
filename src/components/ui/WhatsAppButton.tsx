@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const WA_LINKS: Record<string, string> = {
-  es: "https://wa.me/905600449?text=Hola%2C%20me%20interesa%20obtener%20información%20sobre%20sus%20productos.",
-  en: "https://wa.me/905600449?text=Hello%2C%20I%27m%20interested%20in%20learning%20more%20about%20your%20products.",
+  es: "https://wa.me/51905600449?text=Hola%2C%20me%20interesa%20obtener%20información%20sobre%20sus%20productos.",
+  en: "https://wa.me/51905600449?text=Hello%2C%20I%27m%20interested%20in%20learning%20more%20about%20your%20products.",
 };
 
 export function WhatsAppButton() {
