@@ -73,7 +73,7 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Agrosalas Peru",
-  legalName: "Agrosalas Perú E.I.R.L.",
+  legalName: "Agrosalas Perú S.R.L.",
   url: BASE_URL,
   logo: `${BASE_URL}/images/logo.png`,
   contactPoint: {
