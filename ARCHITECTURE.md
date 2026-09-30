@@ -235,8 +235,6 @@ npm run lint     # ESLint via next lint
 ## 9. Roadmap / deuda técnica
 
 - **Tests:** no hay. Candidatos iniciales: lógica de filtros en `CatalogoClient`, `parseSubjectParam`, validación del API route.
-- **Metadata bilingüe:** requiere migrar a `next-intl` con routing por locale.
 - **CMS:** si el catálogo crece, migrar `products.ts` a Sanity/Contentful/Payload.
 - **Analítica:** no instalada.
 - **Imágenes faltantes:** varios productos no tienen `image` — usan `placeholder.svg`.
-- **Teléfono WhatsApp:** hardcodeado en 3 lugares; extraer a constante compartida.

@@ -87,7 +87,7 @@ Categories are typed as `"enlatados" | "conservas" | "congelados"`, but only `co
 3. Add the English text to `EN` in `src/i18n/eventsI18n.ts` under the **same slug** (missing → Spanish is shown).
 4. Detail page, sitemap entry and "Otros eventos" are generated automatically. The slug is the public URL — don't rename it once published.
 
-**Gotcha:** the product id is also the public URL slug (`/catalogo/<id>`), so renaming an id breaks already-shared or indexed links unless you add a redirect in `next.config.ts`. Spelling is **"Frijol"** everywhere (ids, names, descriptions, image files) — don't reintroduce "Frejol".
+**Gotcha:** the product id is also the public URL slug (`/catalogo/<id>`), so renaming an id breaks already-shared or indexed links unless you add a redirect in `next.config.ts` (it must cover both `/catalogo/<old>` and `/en/catalogo/<old>`, since config redirects run before the proxy). Spelling is **"Frijol"** everywhere (ids, names, descriptions, image files) — don't reintroduce "Frejol".
 
 ## Conventions
 

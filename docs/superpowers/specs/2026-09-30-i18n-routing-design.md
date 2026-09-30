@@ -94,7 +94,7 @@ export function resolveLocaleRoute(pathname: string): RouteDecision;
 | cualquier otro | `rewrite` a `/es` + pathname (`/` → `/es`) |
 
 - `proxy.ts` conserva el query string en rewrite y redirect (el catálogo usa `?categoria=`).
-- `resolveLocaleRoute` devuelve `next` para `/api`, `/og`, `/images`, `/_next` y cualquier ruta con extensión de archivo (`sitemap.xml`, `robots.txt`, `favicon.ico`); el `matcher` solo excluye `_next/static` y `_next/image`.
+- `resolveLocaleRoute` devuelve `next` para `/api`, `/og`, `/images`, `/_next` y cualquier ruta con extensión de archivo (`sitemap.xml`, `robots.txt`, `favicon.ico`); el `matcher` excluye `_next/static`, `_next/image`, `images`, `og`, `api` y `favicon.ico`.
 - `stripLocale` quita también `/es`: durante el prerender `usePathname()` puede devolver la ruta reescrita (`/es/catalogo`) y en el cliente la visible (`/catalogo`); normalizar ambas evita diferencias de hidratación en el estado activo del menú y en el selector.
 - El proxy **nunca** lee `Accept-Language` ni cookies: Googlebot y usuarios ven lo mismo.
 
@@ -223,3 +223,4 @@ El blog futuro nace dentro de `[locale]/`; si cada post existe en uno o ambos id
 - Slugs traducidos.
 - Testimonios y cifras del home.
 - Idiomas adicionales (la estructura los admite agregando a `locales`).
+- HTML del servidor para 404 dentro de `[locale]`: Next entrega su página de error genérica (estado 404 correcto) y el `not-found.tsx` localizado se muestra al hidratar; una versión SSR requiere `global-not-found` (experimental).
