@@ -11,6 +11,7 @@ import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 const NAV_LINKS = [
   { href: "/", labelKey: "nav.home" },
   { href: "/catalogo", labelKey: "nav.catalog" },
+  { href: "/eventos", labelKey: "nav.events" },
   { href: "/about", labelKey: "nav.about" },
   { href: "/contact", labelKey: "nav.contact" },
 ];
