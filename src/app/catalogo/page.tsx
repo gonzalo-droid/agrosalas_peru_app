@@ -7,14 +7,14 @@ import { Loader2 } from "lucide-react";
 export const metadata: Metadata = {
   title: "Catálogo de productos",
   description:
-    "Explora nuestro catálogo completo de enlatados, conservas y congelados peruanos con calidad de exportación.",
+    "Catálogo de menestras peruanas en conserva: frijol castilla (blackeye beans), frijol canario, rojo y negro, pallar, gandul, garbanzo y más, con calidad de exportación.",
   alternates: {
     canonical: "https://agrosalasperu.com/catalogo",
   },
   openGraph: {
     title: "Catálogo | Agrosalas Peru",
     description:
-      "Enlatados, conservas y congelados del mar y el campo peruano.",
+      "Menestras peruanas en conserva con calidad de exportación: frijoles, pallares, gandul y garbanzo.",
     images: [
       {
         url: "/opengraph-image",

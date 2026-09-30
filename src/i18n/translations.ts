@@ -25,7 +25,7 @@ const es: Dict = {
   // Hero
   "hero.badge": "Agroindustria Peruana de Exportación",
   "hero.title": "Agrosalas Peru",
-  "hero.titleAccent": "S.R.L",
+  "hero.titleAccent": "E.I.R.L.",
   "hero.description":
     "Dedicada a la exportación de conservas de legumbres, elaboradas bajo altos estándares de calidad e inocuidad, con presencia en España, Estados Unidos y Panamá.",
   "hero.ctaCatalog": "Ver catálogo completo",
@@ -75,7 +75,7 @@ const es: Dict = {
   "footer.navigation": "Navegación",
   "footer.products": "Productos",
   "footer.contact": "Contacto",
-  "footer.copyright": "AgrosalasPeru S.R.L. Todos los derechos reservados.",
+  "footer.copyright": "Agrosalas Perú E.I.R.L. Todos los derechos reservados.",
   "footer.madeIn": "Hecho con ❤️ en Perú 🇵🇪",
 
   // WhatsApp
@@ -207,7 +207,7 @@ const en: Dict = {
   // Hero
   "hero.badge": "Peruvian Agroindustry for Export",
   "hero.title": "Agrosalas Peru",
-  "hero.titleAccent": "S.R.L",
+  "hero.titleAccent": "E.I.R.L.",
   "hero.description":
     "Dedicated to exporting canned legumes, produced under the highest standards of quality and safety, with presence in Spain, the United States and Panama.",
   "hero.ctaCatalog": "View full catalog",
@@ -257,7 +257,7 @@ const en: Dict = {
   "footer.navigation": "Navigation",
   "footer.products": "Products",
   "footer.contact": "Contact",
-  "footer.copyright": "AgrosalasPeru S.R.L. All rights reserved.",
+  "footer.copyright": "Agrosalas Perú E.I.R.L. All rights reserved.",
   "footer.madeIn": "Made with ❤️ in Peru 🇵🇪",
 
   // WhatsApp
