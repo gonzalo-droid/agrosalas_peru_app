@@ -5,15 +5,22 @@ import { ProductsPreview }  from "@/components/sections/ProductsPreview";
 import { BenefitsSection }  from "@/components/sections/BenefitsSection";
 // import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CtaSection }       from "@/components/sections/CtaSection";
+import { resolveLocale } from "@/i18n/server";
+import { translate } from "@/i18n/translations";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Agrosalas Peru — Menestras peruanas en conserva para exportación",
-  description:
-    "Empresa agroindustrial peruana que exporta menestras en conserva —frijol castilla, canario, rojo y negro, pallar, gandul y garbanzo— con más de 4 años de experiencia y calidad de exportación.",
-  alternates: {
-    canonical: "https://agrosalasperu.com",
-  },
-};
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = await resolveLocale(params);
+  return pageMetadata({
+    locale,
+    path: "/",
+    title: translate(locale, "meta.default.title"),
+    description: translate(locale, "meta.home.description"),
+    absoluteTitle: true,
+  });
+}
 
 export default function HomePage() {
   return (

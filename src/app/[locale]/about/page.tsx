@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import { AboutClient } from "./AboutClient";
+import { resolveLocale } from "@/i18n/server";
+import { translate } from "@/i18n/translations";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Nosotros",
-  description:
-    "Conoce la historia, misión, visión y valores de Agrosalas Peru, empresa agroindustrial peruana con más de 4 años de trayectoria.",
-  alternates: {
-    canonical: "https://agrosalasperu.com/about",
-  },
-};
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = await resolveLocale(params);
+  return pageMetadata({
+    locale,
+    path: "/about",
+    title: translate(locale, "meta.about.title"),
+    description: translate(locale, "meta.about.description"),
+  });
+}
 
 export default function NosotrosPage() {
   return <AboutClient />;

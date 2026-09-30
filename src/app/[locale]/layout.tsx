@@ -8,6 +8,9 @@ import { LanguageProvider } from "@/i18n/LanguageProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/i18n/config";
 import { resolveLocale } from "@/i18n/server";
+import { translate } from "@/i18n/translations";
+import { BASE_URL } from "@/lib/site";
+import { OG_LOCALE, ogImage } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,69 +25,56 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://agrosalasperu.com"),
-  title: {
-    default: "Agrosalas Peru — Menestras peruanas en conserva para exportación",
-    template: "%s | Agrosalas Peru",
-  },
-  description:
-    "Agrosalas Peru exporta menestras peruanas en conserva: frijol castilla (blackeye beans), frijol canario, frijol rojo, frijol negro, pallar, gandul, garbanzo y más, con calidad de exportación.",
-  keywords: [
-    "menestras en conserva",
-    "frijol castilla en conserva",
-    "blackeye beans Peru",
-    "frijol canario",
-    "pallar",
-    "gandul",
-    "garbanzo en conserva",
-    "exportador de menestras Perú",
-    "conservas peruanas",
-    "Agrosalas Peru",
-  ],
-  authors: [{ name: "Agrosalas Peru" }],
-  creator: "Agrosalas Peru",
-  openGraph: {
-    type: "website",
-    locale: "es_PE",
-    url: "https://agrosalasperu.com",
-    siteName: "Agrosalas Peru",
-    title: "Agrosalas Peru — Menestras peruanas en conserva para exportación",
-    description:
-      "Menestras peruanas en conserva con calidad de exportación: frijoles, pallares, gandul y garbanzo.",
-    images: [
-      {
-        url: "/og",
-        width: 1200,
-        height: 630,
-        alt: "Agrosalas Peru — Menestras peruanas en conserva para exportación",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Agrosalas Peru — Menestras peruanas en conserva para exportación",
-    description:
-      "Menestras peruanas en conserva con calidad de exportación: frijoles, pallares, gandul y garbanzo.",
-    images: ["/og"],
-  },
-  icons: {
-    icon: "/images/favicon.ico",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true },
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const locale = await resolveLocale(params);
+  const t = (key: string) => translate(locale, key);
+
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: {
+      default: t("meta.default.title"),
+      template: "%s | Agrosalas Peru",
+    },
+    description: t("meta.default.description"),
+    keywords: t("meta.keywords").split(",").map((k) => k.trim()),
+    authors: [{ name: "Agrosalas Peru" }],
+    creator: "Agrosalas Peru",
+    openGraph: {
+      type: "website",
+      siteName: "Agrosalas Peru",
+      locale: OG_LOCALE[locale],
+      title: t("meta.default.title"),
+      description: t("meta.og.description"),
+      images: [ogImage(locale)],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("meta.default.title"),
+      description: t("meta.og.description"),
+      images: [ogImage(locale).url],
+    },
+    icons: {
+      icon: "/images/favicon.ico",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true },
+    },
+  };
+}
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Agrosalas Peru",
   legalName: "Agrosalas Perú E.I.R.L.",
-  url: "https://agrosalasperu.com",
-  logo: "https://agrosalasperu.com/images/logo.png",
+  url: BASE_URL,
+  logo: `${BASE_URL}/images/logo.png`,
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+51905600449",

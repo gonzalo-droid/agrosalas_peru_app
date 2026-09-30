@@ -3,11 +3,15 @@ import { notFound } from "next/navigation";
 import { products } from "@/data/products";
 import { ProductDetailClient } from "./ProductDetailClient";
 import { JsonLd } from "@/components/seo/JsonLd";
-
-const BASE_URL = "https://agrosalasperu.com";
+import { localizedPath } from "@/i18n/config";
+import { getProductText } from "@/i18n/productsI18n";
+import { resolveLocale } from "@/i18n/server";
+import { translate } from "@/i18n/translations";
+import { absoluteUrl, pageMetadata } from "@/lib/seo";
+import { BASE_URL } from "@/lib/site";
 
 interface Params {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }
 
 export async function generateStaticParams() {
@@ -15,43 +19,34 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const locale = await resolveLocale(params);
   const { id } = await params;
   const product = products.find((p) => p.id === id);
 
-  if (!product) return { title: "Producto no encontrado" };
+  if (!product) return { title: translate(locale, "detail.notFound") };
 
-  const ogImage = product.image
-    ? [{ url: product.image, width: 800, height: 800, alt: product.name }]
-    : [{ url: "/og", width: 1200, height: 630, alt: "Agrosalas Peru" }];
+  const text = getProductText(product, locale);
 
-  return {
-    title: `${product.name} — Agrosalas Peru`,
-    description: product.shortDescription,
-    alternates: {
-      canonical: `${BASE_URL}/catalogo/${product.id}`,
-    },
-    openGraph: {
-      title: `${product.name} — Agrosalas Peru`,
-      description: product.shortDescription,
-      url: `${BASE_URL}/catalogo/${product.id}`,
-      siteName: "Agrosalas Peru",
-      type: "website",
-      images: ogImage,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${product.name} — Agrosalas Peru`,
-      description: product.shortDescription,
-      images: product.image ? [product.image] : ["/og"],
-    },
-  };
+  return pageMetadata({
+    locale,
+    path: `/catalogo/${product.id}`,
+    title: text.name,
+    description: text.shortDescription,
+    images: product.image
+      ? [{ url: product.image, width: 800, height: 800, alt: text.name }]
+      : undefined,
+  });
 }
 
 export default async function ProductDetailPage({ params }: Params) {
+  const locale = await resolveLocale(params);
   const { id } = await params;
   const product = products.find((p) => p.id === id);
 
   if (!product) notFound();
+
+  const text = getProductText(product, locale);
+  const url = (path: string) => absoluteUrl(localizedPath(path, locale));
 
   const related = products
     .filter((p) => p.category === product.category && p.id !== product.id)
@@ -60,8 +55,9 @@ export default async function ProductDetailPage({ params }: Params) {
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product.name,
-    description: product.description,
+    name: text.name,
+    description: text.description,
+    url: url(`/catalogo/${product.id}`),
     ...(product.image && { image: `${BASE_URL}${product.image}` }),
     brand: {
       "@type": "Brand",
@@ -71,7 +67,7 @@ export default async function ProductDetailPage({ params }: Params) {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
       priceCurrency: "USD",
-      priceRange: "A consultar",
+      priceRange: translate(locale, "meta.priceRange"),
       seller: {
         "@type": "Organization",
         name: "Agrosalas Peru",
@@ -86,20 +82,20 @@ export default async function ProductDetailPage({ params }: Params) {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Inicio",
-        item: BASE_URL,
+        name: translate(locale, "meta.breadcrumb.home"),
+        item: url("/"),
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Catálogo",
-        item: `${BASE_URL}/catalogo`,
+        name: translate(locale, "meta.breadcrumb.catalog"),
+        item: url("/catalogo"),
       },
       {
         "@type": "ListItem",
         position: 3,
-        name: product.name,
-        item: `${BASE_URL}/catalogo/${product.id}`,
+        name: text.name,
+        item: url(`/catalogo/${product.id}`),
       },
     ],
   };

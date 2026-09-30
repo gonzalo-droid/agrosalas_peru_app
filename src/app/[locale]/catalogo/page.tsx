@@ -3,28 +3,21 @@ import { Suspense } from "react";
 import { CatalogoClient } from "./CatalogoClient";
 import { CatalogoHeader } from "./CatalogoHeader";
 import { Loader2 } from "lucide-react";
+import { resolveLocale } from "@/i18n/server";
+import { translate } from "@/i18n/translations";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Catálogo de productos",
-  description:
-    "Catálogo de menestras peruanas en conserva: frijol castilla (blackeye beans), frijol canario, rojo y negro, pallar, gandul, garbanzo y más, con calidad de exportación.",
-  alternates: {
-    canonical: "https://agrosalasperu.com/catalogo",
-  },
-  openGraph: {
-    title: "Catálogo | Agrosalas Peru",
-    description:
-      "Menestras peruanas en conserva con calidad de exportación: frijoles, pallares, gandul y garbanzo.",
-    images: [
-      {
-        url: "/og",
-        width: 1200,
-        height: 630,
-        alt: "Catálogo Agrosalas Peru",
-      },
-    ],
-  },
-};
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = await resolveLocale(params);
+  return pageMetadata({
+    locale,
+    path: "/catalogo",
+    title: translate(locale, "meta.catalog.title"),
+    description: translate(locale, "meta.catalog.description"),
+  });
+}
 
 export default function CatalogoPage() {
   return (
