@@ -18,12 +18,13 @@ const SWIPE_THRESHOLD = 50;
 export function Lightbox({ images, index, onClose, onIndexChange, alt }: Props) {
   const { t } = useLanguage();
   const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
   const open = index !== null;
   const total = images.length;
 
   const go = (delta: number) => {
-    if (index === null) return;
+    if (index === null || total === 0) return;
     onIndexChange((index + delta + total) % total);
   };
 
@@ -42,17 +43,35 @@ export function Lightbox({ images, index, onClose, onIndexChange, alt }: Props) 
     if (index === null) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      else if (e.key === "ArrowLeft") onIndexChange((index - 1 + total) % total);
-      else if (e.key === "ArrowRight") onIndexChange((index + 1) % total);
+      else if (e.key === "ArrowLeft" && total > 0) onIndexChange((index - 1 + total) % total);
+      else if (e.key === "ArrowRight" && total > 0) onIndexChange((index + 1) % total);
+      else if (e.key === "Tab") {
+        const buttons = dialogRef.current?.querySelectorAll("button");
+        if (!buttons || buttons.length === 0) return;
+        const focusedButton = document.activeElement as HTMLButtonElement;
+        const focusedIndex = Array.from(buttons).indexOf(focusedButton);
+        if (e.shiftKey) {
+          if (focusedIndex === 0) {
+            e.preventDefault();
+            buttons[buttons.length - 1]?.focus();
+          }
+        } else {
+          if (focusedIndex === buttons.length - 1) {
+            e.preventDefault();
+            buttons[0]?.focus();
+          }
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [index, total, onClose, onIndexChange]);
 
-  if (index === null) return null;
+  if (index === null || !images[index]) return null;
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label={alt(index)}
@@ -75,7 +94,10 @@ export function Lightbox({ images, index, onClose, onIndexChange, alt }: Props) 
       <button
         ref={closeRef}
         type="button"
-        onClick={onClose}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
         aria-label={t("events.lightbox.close")}
         className="absolute top-3 right-3 p-2 rounded-full text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white"
       >
