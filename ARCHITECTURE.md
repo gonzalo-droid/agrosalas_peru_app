@@ -24,8 +24,11 @@ No hay suite de tests configurada.
 
 ```
 src/
+├─ proxy.ts                      # Rewrite/redirect de locale (ES sin prefijo, EN bajo /en)
 ├─ app/
-│  ├─ layout.tsx                 # Root layout — envuelve con <LanguageProvider>
+│  ├─ og/route.tsx               # Imagen OG por idioma (/og?locale=)
+│  ├─ [locale]/                  # Todas las páginas de abajo viven aquí (layout.tsx envuelve con <LanguageProvider locale>)
+│  ├─ layout.tsx                 # (ver [locale]/layout.tsx)
 │  ├─ page.tsx                   # Home (server; metadata)
 │  ├─ not-found.tsx              # 404 (client, traducido)
 │  ├─ about/
@@ -79,9 +82,9 @@ src/
 
 ### 3.1 Server / Client split
 
-- **Página server-first:** cada `page.tsx` se mantiene como server component para preservar `export const metadata` y `generateMetadata`, que son necesarios para SEO y OpenGraph.
+- **Página server-first:** cada `page.tsx` se mantiene como server component para preservar `generateMetadata`, necesario para SEO y OpenGraph.
 - **Wrapper client:** cuando la página tiene texto traducible o estado interactivo, se crea un archivo hermano `*Client.tsx` con `"use client"` y se renderiza desde el `page.tsx`.
-- Regla: **nunca** poner `"use client"` en `page.tsx` si exporta metadata.
+- Regla: **nunca** poner `"use client"` en `page.tsx` si exporta metadata (las páginas viven en `src/app/[locale]/`).
 
 ### 3.2 Sistema de estilos
 
@@ -116,7 +119,7 @@ src/
 
 ### 4.1 Decisión
 
-**Custom context cliente con `localStorage`**, no `next-intl` ni locale routing.
+**Rutas por idioma con `app/[locale]/` + `proxy.ts`**: español sin prefijo (URLs históricas intactas) e inglés bajo `/en`, ambos renderizados en servidor (SSG). Reemplaza al context cliente + `localStorage` (2026-06), que dejaba el inglés fuera del índice de Google. Spec: `docs/superpowers/specs/2026-09-30-i18n-routing-design.md`.
 
 ### 4.2 Alternativas evaluadas
 
@@ -124,40 +127,40 @@ src/
 |--------|------|---------|-----------|
 | `next-intl` con rutas `/es/...` `/en/...` | SEO ideal, metadata bilingüe, estándar | Refactor grande (middleware, layout por locale, todas las URLs cambian) | Descartada por costo |
 | Query string `?lang=en` + server prop | Server-compatible | Prop drilling; invalida caches de Next | Descartada |
-| **Context cliente + localStorage** | Mínimo invasivo, preserva `metadata` server-side, URLs estables | Metadata del `<head>` queda en ES; flash-of-ES en primer paint para usuarios EN | **Elegida** |
+| **Context cliente + localStorage** | Mínimo invasivo, preserva `metadata` server-side, URLs estables | Metadata del `<head>` queda en ES; flash-of-ES en primer paint para usuarios EN | Reemplazada (2026-09) |
+| **`[locale]` + proxy (rewrite)** | HTML en inglés indexable, un solo árbol de páginas, sin dependencias | Proxy obligatorio (Vercel / `next start`) | **Elegida (2026-09)** |
+| Dos árboles con route groups | 100% estático, sin proxy | Cada página duplicada | Descartada |
+| `next-intl` | Estándar, resuelve routing y hreflang | Dependencia + migrar diccionarios | Descartada |
 
 ### 4.3 Implementación
 
-- `LanguageProvider` envuelve el árbol en `layout.tsx`. Inicia en `"es"`, hidrata desde `localStorage["agrosalas_locale"]` en `useEffect`, y sincroniza `document.documentElement.lang`.
-- `useLanguage()` expone `{ locale, setLocale, t }`.
-- `translations.ts` es un objeto plano con claves tipo `"nav.home"`, `"hero.badge"`, etc. Fallback silencioso: `en → es → key`.
-- `getProductText(product, locale)` devuelve `{ name, shortDescription, description, unit }` en el idioma activo; si no hay traducción EN para un producto, devuelve el texto ES original.
-- `LanguageSwitcher` muestra 🇪🇸 ES / 🇺🇸 EN, con variantes desktop y mobile adaptadas al estado `scrolled` del navbar.
+- `i18n/config.ts`: `locales`, `isLocale`, `stripLocale`, `localizedPath` y `resolveLocaleRoute()` (lógica pura del proxy, con tests).
+- `src/proxy.ts`: reescribe URLs sin prefijo a `/es/...`, deja pasar `/en/...` y redirige `/es/...` (308) a la URL sin prefijo. No usa `Accept-Language`.
+- `LanguageProvider` recibe el locale por prop desde `[locale]/layout.tsx` y expone `{ locale, t, href }`; en servidor se usa `resolveLocale(params)` + `translate()`.
+- `LocaleLink` antepone el prefijo de idioma a los links internos. `LanguageSwitcher` usa links reales a la misma ruta (conserva `?query`) en el otro idioma. `LanguageSuggestion` sugiere inglés según la preferencia guardada en `localStorage`, sin decidir el render.
+- `lib/seo.ts` (`pageMetadata`, `alternatesFor`, `languageAlternates`): canonical por idioma + `hreflang` es/en/x-default. El sitemap emite una entrada por idioma con `alternates`.
+- Imagen OG por idioma en la ruta `/og?locale=`.
 
 ### 4.4 Agregar texto traducible
 
 1. Agregar key en `es` y `en` dentro de `src/i18n/translations.ts`.
 2. En el componente: `const { t } = useLanguage()` + `{t("mi.clave")}`.
-3. Si el componente era server, convertirlo a client (o extraer a un `*Client.tsx` hermano).
+3. Si el componente era server, convertirlo a client (o extraer a un `*Client.tsx` hermano) o, en servidor, usar `translate(locale, key)`.
 
 ### 4.5 Agregar producto traducido
 
 1. Agregar el producto en `src/data/products.ts` (texto ES).
 2. Agregar su entrada en `src/i18n/productsI18n.ts` bajo la key `EN[product.id]`.
 
-### 4.6 Limitación aceptada
-
-El `<title>` y `description` del `<head>` se mantienen en ES porque Next.js los resuelve en server-side y no tienen acceso al contexto client. Si en el futuro se requiere metadata bilingüe por SEO, la migración correcta es `next-intl` con URL routing.
-
 ---
 
 ## 5. SEO y metadata
 
 - `layout.tsx` define `metadataBase`, `title.template` (`"%s | Agrosalas Peru"`), OpenGraph y Twitter.
-- Cada `page.tsx` server exporta su `metadata` específico.
-- `generateMetadata` en `catalogo/[id]/page.tsx` usa los campos ES del producto.
-- Imágenes OG en `/public/images/og-image.jpg` (1200×630).
-- `robots.txt` y sitemap no configurados actualmente — considerar si hay SEO crítico.
+- Cada `page.tsx` server exporta `generateMetadata` vía `pageMetadata()` (`lib/seo.ts`), con canonical y `hreflang` por idioma; el texto viene de las claves `meta.*`.
+- `generateMetadata` en `catalogo/[id]/page.tsx` usa el texto del producto en el idioma de la URL.
+- Imagen OG por defecto: ruta `src/app/og/route.tsx` (`/og?locale=`).
+- `sitemap.ts` y `robots.ts` existen; la URL base vive solo en `src/lib/site.ts`.
 
 ---
 
@@ -181,7 +184,7 @@ El `<title>` y `description` del `<head>` se mantienen en ES porque Next.js los 
 | Tailwind sobre CSS Modules | Velocidad de iteración y tamaño final |
 | Sin libs de UI (shadcn, Radix, MUI) | Diseño custom, dependencias mínimas |
 | Mock data en `products.ts` | No hay CMS aún; suficiente para el catálogo actual (~13 SKUs) |
-| i18n con context cliente | Evita refactor de routing y conserva metadata server |
+| i18n con rutas [locale] + proxy | Inglés indexable sin duplicar páginas ni agregar dependencias |
 | Subject del form como key | Desacopla display de value enviado; permite traducir sin romper el backend |
 | Resend | Email simple, sin infraestructura propia |
 | Static params para páginas de producto | Build-time generation → CDN |

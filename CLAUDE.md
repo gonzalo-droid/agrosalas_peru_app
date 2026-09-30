@@ -17,7 +17,7 @@ npm test         # node:test over src/**/*.test.ts — needs Node ≥ 22.18 (nat
 node --test src/lib/eventUtils.test.ts   # single test file
 ```
 
-Tests cover only pure modules (today: `src/lib/eventUtils.ts`). Test files import with an explicit `.ts` extension, so they are excluded in `tsconfig.json` — `next build`/`tsc` never type-check them. `npm run build` rewrites `next-env.d.ts`; revert it before committing.
+Tests cover only pure modules (today: `src/lib/eventUtils.ts`, `src/i18n/config.ts`, `src/i18n/translations.ts`). Test files import with an explicit `.ts` extension, so they are excluded in `tsconfig.json` — `next build`/`tsc` never type-check them. `npm run build` rewrites `next-env.d.ts`; revert it before committing.
 
 Post-clone: create `.env.local` with `GMAIL_USER`, `GMAIL_APP_PASSWORD` (Gmail app password) and optionally `CONTACT_EMAIL`; without them the contact form returns 500.
 
@@ -28,7 +28,7 @@ Next.js 16 App Router. All routes live under `src/app/`. The project splits conc
 ### Key patterns
 
 **Server / Client split**
-- Pages (`page.tsx`) are server components — they own `export const metadata` and render the page shell/header.
+- Pages (`page.tsx`) are server components — they own `generateMetadata` via `pageMetadata()` and render the page shell/header.
 - Interactive parts are extracted into a co-located `*Client.tsx` file (e.g. `catalogo/CatalogoClient.tsx`). Any page that wraps a client component using `useSearchParams` must wrap it in `<Suspense>`.
 
 **Styling**
@@ -39,22 +39,25 @@ Next.js 16 App Router. All routes live under `src/app/`. The project splits conc
 - Product mock data lives in `src/data/products.ts` and exports `products: Product[]` plus `CATEGORIES`. Types are in `src/types/index.ts`.
 - The API route `src/app/api/contact/route.ts` sends email with **Nodemailer over Gmail SMTP** (`GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_EMAIL`). `resend` is still in `package.json` but unused — `ARCHITECTURE.md` still lists it.
 
-**i18n (client-side, no locale routes)**
-- `LanguageProvider` (`src/i18n/`) wraps the app in `layout.tsx`; locale (`es` | `en`) lives in React state + `localStorage` key `agrosalas_locale`. URLs, metadata, sitemap and JSON-LD are always Spanish — SSR renders ES, EN appears only after hydration.
-- UI strings: `t("key")` from `useLanguage()`, dictionaries in `translations.ts` (missing EN key → falls back to ES → to the key itself). Any component calling `t()` must be a client component, which is why `Navbar`, `Footer`, `WhatsAppButton`, `not-found.tsx` are all `"use client"`.
-- Product text: Spanish lives in `products.ts`; English lives in `productsI18n.ts` keyed by **product id**, read via `getProductText(product, locale)`. A key mismatch fails silently (shows Spanish).
+**i18n (locale routes: ES unprefixed, EN under `/en`)**
+- Every page lives in `src/app/[locale]/` and is statically generated for `es` and `en`. `src/proxy.ts` (Next 16's middleware) rewrites unprefixed URLs to `/es/...` internally, lets `/en/...` through and 308-redirects explicit `/es/...` to the unprefixed URL. Logic is the pure `resolveLocaleRoute()` in `src/i18n/config.ts` (tested). The proxy never looks at `Accept-Language`.
+- Locale comes from the URL: `[locale]/layout.tsx` passes it to `LanguageProvider`. `useLanguage()` gives `{ locale, t, href }`; server code uses `resolveLocale(params)` (`i18n/server.ts`) + `translate(locale, key)`. Missing EN key → ES → the key itself.
+- Internal links must use `LocaleLink` (`components/ui/LocaleLink.tsx`), never a bare `next/link` with a `/path`, or `/en` visitors fall back to Spanish.
+- `localStorage["agrosalas_locale"]` is only a preference for `LanguageSuggestion` (the "View in English?" hint); it never decides what is rendered.
+- Product text: Spanish in `products.ts`, English in `productsI18n.ts` keyed by **product id** via `getProductText(product, locale)`; events likewise in `eventsI18n.ts` by slug. A key mismatch fails silently (shows Spanish).
 
 **SEO**
-- Base URL `https://agrosalasperu.com` is hardcoded separately in `layout.tsx` (`metadataBase`), `sitemap.ts`, `robots.ts`, `catalogo/[id]/page.tsx` and `eventos/[slug]/page.tsx` (`BASE_URL`), plus the canonicals in `catalogo/page.tsx` and `eventos/page.tsx` — change all of them together.
-- Root layout has `title.template: "%s | Agrosalas Peru"`, so page titles must NOT append the brand (`catalogo/[id]` still does and shows it twice; `eventos/[slug]` doesn't).
-- `catalogo/[id]` is statically generated (`generateStaticParams`) with per-product `generateMetadata`, canonical, Product + Breadcrumb JSON-LD via `components/seo/JsonLd.tsx`. Root layout emits Organization JSON-LD. `opengraph-image.tsx` generates the default OG image.
+- Base URL lives only in `src/lib/site.ts` (`BASE_URL`).
+- Page metadata goes through `pageMetadata({ locale, path, title, description })` in `src/lib/seo.ts`: canonical per locale + `hreflang` es/en/x-default + Open Graph locale. Titles must NOT include the brand (`title.template` adds " | Agrosalas Peru"); pass `absoluteTitle: true` only for the home.
+- Default OG image is the route `src/app/og/route.tsx` (`/og?locale=en`); there is no `opengraph-image.tsx`.
+- `catalogo/[id]` is statically generated (`generateStaticParams`) with per-product `generateMetadata`, canonical, Product + Breadcrumb JSON-LD via `components/seo/JsonLd.tsx`. Root layout emits Organization JSON-LD. Sitemap emits one entry per locale with `alternates.languages`.
 
 **Layout**
 - `Navbar` is transparent at the top of the page and transitions to white/opaque on scroll (`scrollY > 20`). It is a client component.
 - WhatsApp/phone `+51 905 600 449` is hardcoded in many places: `WhatsAppButton.tsx`, `ContactPageClient.tsx`, `ProductDetailClient.tsx` (prefilled per-product message), `CtaSection.tsx`, `Footer.tsx`, and the Organization schema in `layout.tsx`. Always use the international form (`wa.me/51905600449`, `tel:+51905600449`) — without `51` WhatsApp routes to +90 (Turkey). `grep -rn 905600449 src` before changing it.
 - Share: `components/ui/ShareButton.tsx` (Web Share API, falls back to copying the URL) is used by both product and event detail pages.
 
-**Events (`/eventos`)**
+**Events (`/eventos`, files in `src/app/[locale]/eventos/`)**
 - List page splits events into "Próximos" / "Participaciones"; detail `/eventos/[slug]` has a stacked layout (21:9 banner → date/place cards + share → text → gallery with `components/ui/Lightbox.tsx` → "Otros eventos").
 - Data is in `src/data/events.ts`, but pages/components must read it **only** through `src/lib/events.ts` (`getEvents`, `getEventBySlug`, async). That module is the swap point for a future admin/remote source, and it throws on duplicate slugs (build fails).
 - Pure logic lives in `src/lib/eventUtils.ts` (date-range formatting with a fixed month table, `isUpcoming`, `splitEvents`, `pickOtherEvents`, `todayInLima`). Keep it free of runtime imports (type-only) so `node --test` can load it without the `@/` alias.
@@ -63,9 +66,11 @@ Next.js 16 App Router. All routes live under `src/app/`. The project splits conc
 
 ### Adding a new page
 
-1. Create `src/app/<route>/page.tsx` with `export const metadata`.
-2. Add the route to `NAV_LINKS` in both `Navbar.tsx` and `Footer.tsx` (entries use `labelKey`, so also add `nav.<x>` to both dictionaries in `translations.ts`).
-3. Add the URL to `src/app/sitemap.ts`.
+1. Create `src/app/[locale]/<route>/page.tsx` with `generateMetadata({ params })` → `pageMetadata({ locale: await resolveLocale(params), path: "/<route>", … })`.
+2. Add `meta.<x>.title` / `meta.<x>.description` to **both** dictionaries in `translations.ts` (a test checks ES/EN `meta.*` parity).
+3. Add the route to `NAV_LINKS` in both `Navbar.tsx` and `Footer.tsx` (entries use `labelKey`, so also add `nav.<x>` to both dictionaries).
+4. Add `...entries("/<route>", …)` to `src/app/sitemap.ts`.
+5. Link to it with `LocaleLink`.
 
 ### Adding products
 
@@ -90,4 +95,4 @@ Categories are typed as `"enlatados" | "conservas" | "congelados"`, but only `co
 - Larger features get a design spec + implementation plan in `docs/superpowers/specs/` and `docs/superpowers/plans/` (dated `YYYY-MM-DD-<slug>.md`) before code.
 - `ARCHITECTURE.md` (Spanish) is the long-form architecture/decisions doc; this file is the short operational guide.
 
-<!-- project-memory: rev=0e62d41 date=2026-09-30 -->
+<!-- project-memory: rev=d8ac401 date=2026-09-30 -->
