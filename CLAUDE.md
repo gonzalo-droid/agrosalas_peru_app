@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-Marketing/catalog site for Agrosalas Peru (canned legumes for export), bilingual ES/EN, deployed at `agrosalasperu.com`. No backend or DB: products are static data; the only server logic is the contact-form email route.
+Marketing/catalog site for Agrosalas Peru (canned legumes for export), bilingual ES/EN, deployed at `www.agrosalasperu.com` (the apex redirects to www; `BASE_URL` must match Vercel's primary domain). No backend or DB: products are static data; the only server logic is the contact-form email route.
 
 ## Commands
 

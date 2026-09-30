@@ -7,7 +7,7 @@ export const OG_LOCALE: Record<Locale, string> = { es: "es_PE", en: "en_US" };
 
 export type OgImage = { url: string; width?: number; height?: number; alt?: string };
 
-/** "/" → "https://agrosalasperu.com"; "/en/catalogo" → "https://agrosalasperu.com/en/catalogo". */
+/** "/" → "https://www.agrosalasperu.com"; "/en/catalogo" → "https://www.agrosalasperu.com/en/catalogo". */
 export function absoluteUrl(path: string): string {
   return path === "/" ? BASE_URL : `${BASE_URL}${path}`;
 }
