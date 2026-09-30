@@ -10,27 +10,15 @@ export type EventText = {
 };
 
 // Indexado por slug. Si falta un evento, se muestra el texto en español.
-const EN: Record<string, EventText> = {
-  "ejemplo-feria-proxima": {
-    title: "International food fair (sample)",
-    summary: "Sample event to validate the events section. Replace with a real event.",
-    body: [
-      "This is a sample paragraph describing Agrosalas Peru's participation in the fair: which products were showcased, which markets it targets and who the sales team met.",
-      "A second paragraph checks that the stacked layout handles long text without becoming unbalanced: the cover stays on top, the event details below and the text at reading width.",
-      "The third paragraph completes the long-text test. When replacing this data with a real event, keep between two and five paragraphs.",
-    ],
-    city: "Lima, Peru",
-    venue: "Exhibition center (sample)",
-  },
-  "ejemplo-feria-pasada": {
-    title: "Export business roundtable (sample)",
-    summary: "Sample past event, without a gallery, to validate the past participations section.",
-    body: [
-      "Sample paragraph for a past event. This event has no gallery, so the photo section must not be displayed.",
-    ],
-    city: "Barcelona, Spain",
-  },
-};
+// Ejemplo de entrada:
+//   "expoalimentaria-2026": {
+//     title: "Expoalimentaria 2026",
+//     summary: "One or two sentences.",
+//     body: ["Paragraph 1.", "Paragraph 2."],
+//     city: "Lima, Peru",
+//     venue: "Jockey Exhibition Center",
+//   },
+const EN: Record<string, EventText> = {};
 
 export function getEventText(event: EventItem, locale: Locale): EventText {
   if (locale === "en" && EN[event.slug]) return EN[event.slug];
