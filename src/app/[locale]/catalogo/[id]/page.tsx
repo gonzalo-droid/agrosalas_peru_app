@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   const ogImage = product.image
     ? [{ url: product.image, width: 800, height: 800, alt: product.name }]
-    : [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Agrosalas Peru" }];
+    : [{ url: "/og", width: 1200, height: 630, alt: "Agrosalas Peru" }];
 
   return {
     title: `${product.name} — Agrosalas Peru`,
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       card: "summary_large_image",
       title: `${product.name} — Agrosalas Peru`,
       description: product.shortDescription,
-      images: product.image ? [product.image] : ["/opengraph-image"],
+      images: product.image ? [product.image] : ["/og"],
     },
   };
 }

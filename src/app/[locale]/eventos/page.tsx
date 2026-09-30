@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "Eventos | Agrosalas Peru",
     description: "Ferias y encuentros comerciales donde presentamos nuestras conservas.",
     images: [
-      { url: "/opengraph-image", width: 1200, height: 630, alt: "Eventos Agrosalas Peru" },
+      { url: "/og", width: 1200, height: 630, alt: "Eventos Agrosalas Peru" },
     ],
   },
 };

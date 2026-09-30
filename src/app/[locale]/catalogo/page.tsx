@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       "Menestras peruanas en conserva con calidad de exportación: frijoles, pallares, gandul y garbanzo.",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/og",
         width: 1200,
         height: 630,
         alt: "Catálogo Agrosalas Peru",

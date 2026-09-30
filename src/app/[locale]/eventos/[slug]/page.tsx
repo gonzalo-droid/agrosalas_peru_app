@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const url = `${BASE_URL}/eventos/${event.slug}`;
   const images = event.cover.trim()
     ? [{ url: event.cover, alt: event.title }]
-    : [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Agrosalas Peru" }];
+    : [{ url: "/og", width: 1200, height: 630, alt: "Agrosalas Peru" }];
 
   return {
     // El template del layout agrega " | Agrosalas Peru".

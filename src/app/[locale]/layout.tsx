@@ -1,17 +1,26 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { locales } from "@/i18n/config";
+import { resolveLocale } from "@/i18n/server";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
+
+// Solo /es y /en; cualquier otro valor del segmento es 404.
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://agrosalasperu.com"),
@@ -45,7 +54,7 @@ export const metadata: Metadata = {
       "Menestras peruanas en conserva con calidad de exportación: frijoles, pallares, gandul y garbanzo.",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/og",
         width: 1200,
         height: 630,
         alt: "Agrosalas Peru — Menestras peruanas en conserva para exportación",
@@ -57,7 +66,7 @@ export const metadata: Metadata = {
     title: "Agrosalas Peru — Menestras peruanas en conserva para exportación",
     description:
       "Menestras peruanas en conserva con calidad de exportación: frijoles, pallares, gandul y garbanzo.",
-    images: ["/opengraph-image"],
+    images: ["/og"],
   },
   icons: {
     icon: "/images/favicon.ico",
@@ -84,16 +93,20 @@ const organizationSchema = {
   },
 };
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const locale = await resolveLocale(params);
+
   return (
-    <html lang="es" className={inter.variable}>
+    <html lang={locale} className={inter.variable}>
       <body className="flex flex-col min-h-screen">
         <JsonLd data={organizationSchema} />
-        <LanguageProvider>
+        <LanguageProvider locale={locale}>
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />

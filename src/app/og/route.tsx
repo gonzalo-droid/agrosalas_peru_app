@@ -1,11 +1,15 @@
 import { ImageResponse } from "next/og";
+import type { NextRequest } from "next/server";
+import { defaultLocale, isLocale } from "@/i18n/config";
+import { translate } from "@/i18n/translations";
 
 export const runtime = "edge";
-export const alt = "Agrosalas Peru — Menestras peruanas en conserva para exportación";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
 
-export default function OgImage() {
+// GET /og?locale=en — imagen Open Graph por defecto (1200×630).
+export function GET(request: NextRequest) {
+  const param = request.nextUrl.searchParams.get("locale") ?? defaultLocale;
+  const locale = isLocale(param) ? param : defaultLocale;
+
   return new ImageResponse(
     (
       <div
@@ -31,17 +35,11 @@ export default function OgImage() {
         >
           Agrosalas Peru
         </div>
-        <div
-          style={{
-            fontSize: 32,
-            color: "#bbf7d0",
-            fontWeight: 400,
-          }}
-        >
-          Menestras peruanas en conserva para exportación
+        <div style={{ fontSize: 32, color: "#bbf7d0", fontWeight: 400 }}>
+          {translate(locale, "meta.og.tagline")}
         </div>
       </div>
     ),
-    { ...size }
+    { width: 1200, height: 630 },
   );
 }
