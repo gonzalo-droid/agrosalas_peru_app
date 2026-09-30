@@ -10,7 +10,7 @@ const CONTACT_INFO = [
     icon: Phone,
     labelKey: "contact.phoneLabel",
     value: "+51 905 600 449",
-    href: "tel:+905600449",
+    href: "tel:+51905600449",
   },
   {
     icon: Mail,
@@ -97,7 +97,7 @@ export function ContactPageClient() {
 
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/905600449?text=Hola%2C%20me%20interesa%20información%20sobre%20sus%20productos."
+                href="https://wa.me/51905600449?text=Hola%2C%20me%20interesa%20información%20sobre%20sus%20productos."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-5 bg-[#25D366] text-white rounded-2xl font-semibold hover:bg-[#20ba59] transition-colors"

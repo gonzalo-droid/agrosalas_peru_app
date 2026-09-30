@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Agrosalas Peru — Agroindustria del Pacífico";
+export const alt = "Agrosalas Peru — Menestras peruanas en conserva para exportación";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -38,7 +38,7 @@ export default function OgImage() {
             fontWeight: 400,
           }}
         >
-          Agroindustria del Pacífico
+          Menestras peruanas en conserva para exportación
         </div>
       </div>
     ),

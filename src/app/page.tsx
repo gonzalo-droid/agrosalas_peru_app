@@ -7,9 +7,9 @@ import { BenefitsSection }  from "@/components/sections/BenefitsSection";
 import { CtaSection }       from "@/components/sections/CtaSection";
 
 export const metadata: Metadata = {
-  title: "Agrosalas Peru — Agroindustria del Pacífico",
+  title: "Agrosalas Peru — Menestras peruanas en conserva para exportación",
   description:
-    "Somos una empresa agroindustrial peruana especializada en enlatados, conservas y congelados con más de 4 años de experiencia y calidad de exportación.",
+    "Empresa agroindustrial peruana que exporta menestras en conserva —frijol castilla, canario, rojo y negro, pallar, gandul y garbanzo— con más de 4 años de experiencia y calidad de exportación.",
   alternates: {
     canonical: "https://agrosalasperu.com",
   },
