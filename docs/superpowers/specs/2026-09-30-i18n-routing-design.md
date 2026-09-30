@@ -3,7 +3,7 @@
 **Fecha:** 2026-09-30
 **Objetivo:** Que Google indexe la versión en inglés del sitio. Hoy el inglés existe solo en el navegador (se aplica tras la hidratación), así que para Google el sitio es únicamente español: una URL por página, metadata y JSON-LD en español. Los compradores objetivo son importadores extranjeros que buscan en inglés ("canned blackeye beans supplier Peru").
 
-**Alcance:** todas las páginas actuales (home, catálogo, detalle de producto, nosotros, contacto, 404) + Eventos, que se implementa en paralelo en otro worktree. Esta feature se implementa **después** de que Eventos esté mergeado en `master`.
+**Alcance:** todas las páginas actuales (home, catálogo, detalle de producto, nosotros, contacto, 404) + Eventos (ya mergeado en `master`, `cf698ab`).
 
 ---
 
@@ -28,7 +28,7 @@
 | Implementación | Un solo árbol `app/[locale]/` + `proxy.ts` (rewrite), sin librerías |
 | `/es/...` explícito | Redirect 308 a la URL sin prefijo |
 | Render | SSG para ambos idiomas; contenido en inglés presente en el HTML inicial |
-| Tests | `node --test` sobre helpers puros, sin dependencias nuevas |
+| Tests | `node --test` sobre helpers puros (`src/**/*.test.ts`, convención de Eventos), sin dependencias nuevas |
 
 Enfoques descartados: dos árboles con route groups (cada página duplicada, crece con Eventos y blog) y `next-intl` (dependencia + migración de diccionarios; excesivo para 2 idiomas).
 
@@ -46,19 +46,19 @@ src/
   lib/seo.ts                      ← nuevo; alternatesFor()
   app/
     api/contact/route.ts          ← sin cambios
+    og/route.tsx                  ← OG por idioma: /og?locale=en (reemplaza opengraph-image.tsx)
     sitemap.ts, robots.ts         ← se quedan en la raíz
     [locale]/
       layout.tsx                  ← layout raíz: <html lang={locale}>
       page.tsx                    ← home
       not-found.tsx
       [...rest]/page.tsx          ← catch-all → notFound()
-      opengraph-image.tsx
       catalogo/page.tsx, catalogo/[id]/page.tsx
       about/page.tsx, contact/page.tsx
       eventos/…                   ← migrado desde app/eventos tras el merge
 ```
 
-`src/app/layout.tsx` y `src/app/not-found.tsx` desaparecen (su contenido pasa a `[locale]/`). Los `*Client.tsx` co-ubicados se mueven junto a su `page.tsx`.
+`src/app/layout.tsx`, `src/app/not-found.tsx` y `src/app/opengraph-image.tsx` desaparecen (su contenido pasa a `[locale]/` y a `og/route.tsx`). Un `opengraph-image` dentro de `[locale]` generaría URLs `/es/opengraph-image` que el proxy redirige; una ruta propia fuera del árbol lo evita. Los `*Client.tsx` co-ubicados se mueven junto a su `page.tsx`.
 
 ### `[locale]/layout.tsx`
 
@@ -75,7 +75,7 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "es";
 export function isLocale(v: string): v is Locale;
 export function localizedPath(path: string, locale: Locale): string; // ("/catalogo","en") → "/en/catalogo"; ("/","en") → "/en"; ("/catalogo","es") → "/catalogo"
-export function stripLocale(pathname: string): string;             // "/en/catalogo" → "/catalogo"; "/en" → "/"; "/catalogo" → "/catalogo"
+export function stripLocale(pathname: string): string;             // "/en/catalogo" y "/es/catalogo" → "/catalogo"; "/en" → "/"; "/catalogo" → "/catalogo"
 export type RouteDecision =
   | { type: "next" }
   | { type: "rewrite"; path: string }
@@ -94,7 +94,8 @@ export function resolveLocaleRoute(pathname: string): RouteDecision;
 | cualquier otro | `rewrite` a `/es` + pathname (`/` → `/es`) |
 
 - `proxy.ts` conserva el query string en rewrite y redirect (el catálogo usa `?categoria=`).
-- `matcher` excluye: `api`, `_next`, `images`, `sitemap.xml`, `robots.txt`, `favicon.ico` y cualquier ruta con extensión de archivo.
+- `resolveLocaleRoute` devuelve `next` para `/api`, `/og`, `/images`, `/_next` y cualquier ruta con extensión de archivo (`sitemap.xml`, `robots.txt`, `favicon.ico`); el `matcher` solo excluye `_next/static` y `_next/image`.
+- `stripLocale` quita también `/es`: durante el prerender `usePathname()` puede devolver la ruta reescrita (`/es/catalogo`) y en el cliente la visible (`/catalogo`); normalizar ambas evita diferencias de hidratación en el estado activo del menú y en el selector.
 - El proxy **nunca** lee `Accept-Language` ni cookies: Googlebot y usuarios ven lo mismo.
 
 ---
@@ -110,7 +111,7 @@ export function resolveLocaleRoute(pathname: string): RouteDecision;
 ### Traducción en servidor
 
 - `translate(locale, key)` en `translations.ts`: función pura con el fallback actual (EN → ES → clave). El provider la usa para `t`.
-- Nuevas claves `meta.*` en ES y EN: `meta.default.title`, `meta.default.description`, `meta.keywords` (lista separada por comas), `meta.home.*`, `meta.catalog.*`, `meta.about.*`, `meta.contact.*`, `meta.notFound.title`, `meta.og.tagline`, `meta.priceRange` ("A consultar" / "On request"), `meta.breadcrumb.home`, `meta.breadcrumb.catalog`.
+- Nuevas claves `meta.*` en ES y EN: `meta.default.title`, `meta.default.description`, `meta.keywords` (lista separada por comas), `meta.home.*`, `meta.catalog.*`, `meta.about.*`, `meta.contact.*`, `meta.notFound.title`, `meta.eventNotFound`, `meta.og.tagline`, `meta.og.description`, `meta.events.*`, `meta.priceRange` ("A consultar" / "On request"), `meta.breadcrumb.home`, `meta.breadcrumb.catalog`.
 - Textos EN orientados a búsqueda de importadores, p. ej. título por defecto "Agrosalas Peru — Peruvian Canned Legumes for Export"; keywords: canned blackeye beans, canary beans, Peruvian lima beans, pigeon peas, canned chickpeas, Peruvian legumes exporter.
 
 ### Links internos
@@ -121,12 +122,12 @@ export function resolveLocaleRoute(pathname: string): RouteDecision;
 
 ### `LanguageSwitcher`
 
-- Pasa de `<button>` a `<Link>` hacia `localizedPath(stripLocale(pathname), l)`, preservando el query string actual.
+- Pasa de `<button>` a `<Link>` hacia `localizedPath(stripLocale(pathname), l)`; el clic normal navega con `router.push` agregando `window.location.search` (preserva el query sin necesitar `useSearchParams` ni `<Suspense>`).
 - `onClick` guarda la preferencia en `localStorage["agrosalas_locale"]` (try/catch). La preferencia ya no determina el idioma renderizado; solo alimenta `LanguageSuggestion`.
 
 ### Sin cambios
 
-Mensajes prellenados de WhatsApp por idioma (ya dependen de `locale`), Web Share, filtro de catálogo con `useSearchParams` (sigue envuelto en `<Suspense>`); su `router.replace` usa `usePathname()`, que devuelve la URL visible (con `/en`), así que no requiere cambios.
+Mensajes prellenados de WhatsApp por idioma (ya dependen de `locale`), Web Share, filtro de catálogo con `useSearchParams` (sigue envuelto en `<Suspense>`). Su `router.replace` deja de usar `usePathname()` y pasa a `href("/catalogo")` para no depender de la ruta reescrita.
 
 ---
 
@@ -150,7 +151,7 @@ Cada página usa `generateMetadata({ params })` con `translate()` + `alternatesF
 ### Open Graph
 
 - `openGraph.locale`: `es_PE` / `en_US`; `alternateLocale`: el otro. `openGraph.url` localizada.
-- `[locale]/opengraph-image.tsx` muestra `meta.og.tagline` del idioma.
+- `app/og/route.tsx` (`/og?locale=es|en`) muestra `meta.og.tagline` del idioma; `ogImage(locale)` en `lib/seo.ts` arma la referencia.
 
 ### JSON-LD
 
@@ -171,7 +172,7 @@ Cada página usa `generateMetadata({ params })` con `translate()` + `alternatesF
 - Texto en el idioma **sugerido** (hardcodeado en el componente, no vía `t()`): en página ES → "View this page in English →"; en página EN → "Ver esta página en español →".
 - Link a `localizedPath(stripLocale(pathname), sugerido)` que guarda la preferencia; botón × con `aria-label` que guarda `agrosalas_locale_hint = "dismissed"`.
 - Si `localStorage` lanza error, el aviso no se muestra.
-- Posición: fija abajo a la izquierda (`left-4 bottom-4`, `max-w-xs`); en móvil `left-4 right-20` para no tapar el botón de WhatsApp. Estilo con `.card` y paleta `brand-*`.
+- Posición: desde `sm`, fija abajo a la izquierda (`bottom-6 left-4`, `max-w-xs`); en móvil ocupa el ancho (`left-4 right-4`) y va encima del botón de WhatsApp (`bottom-24`). Estilo con `.card` y paleta `brand-*`.
 
 ---
 
@@ -179,8 +180,8 @@ Cada página usa `generateMetadata({ params })` con `translate()` + `alternatesF
 
 ### Tests automáticos
 
-- `tests/i18n.test.ts` y `tests/seo.test.ts`, ejecutados con `node --test` (script `npm test`). Cubren `localizedPath`, `stripLocale`, `isLocale`, `resolveLocaleRoute` (tabla completa de la sección 1, incluidos `/`, `/en`, `/es`, `/english`, `/en-us`) y `alternatesFor`.
-- Los módulos testeados no importan alias `@/` ni `next/*` (para que Node los ejecute sin bundler); `tests/` se excluye del `tsconfig` si hace falta.
+- `src/i18n/config.test.ts` y `src/i18n/translations.test.ts`, con el `npm test` existente (`node --test "src/**/*.test.ts"`). Cubren `localizedPath` (incluido `?query`/`#hash`), `stripLocale`, `isLocale`, `resolveLocaleRoute` (tabla completa de la sección 1, incluidos `/`, `/en`, `/es`, `/english`, `/en-us` y rutas de paso), `translate` y la paridad ES/EN de las claves `meta.*`.
+- Los módulos testeados no tienen imports de runtime a `@/` ni `next/*` (Node los ejecuta sin bundler). `lib/seo.ts` sí los tiene, así que `alternatesFor` se verifica con los criterios de aceptación (canonical + hreflang en el HTML).
 
 ### Criterios de aceptación (`npm run build && npm run start` + `curl`, y luego contra el Preview de Vercel)
 
@@ -199,7 +200,7 @@ Manual en navegador: selector de idioma (mantiene la página y el query), navega
 
 ### Integración con Eventos
 
-Primera tarea del plan: mover `app/eventos/` a `app/[locale]/eventos/`, usar `generateMetadata` + `alternatesFor`, `LocaleLink`, y agregar sus URLs al sitemap con alternates. Su texto EN ya tiene fallback a ES; solo cambia de dónde obtiene `locale`.
+Eventos se mueve junto con el resto de páginas: `app/eventos/` → `app/[locale]/eventos/`, con `generateMetadata` + `alternatesFor`, `LocaleLink`, y agregar sus URLs al sitemap con alternates. Su texto EN ya tiene fallback a ES; solo cambia de dónde obtiene `locale`.
 
 El blog futuro nace dentro de `[locale]/`; si cada post existe en uno o ambos idiomas se decide en su propio spec.
 
