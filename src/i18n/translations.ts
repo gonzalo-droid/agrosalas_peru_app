@@ -1,4 +1,6 @@
-export type Locale = "es" | "en";
+import type { Locale } from "./config";
+
+export type { Locale };
 
 type Dict = Record<string, string>;
 
@@ -201,6 +203,36 @@ const es: Dict = {
   // Language switcher
   "lang.es": "ES",
   "lang.en": "EN",
+
+  // Metadata (SEO)
+  "meta.default.title": "Agrosalas Peru — Menestras peruanas en conserva para exportación",
+  "meta.default.description":
+    "Agrosalas Peru exporta menestras peruanas en conserva: frijol castilla (blackeye beans), frijol canario, frijol rojo, frijol negro, pallar, gandul, garbanzo y más, con calidad de exportación.",
+  "meta.keywords":
+    "menestras en conserva, frijol castilla en conserva, blackeye beans Peru, frijol canario, pallar, gandul, garbanzo en conserva, exportador de menestras Perú, conservas peruanas, Agrosalas Peru",
+  "meta.og.tagline": "Menestras peruanas en conserva para exportación",
+  "meta.og.description":
+    "Menestras peruanas en conserva con calidad de exportación: frijoles, pallares, gandul y garbanzo.",
+  "meta.home.description":
+    "Empresa agroindustrial peruana que exporta menestras en conserva —frijol castilla, canario, rojo y negro, pallar, gandul y garbanzo— con más de 4 años de experiencia y calidad de exportación.",
+  "meta.catalog.title": "Catálogo de productos",
+  "meta.catalog.description":
+    "Catálogo de menestras peruanas en conserva: frijol castilla (blackeye beans), frijol canario, rojo y negro, pallar, gandul, garbanzo y más, con calidad de exportación.",
+  "meta.events.title": "Eventos",
+  "meta.events.description":
+    "Ferias y encuentros comerciales donde Agrosalas Peru presenta sus conservas de menestras peruanas.",
+  "meta.about.title": "Nosotros",
+  "meta.about.description":
+    "Conoce la historia, misión, visión y valores de Agrosalas Peru, empresa agroindustrial peruana con más de 4 años de trayectoria.",
+  "meta.contact.title": "Contacto",
+  "meta.contact.description":
+    "Contáctanos para solicitar cotizaciones, información sobre nuestros productos o resolver cualquier consulta. Respondemos en menos de 24 horas.",
+  "meta.notFound.title": "Página no encontrada",
+  "meta.eventNotFound": "Evento no encontrado",
+  "meta.priceRange": "A consultar",
+  "meta.breadcrumb.home": "Inicio",
+  "meta.breadcrumb.catalog": "Catálogo",
+  "meta.breadcrumb.events": "Eventos",
 };
 
 const en: Dict = {
@@ -402,8 +434,43 @@ const en: Dict = {
   // Language switcher
   "lang.es": "ES",
   "lang.en": "EN",
+
+  // Metadata (SEO)
+  "meta.default.title": "Agrosalas Peru — Peruvian Canned Legumes for Export",
+  "meta.default.description":
+    "Agrosalas Peru exports Peruvian canned legumes: blackeye beans, canary beans, red beans, black beans, lima beans, pigeon peas, chickpeas and more, with export-grade quality.",
+  "meta.keywords":
+    "canned blackeye beans, canned canary beans, Peruvian lima beans, canned pigeon peas, canned chickpeas, Peruvian legumes exporter, canned beans supplier Peru, Agrosalas Peru",
+  "meta.og.tagline": "Peruvian Canned Legumes for Export",
+  "meta.og.description":
+    "Export-grade Peruvian canned legumes: beans, lima beans, pigeon peas and chickpeas.",
+  "meta.home.description":
+    "Peruvian agro-industrial company exporting canned legumes — blackeye, canary, red and black beans, lima beans, pigeon peas and chickpeas — with over 4 years of experience and export-grade quality.",
+  "meta.catalog.title": "Product catalog",
+  "meta.catalog.description":
+    "Catalog of Peruvian canned legumes: blackeye beans, canary, red and black beans, lima beans, pigeon peas, chickpeas and more, with export-grade quality.",
+  "meta.events.title": "Events",
+  "meta.events.description":
+    "Trade fairs and business meetings where Agrosalas Peru showcases its Peruvian canned legumes.",
+  "meta.about.title": "About us",
+  "meta.about.description":
+    "Learn about the history, mission, vision and values of Agrosalas Peru, a Peruvian agro-industrial company with over 4 years in business.",
+  "meta.contact.title": "Contact",
+  "meta.contact.description":
+    "Contact us to request quotes, product information or any other inquiry. We reply within 24 hours.",
+  "meta.notFound.title": "Page not found",
+  "meta.eventNotFound": "Event not found",
+  "meta.priceRange": "On request",
+  "meta.breadcrumb.home": "Home",
+  "meta.breadcrumb.catalog": "Catalog",
+  "meta.breadcrumb.events": "Events",
 };
 
 export const translations: Record<Locale, Dict> = { es, en };
 
 export type TranslationKey = keyof typeof es;
+
+/** Traducción pura (servidor o cliente): EN faltante → ES → la clave. */
+export function translate(locale: Locale, key: string): string {
+  return translations[locale][key] ?? translations.es[key] ?? key;
+}
