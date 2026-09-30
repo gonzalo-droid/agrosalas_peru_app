@@ -65,7 +65,7 @@ export function Footer() {
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="https://www.linkedin.com/company/agrosalas-per%C3%BA-s-r-l/"
+                href="https://www.linkedin.com/company/agrosalasperu"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -126,7 +126,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Phone className="w-4 h-4 text-brand-400 shrink-0" />
-                <a href="tel:+905600449" className="hover:text-brand-400 transition-colors">
+                <a href="tel:+51905600449" className="hover:text-brand-400 transition-colors">
                   +51 905 600 449
                 </a>
               </li>

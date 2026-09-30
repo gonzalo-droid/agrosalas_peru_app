@@ -35,7 +35,7 @@ export function ProductDetailClient({ product, related }: Props) {
       ? `Hello, I'm interested in a quote for: ${text.name} (${text.unit}).`
       : `Hola, me interesa cotizar el producto: ${text.name} (${text.unit}).`;
 
-  const whatsappHref = `https://wa.me/905600449?text=${encodeURIComponent(waText)}`;
+  const whatsappHref = `https://wa.me/51905600449?text=${encodeURIComponent(waText)}`;
 
   return (
     <>
