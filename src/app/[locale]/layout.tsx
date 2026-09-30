@@ -4,6 +4,7 @@ import "../globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { LanguageSuggestion } from "@/components/ui/LanguageSuggestion";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { locales } from "@/i18n/config";
@@ -101,6 +102,7 @@ export default async function LocaleLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <WhatsAppButton />
+          <LanguageSuggestion />
         </LanguageProvider>
       </body>
     </html>
