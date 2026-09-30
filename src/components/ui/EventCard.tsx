@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { Calendar, MapPin } from "lucide-react";
 import type { EventItem } from "@/types";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -18,7 +18,7 @@ export function EventCard({ event, isUpcoming }: Props) {
   const text = getEventText(event, locale);
 
   return (
-    <Link
+    <LocaleLink
       href={`/eventos/${event.slug}`}
       className="card group flex flex-col focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
     >
@@ -51,6 +51,6 @@ export function EventCard({ event, isUpcoming }: Props) {
           {text.city}
         </p>
       </div>
-    </Link>
+    </LocaleLink>
   );
 }

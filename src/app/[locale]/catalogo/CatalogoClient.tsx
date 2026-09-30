@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { products, CATEGORIES } from "@/data/products";
 import { ProductCard } from "@/components/ui/ProductCard";
@@ -14,8 +14,7 @@ type FilterValue = "all" | ProductCategory;
 export function CatalogoClient() {
   const searchParams = useSearchParams();
   const router       = useRouter();
-  const pathname     = usePathname();
-  const { t, locale } = useLanguage();
+  const { t, locale, href } = useLanguage();
 
   const initialCategory = (searchParams.get("categoria") ?? "all") as FilterValue;
 
@@ -30,7 +29,7 @@ export function CatalogoClient() {
     } else {
       params.set("categoria", value);
     }
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    router.replace(`${href("/catalogo")}?${params.toString()}`, { scroll: false });
   };
 
   const filtered = useMemo(() => {

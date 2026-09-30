@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import Image from "next/image";
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -27,7 +27,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
+            <LocaleLink href="/" className="flex items-center gap-2 mb-4">
               <div className="w-9 h-9 bg-white/95 rounded-lg flex items-center justify-center transition-colors">
                 <Image
                   src="/images/logo.png"
@@ -41,7 +41,7 @@ export function Footer() {
               <span className="text-xl font-bold text-white">
                 Agrosalas<span className="text-brand-400">Peru</span>
               </span>
-            </Link>
+            </LocaleLink>
             <p className="text-sm leading-relaxed text-gray-400 mb-6">
               {t("footer.tagline")}
             </p>
@@ -84,12 +84,12 @@ export function Footer() {
             <ul className="space-y-2">
               {NAV_LINKS.map(({ href, labelKey }) => (
                 <li key={href}>
-                  <Link
+                  <LocaleLink
                     href={href}
                     className="text-sm hover:text-brand-400 transition-colors"
                   >
                     {t(labelKey)}
-                  </Link>
+                  </LocaleLink>
                 </li>
               ))}
             </ul>
@@ -103,12 +103,12 @@ export function Footer() {
             <ul className="space-y-2">
               {CATEGORIES.map(({ href, labelKey }) => (
                 <li key={href}>
-                  <Link
+                  <LocaleLink
                     href={href}
                     className="text-sm hover:text-brand-400 transition-colors"
                   >
                     {t(labelKey)}
-                  </Link>
+                  </LocaleLink>
                 </li>
               ))}
             </ul>
