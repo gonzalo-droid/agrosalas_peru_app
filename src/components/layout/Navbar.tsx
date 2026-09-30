@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { stripLocale } from "@/i18n/config";
 
 const NAV_LINKS = [
   { href: "/", labelKey: "nav.home" },
@@ -20,6 +21,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const currentPath = stripLocale(pathname);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export function Navbar() {
       }`}
     >
       <nav className="container-section h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
+        <LocaleLink href="/" className="flex items-center gap-2 group">
           <div className="w-9 h-9 bg-white/95 rounded-lg flex items-center justify-center transition-colors">
             <Image
               src="/images/logo.png"
@@ -55,15 +57,15 @@ export function Navbar() {
           >
             Agrosalas<span className="text-brand-500">Peru</span>
           </span>
-        </Link>
+        </LocaleLink>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map(({ href, labelKey }) => {
-            const active = pathname === href;
+            const active = currentPath === href;
             return (
               <li key={href}>
-                <Link
+                <LocaleLink
                   href={href}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     active
@@ -74,7 +76,7 @@ export function Navbar() {
                   }`}
                 >
                   {t(labelKey)}
-                </Link>
+                </LocaleLink>
               </li>
             );
           })}
@@ -83,9 +85,9 @@ export function Navbar() {
         {/* Right side — Desktop */}
         <div className="hidden md:flex items-center gap-3">
           <LanguageSwitcher scrolled={scrolled} />
-          <Link href="/contact" className="btn-primary text-sm py-2">
+          <LocaleLink href="/contact" className="btn-primary text-sm py-2">
             {t("nav.quote")}
-          </Link>
+          </LocaleLink>
         </div>
 
         {/* Mobile controls */}
@@ -110,10 +112,10 @@ export function Navbar() {
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg animate-fade-in">
           <ul className="container-section py-4 flex flex-col gap-1">
             {NAV_LINKS.map(({ href, labelKey }) => {
-              const active = pathname === href;
+              const active = currentPath === href;
               return (
                 <li key={href}>
-                  <Link
+                  <LocaleLink
                     href={href}
                     className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
                       active
@@ -122,17 +124,17 @@ export function Navbar() {
                     }`}
                   >
                     {t(labelKey)}
-                  </Link>
+                  </LocaleLink>
                 </li>
               );
             })}
             <li className="pt-2">
-              <Link
+              <LocaleLink
                 href="/contact"
                 className="btn-primary w-full justify-center text-sm"
               >
                 {t("nav.quote")}
-              </Link>
+              </LocaleLink>
             </li>
           </ul>
         </div>

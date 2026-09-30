@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { ArrowRight, Phone } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -24,10 +24,10 @@ export function CtaSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact" className="btn-outline-white text-base px-8 py-4">
+              <LocaleLink href="/contact" className="btn-outline-white text-base px-8 py-4">
                 {t("cta.button")}
                 <ArrowRight className="w-5 h-5" />
-              </Link>
+              </LocaleLink>
               <a
                 href="tel:+51905600449"
                 className="flex items-center gap-2 text-white/80 hover:text-white transition-colors font-medium"

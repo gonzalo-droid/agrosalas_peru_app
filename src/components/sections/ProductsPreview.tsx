@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { ArrowRight } from "lucide-react";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ui/ProductCard";
@@ -36,10 +36,10 @@ export function ProductsPreview() {
 
         {/* CTA */}
         <div className="text-center">
-          <Link href="/catalogo" className="btn-primary">
+          <LocaleLink href="/catalogo" className="btn-primary">
             {t("products.viewCatalog")}
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </LocaleLink>
         </div>
       </div>
     </section>

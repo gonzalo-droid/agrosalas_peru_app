@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { ArrowLeft, CheckCircle2, FileText, Package } from "lucide-react";
 import type { Product } from "@/types";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -42,13 +42,13 @@ export function ProductDetailClient({ product, related }: Props) {
       {/* Header */}
       <div className="bg-gradient-to-br from-brand-800 to-brand-700 pt-32 pb-12">
         <div className="container-section">
-          <Link
+          <LocaleLink
             href="/catalogo"
             className="inline-flex items-center gap-2 text-brand-100 hover:text-white text-sm font-medium mb-4 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             {t("detail.back")}
-          </Link>
+          </LocaleLink>
           <span className={`badge badge-${product.category} mb-3`}>
             {t(`category.${product.category}`)}
           </span>
@@ -137,9 +137,9 @@ export function ProductDetailClient({ product, related }: Props) {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3 mt-auto">
-                <Link href={contactHref} className="btn-primary flex-1 justify-center">
+                <LocaleLink href={contactHref} className="btn-primary flex-1 justify-center">
                   {t("detail.quoteCta")}
-                </Link>
+                </LocaleLink>
                 <a
                   href={whatsappHref}
                   target="_blank"
@@ -164,7 +164,7 @@ export function ProductDetailClient({ product, related }: Props) {
                   const relText = getProductText(p, locale);
                   const relImage = p.image?.trim() ? p.image : PLACEHOLDER;
                   return (
-                    <Link
+                    <LocaleLink
                       key={p.id}
                       href={`/catalogo/${p.id}`}
                       className="card group flex flex-col"
@@ -185,7 +185,7 @@ export function ProductDetailClient({ product, related }: Props) {
                         </h3>
                         <p className="text-xs text-gray-400 font-medium">{relText.unit}</p>
                       </div>
-                    </Link>
+                    </LocaleLink>
                   );
                 })}
               </div>

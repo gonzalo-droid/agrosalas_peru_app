@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { ArrowLeft, Calendar, MapPin } from "lucide-react";
 import type { EventItem } from "@/types";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -47,13 +47,13 @@ export function EventDetailClient({ event, isUpcoming, others }: Props) {
       {/* Header */}
       <div className="bg-gradient-to-br from-brand-800 to-brand-700 pt-32 pb-12">
         <div className="container-section">
-          <Link
+          <LocaleLink
             href="/eventos"
             className="inline-flex items-center gap-2 text-brand-100 hover:text-white text-sm font-medium mb-4 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             {t("events.back")}
-          </Link>
+          </LocaleLink>
           {isUpcoming && (
             <span className="badge bg-earth-100 text-earth-800 mb-3 block w-fit">
               {t("events.upcomingBadge")}

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -45,13 +45,13 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/catalogo" className="btn-primary text-base px-8 py-4">
+            <LocaleLink href="/catalogo" className="btn-primary text-base px-8 py-4">
               {t("hero.ctaCatalog")}
               <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link href="/contact" className="btn-outline-white text-base px-8 py-4">
+            </LocaleLink>
+            <LocaleLink href="/contact" className="btn-outline-white text-base px-8 py-4">
               {t("hero.ctaQuote")}
-            </Link>
+            </LocaleLink>
           </div>
         </div>
       </div>

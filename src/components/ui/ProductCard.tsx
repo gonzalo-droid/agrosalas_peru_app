@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { LocaleLink } from "@/components/ui/LocaleLink";
 import type { Product } from "@/types";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { getProductText } from "@/i18n/productsI18n";
@@ -18,7 +18,7 @@ export function ProductCard({ product }: Props) {
   const text = getProductText(product, locale);
 
   return (
-    <Link
+    <LocaleLink
       href={`/catalogo/${product.id}`}
       className="card group flex flex-col focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
     >
@@ -54,6 +54,6 @@ export function ProductCard({ product }: Props) {
           </span>
         </div>
       </div>
-    </Link>
+    </LocaleLink>
   );
 }
