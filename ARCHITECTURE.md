@@ -16,7 +16,7 @@ Documento vivo que describe la arquitectura actual, las decisiones técnicas tom
 | Email | Resend + Nodemailer | 4.5 / 8.0 | API route `POST /api/contact` |
 | Runtime | Node.js | ≥ 20 | Vercel-compatible |
 
-No hay suite de tests configurada.
+Tests con `node --test` sobre módulos puros (`npm test`).
 
 ---
 
@@ -25,52 +25,82 @@ No hay suite de tests configurada.
 ```
 src/
 ├─ proxy.ts                      # Rewrite/redirect de locale (ES sin prefijo, EN bajo /en)
+│
 ├─ app/
+│  ├─ globals.css                # Tailwind + clases utilitarias (.btn-primary, .card, …)
+│  ├─ robots.ts                  # robots.txt
+│  ├─ sitemap.ts                 # Una entrada por idioma con alternates
 │  ├─ og/route.tsx               # Imagen OG por idioma (/og?locale=)
-│  ├─ [locale]/                  # Todas las páginas de abajo viven aquí (layout.tsx envuelve con <LanguageProvider locale>)
-│  ├─ layout.tsx                 # (ver [locale]/layout.tsx)
-│  ├─ page.tsx                   # Home (server; metadata)
-│  ├─ not-found.tsx              # 404 (client, traducido)
-│  ├─ about/
-│  │  ├─ page.tsx                # Server, metadata
-│  │  └─ AboutClient.tsx         # Client, contenido traducible
-│  ├─ contact/
-│  │  ├─ page.tsx                # Server, metadata
-│  │  ├─ ContactPageClient.tsx   # Client, layout + info
-│  │  └─ ContactForm.tsx         # Client, formulario
-│  ├─ catalogo/
-│  │  ├─ page.tsx                # Server, metadata
-│  │  ├─ CatalogoHeader.tsx      # Client, hero del catálogo
-│  │  ├─ CatalogoClient.tsx      # Client, filtros + búsqueda + grid
-│  │  └─ [id]/
-│  │     ├─ page.tsx             # Server, generateMetadata + generateStaticParams
-│  │     └─ ProductDetailClient.tsx
-│  └─ api/
-│     └─ contact/route.ts        # POST — envía email via Resend
+│  ├─ api/
+│  │  └─ contact/route.ts        # POST — envía email (Nodemailer / Gmail SMTP)
+│  └─ [locale]/                  # es | en (SSG)
+│     ├─ layout.tsx              # Root layout — <html lang>, <LanguageProvider locale>
+│     ├─ page.tsx                # Home (server; generateMetadata)
+│     ├─ not-found.tsx           # 404 (client, traducido)
+│     ├─ [...rest]/page.tsx      # Catch-all → 404 dentro del locale
+│     ├─ about/
+│     │  ├─ page.tsx             # Server, generateMetadata
+│     │  └─ AboutClient.tsx      # Client, contenido traducible
+│     ├─ contact/
+│     │  ├─ page.tsx
+│     │  ├─ ContactPageClient.tsx
+│     │  └─ ContactForm.tsx
+│     ├─ catalogo/
+│     │  ├─ page.tsx
+│     │  ├─ CatalogoHeader.tsx
+│     │  ├─ CatalogoClient.tsx   # Filtros + búsqueda + grid
+│     │  └─ [id]/
+│     │     ├─ page.tsx          # generateMetadata + generateStaticParams
+│     │     └─ ProductDetailClient.tsx
+│     └─ eventos/
+│        ├─ page.tsx
+│        ├─ EventsHeader.tsx
+│        ├─ EventsListClient.tsx
+│        └─ [slug]/
+│           ├─ page.tsx
+│           └─ EventDetailClient.tsx
 │
 ├─ components/
 │  ├─ layout/
 │  │  ├─ Navbar.tsx              # Client (scroll state + switcher + menu mobile)
-│  │  └─ Footer.tsx              # Client (usa traducciones)
-│  ├─ sections/                  # Bloques reutilizables del home
+│  │  └─ Footer.tsx
+│  ├─ sections/                  # Bloques del home (StatsSection y TestimonialsSection sin usar)
 │  │  ├─ HeroSection.tsx
 │  │  ├─ ProductsPreview.tsx
 │  │  ├─ BenefitsSection.tsx
 │  │  ├─ CtaSection.tsx
-│  │  ├─ StatsSection.tsx        # (no usado, comentado en home)
-│  │  └─ TestimonialsSection.tsx # (no usado, comentado en home)
+│  │  ├─ StatsSection.tsx
+│  │  └─ TestimonialsSection.tsx
+│  ├─ seo/
+│  │  └─ JsonLd.tsx
 │  └─ ui/
+│     ├─ LocaleLink.tsx          # Link interno con prefijo de idioma
+│     ├─ LanguageSwitcher.tsx    # Links reales ES / EN a la misma ruta
+│     ├─ LanguageSuggestion.tsx  # Aviso "View in English?"
 │     ├─ ProductCard.tsx
-│     ├─ WhatsAppButton.tsx
-│     └─ LanguageSwitcher.tsx    # Toggle ES 🇪🇸 / EN 🇺🇸
+│     ├─ EventCard.tsx
+│     ├─ ShareButton.tsx
+│     ├─ Lightbox.tsx
+│     └─ WhatsAppButton.tsx
 │
 ├─ data/
-│  └─ products.ts                # Mock data ES (source of truth) + CATEGORIES
+│  ├─ products.ts                # Mock data ES (source of truth) + CATEGORIES
+│  └─ events.ts                  # Eventos (leer solo vía lib/events.ts)
 │
 ├─ i18n/
-│  ├─ translations.ts            # Diccionario ES + EN (~160 claves)
-│  ├─ LanguageProvider.tsx       # Contexto + hook useLanguage()
-│  └─ productsI18n.ts            # Traducciones EN de productos (por id)
+│  ├─ config.ts                  # locales, isLocale, stripLocale, localizedPath, resolveLocaleRoute
+│  ├─ server.ts                  # resolveLocale(params)
+│  ├─ preference.ts              # Helpers de localStorage (preferencia de idioma)
+│  ├─ LanguageProvider.tsx       # Contexto por prop + hook useLanguage()
+│  ├─ translations.ts            # Diccionario ES + EN, translate(), claves meta.*
+│  ├─ productsI18n.ts            # Traducciones EN de productos (por id)
+│  └─ eventsI18n.ts              # Traducciones EN de eventos (por slug)
+│
+├─ lib/
+│  ├─ site.ts                    # BASE_URL
+│  ├─ seo.ts                     # pageMetadata, alternatesFor, languageAlternates, ogImage
+│  ├─ events.ts                  # getEvents, getEventBySlug
+│  └─ eventUtils.ts              # Lógica pura de fechas/eventos
 │
 └─ types/
    └─ index.ts                   # Product, ProductCategory, ContactFormData
@@ -207,7 +237,6 @@ npm run lint     # ESLint via next lint
 - **Tests:** no hay. Candidatos iniciales: lógica de filtros en `CatalogoClient`, `parseSubjectParam`, validación del API route.
 - **Metadata bilingüe:** requiere migrar a `next-intl` con routing por locale.
 - **CMS:** si el catálogo crece, migrar `products.ts` a Sanity/Contentful/Payload.
-- **Sitemap + robots:** agregar `app/sitemap.ts` y `app/robots.ts`.
 - **Analítica:** no instalada.
 - **Imágenes faltantes:** varios productos no tienen `image` — usan `placeholder.svg`.
 - **Teléfono WhatsApp:** hardcodeado en 3 lugares; extraer a constante compartida.

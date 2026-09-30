@@ -95,4 +95,4 @@ Categories are typed as `"enlatados" | "conservas" | "congelados"`, but only `co
 - Larger features get a design spec + implementation plan in `docs/superpowers/specs/` and `docs/superpowers/plans/` (dated `YYYY-MM-DD-<slug>.md`) before code.
 - `ARCHITECTURE.md` (Spanish) is the long-form architecture/decisions doc; this file is the short operational guide.
 
-<!-- project-memory: rev=d8ac401 date=2026-09-30 -->
+<!-- project-memory: rev=9308361 date=2026-09-30 -->
