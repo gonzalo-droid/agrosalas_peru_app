@@ -50,7 +50,7 @@ Next.js 16 App Router. All routes live under `src/app/`. The project splits conc
 - Base URL lives only in `src/lib/site.ts` (`BASE_URL`).
 - Page metadata goes through `pageMetadata({ locale, path, title, description })` in `src/lib/seo.ts`: canonical per locale + `hreflang` es/en/x-default + Open Graph locale. Titles must NOT include the brand (`title.template` adds " | Agrosalas Peru"); pass `absoluteTitle: true` only for the home.
 - Default OG image is the route `src/app/og/route.tsx` (`/og?locale=en`); there is no `opengraph-image.tsx`.
-- `catalogo/[id]` is statically generated (`generateStaticParams`) with per-product `generateMetadata`, canonical, Product + Breadcrumb JSON-LD via `components/seo/JsonLd.tsx`. Root layout emits Organization JSON-LD. Sitemap emits one entry per locale with `alternates.languages`.
+- `catalogo/[id]` is statically generated (`generateStaticParams`) with per-product `generateMetadata`, canonical, Product + Breadcrumb JSON-LD via `components/seo/JsonLd.tsx`. `eventos/[slug]` emits Event + Breadcrumb JSON-LD (location parsed from `city` = "City, Country"). Root layout emits Organization JSON-LD. Sitemap emits one entry per locale with `alternates.languages`.
 
 **Layout**
 - `Navbar` is transparent at the top of the page and transitions to white/opaque on scroll (`scrollY > 20`). It is a client component.
