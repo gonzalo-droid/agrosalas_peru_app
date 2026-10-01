@@ -18,7 +18,19 @@ export type EventText = {
 //     city: "Lima, Peru",
 //     venue: "Jockey Exhibition Center",
 //   },
-const EN: Record<string, EventText> = {};
+const EN: Record<string, EventText> = {
+  "expo-peru-norte-2026": {
+    title: "Expo Perú Norte 2026",
+    summary:
+      "We took part in the Expo Perú Norte 2026 Business Roundtable, organized by PromPerú in Chiclayo, to present our Peruvian canned legumes and open new business opportunities.",
+    body: [
+      "On March 26, 2026, we took part in the Expo Perú Norte 2026 Business Roundtable, held in Chiclayo and organized by PromPerú with the support of Peru's Ministry of Foreign Trade and Tourism.",
+      "Throughout the day we met with buyers and industry companies, presenting our Peruvian canned legumes and our value proposition: export-grade quality, food safety and food innovation. It was a key opportunity to open strategic conversations and expand our network of business contacts.",
+      "We thank PromPerú for organizing the event and for creating spaces that help companies from northern Peru reach international markets. We keep growing with purpose.",
+    ],
+    city: "Chiclayo, Peru",
+  },
+};
 
 export function getEventText(event: EventItem, locale: Locale): EventText {
   if (locale === "en" && EN[event.slug]) return EN[event.slug];

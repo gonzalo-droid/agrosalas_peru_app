@@ -62,7 +62,7 @@ Next.js 16 App Router. All routes live under `src/app/`. The project splits conc
 - Data is in `src/data/events.ts`, but pages/components must read it **only** through `src/lib/events.ts` (`getEvents`, `getEventBySlug`, async). That module is the swap point for a future admin/remote source, and it throws on duplicate slugs (build fails).
 - Pure logic lives in `src/lib/eventUtils.ts` (date-range formatting with a fixed month table, `isUpcoming`, `splitEvents`, `pickOtherEvents`, `todayInLima`). Keep it free of runtime imports (type-only) so `node --test` can load it without the `@/` alias.
 - "Upcoming" = `(endDate ?? startDate) >= today` in **America/Lima**, computed on the server; both pages use `revalidate = 86400`, so an event moves to "past" within a day without a redeploy. Never compute it in client components (hydration mismatch).
-- The list currently ships **empty** (`events = []` → "Pronto publicaremos nuestros eventos"; any slug → 404; sitemap only lists `/eventos`).
+- With `events = []` the list shows "Pronto publicaremos nuestros eventos" and any slug is a 404. Event slugs are prerendered at build time (`dynamicParams = false` on the `[locale]` layout), so a new event needs a deploy.
 
 ### Adding a new page
 
