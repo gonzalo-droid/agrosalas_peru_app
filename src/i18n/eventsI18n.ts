@@ -24,7 +24,7 @@ const EN: Record<string, EventText> = {
     summary:
       "We showcased our ALBA canned line at Expoalimentaria 2026 in Lima, as part of the Lambayeque Regional Government stand, and connected with domestic and international buyers and distributors.",
     body: [
-      "From August 24 to 26, 2026, we took part in Expoalimentaria 2026, the international food and beverage fair organized by ADEX in Lima and regarded as one of Latin America's leading showcases for agricultural exports.",
+      "From September 23 to 25, 2026, we took part in Expoalimentaria 2026, the international food and beverage fair organized by ADEX in Lima and regarded as one of Latin America's leading showcases for agricultural exports.",
       "We exhibited at the Lambayeque Regional Government stand, alongside other companies from the region. We thank the Regional Government for its support and for bringing the offer of northern Peru to an international showcase.",
       "We presented our ALBA line — \"Naturally healthy! Made with love!\" — featuring canned black beans, red beans, green pigeon peas with coconut, lima beans and chickpeas. Over the three days, visitors got a close look at our products, their packaging and their export-grade quality.",
       "The fair gave us the chance to talk with buyers, distributors and importers interested in Peruvian canned legumes, exchange contacts and open business conversations that we will follow up on. If you visited us at Expoalimentaria, write to us — we'd be glad to continue the conversation.",
