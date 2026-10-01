@@ -19,4 +19,23 @@ import type { EventItem } from "@/types";
 //     gallery: ["/images/event/expoalimentaria-2026/01.jpg"],
 //   },
 
-export const events: EventItem[] = [];
+export const events: EventItem[] = [
+  {
+    slug: "expo-peru-norte-2026",
+    title: "Expo Perú Norte 2026",
+    startDate: "2026-03-26",
+    city: "Chiclayo, Perú",
+    summary:
+      "Participamos en la Rueda de Negocios de la Expo Perú Norte 2026, organizada por PromPerú en Chiclayo, para presentar nuestras menestras peruanas en conserva y abrir nuevas oportunidades comerciales.",
+    body: [
+      "El 26 de marzo de 2026 participamos en la Rueda de Negocios de la Expo Perú Norte 2026, realizada en Chiclayo y organizada por PromPerú con el respaldo del Ministerio de Comercio Exterior y Turismo.",
+      "Durante la jornada sostuvimos reuniones con compradores y empresas del sector, en las que presentamos nuestras menestras peruanas en conserva y nuestra propuesta de valor: calidad de exportación, inocuidad e innovación alimentaria. Fue una oportunidad clave para abrir diálogos estratégicos y ampliar nuestra red de contactos comerciales.",
+      "Agradecemos a PromPerú por la organización y por impulsar espacios que proyectan a las empresas del norte del Perú hacia los mercados internacionales. Seguimos creciendo con propósito.",
+    ],
+    cover: "/images/event/expo-peru-norte-2026/cover.jpg",
+    gallery: [
+      "/images/event/expo-peru-norte-2026/01.jpg",
+      "/images/event/expo-peru-norte-2026/02.jpg",
+    ],
+  },
+];
