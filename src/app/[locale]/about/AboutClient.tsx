@@ -1,6 +1,6 @@
 "use client";
 
-import { Target, Eye, Heart, Users } from "lucide-react";
+import { Target, Eye, Heart, Users, ShieldCheck } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const VALUES = [
@@ -86,6 +86,30 @@ export function AboutClient() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Calidad y certificaciones */}
+      <section className="section-padding bg-white">
+        <div className="container-section">
+          <div className="text-center mb-14">
+            <span className="badge bg-brand-100 text-brand-700 mb-3">
+              {t("about.qualityBadge")}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+              {t("about.qualityTitle")}
+            </h2>
+          </div>
+
+          <div className="max-w-3xl mx-auto flex flex-col sm:flex-row gap-6 p-8 bg-brand-50 rounded-3xl border border-brand-100">
+            <div className="shrink-0 w-14 h-14 bg-brand-600 rounded-2xl flex items-center justify-center">
+              <ShieldCheck className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t("about.fdaTitle")}</h3>
+              <p className="text-gray-600 leading-relaxed">{t("about.fdaDesc")}</p>
+            </div>
           </div>
         </div>
       </section>

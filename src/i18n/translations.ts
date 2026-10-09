@@ -139,6 +139,11 @@ const es: Dict = {
     "Desarrollar y comercializar, junto a nuestros clientes y proveedores, alimentos de alta calidad para la agroexportación y el mercado local, logrando un crecimiento sostenido de la empresa, generando valor para nuestros accionistas, bienestar para nuestros colaboradores y contribuyendo al desarrollo y la imagen del Perú, con una proyección de diversificación hacia productos deshidratados y congelados.",
   "about.valuesBadge": "Valores corporativos",
   "about.valuesTitle": "Lo que nos define",
+  "about.qualityBadge": "Calidad y certificaciones",
+  "about.qualityTitle": "Listos para exportar a EE. UU.",
+  "about.fdaTitle": "Planta registrada ante la FDA",
+  "about.fdaDesc":
+    "Nuestra planta está registrada ante la Administración de Alimentos y Medicamentos de EE. UU. (FDA), requisito para exportar alimentos a ese mercado. Compartimos el número de registro con los compradores que lo soliciten.",
   "value.quality.title": "Calidad",
   "value.quality.desc":
     "Cada producto que sale de nuestras plantas lleva el sello de calidad que nos ha caracterizado por años. No aceptamos nada menos que lo mejor.",
@@ -370,6 +375,11 @@ const en: Dict = {
     "To develop and market, together with our clients and suppliers, high-quality food for agro-export and the local market, achieving sustained growth for the company, generating value for our shareholders, well-being for our team, and contributing to the development and image of Peru, with a projection toward diversification into dehydrated and frozen products.",
   "about.valuesBadge": "Corporate values",
   "about.valuesTitle": "What defines us",
+  "about.qualityBadge": "Quality & certifications",
+  "about.qualityTitle": "Ready to export to the U.S.",
+  "about.fdaTitle": "FDA-registered facility",
+  "about.fdaDesc":
+    "Our facility is registered with the U.S. Food and Drug Administration (FDA), a requirement for exporting food to the United States. We share our registration number with buyers on request.",
   "value.quality.title": "Quality",
   "value.quality.desc":
     "Every product that leaves our plants carries the quality seal that has defined us for years. We accept nothing less than the best.",
