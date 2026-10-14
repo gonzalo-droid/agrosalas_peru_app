@@ -2,7 +2,7 @@
 
 import { LocaleLink } from "@/components/ui/LocaleLink";
 import Image from "next/image";
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const NAV_LINKS = [
@@ -46,15 +46,6 @@ export function Footer() {
               {t("footer.tagline")}
             </p>
             <div className="flex items-center gap-3">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="w-9 h-9 bg-gray-800 hover:bg-brand-600 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
               <a
                 href="https://www.instagram.com/agrosalasperusrl/"
                 target="_blank"
