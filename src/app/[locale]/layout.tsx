@@ -73,6 +73,10 @@ const organizationSchema = {
   legalName: "Agrosalas Perú S.R.L.",
   url: BASE_URL,
   logo: `${BASE_URL}/images/logo.png`,
+  sameAs: [
+    "https://www.instagram.com/agrosalasperusrl/",
+    "https://www.linkedin.com/company/agrosalasperu",
+  ],
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+51905600449",
