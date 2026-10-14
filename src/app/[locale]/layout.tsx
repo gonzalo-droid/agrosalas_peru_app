@@ -58,9 +58,6 @@ export async function generateMetadata({
       description: t("meta.og.description"),
       images: [ogImage(locale).url],
     },
-    icons: {
-      icon: "/images/favicon.ico",
-    },
     robots: {
       index: true,
       follow: true,
