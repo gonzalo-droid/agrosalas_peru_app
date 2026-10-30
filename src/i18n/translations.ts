@@ -107,6 +107,10 @@ const es: Dict = {
   "detail.share": "Compartir",
   "detail.related": "Productos relacionados",
   "detail.notFound": "Producto no encontrado",
+  "detail.about": "Sobre este producto",
+  "detail.scientificName": "Nombre científico",
+  "detail.alsoKnownAs": "También conocido como",
+  "detail.uses": "Usos en la cocina",
 
   // Events
   "events.headerBadge": "Presencia comercial",
@@ -125,6 +129,10 @@ const es: Dict = {
   "events.lightbox.prev": "Foto anterior",
   "events.lightbox.next": "Foto siguiente",
   "events.lightbox.close": "Cerrar",
+  "events.homeBadge": "Ferias y eventos",
+  "events.homeTitle": "Dónde nos encontramos",
+  "events.homeDesc": "Ferias y ruedas de negocio donde presentamos nuestras conservas a compradores de todo el mundo.",
+  "events.viewAll": "Ver todos los eventos",
 
   // About page
   "about.headerBadge": "Nuestra historia",
@@ -343,6 +351,10 @@ const en: Dict = {
   "detail.share": "Share",
   "detail.related": "Related products",
   "detail.notFound": "Product not found",
+  "detail.about": "About this product",
+  "detail.scientificName": "Scientific name",
+  "detail.alsoKnownAs": "Also known as",
+  "detail.uses": "Culinary uses",
 
   // Events
   "events.headerBadge": "Trade presence",
@@ -361,6 +373,10 @@ const en: Dict = {
   "events.lightbox.prev": "Previous photo",
   "events.lightbox.next": "Next photo",
   "events.lightbox.close": "Close",
+  "events.homeBadge": "Trade shows & events",
+  "events.homeTitle": "Where to meet us",
+  "events.homeDesc": "Trade shows and business roundtables where we present our canned products to buyers from around the world.",
+  "events.viewAll": "View all events",
 
   // About page
   "about.headerBadge": "Our story",

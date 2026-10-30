@@ -76,6 +76,7 @@ Next.js 16 App Router. All routes live under `src/app/`. The project splits conc
 
 1. Add the entry to `src/data/products.ts`; image goes in `public/images/products/<id>.png`.
 2. Add the English text to `EN` in `src/i18n/productsI18n.ts` under the **exact same id**.
+   Optional "Sobre este producto" fields: `scientificName` (shared), `alsoKnownAs`, `about`, `uses` (ES in `products.ts`, EN in `productsI18n.ts`; missing EN fields fall back to ES). `alsoKnownAs` also feeds the JSON-LD `alternateName`. Only general product knowledge goes there: no company specs (formats, shelf life, MOQ) until confirmed.
 3. The product page, sitemap entry and JSON-LD are generated from the array automatically.
 
 Categories are typed as `"enlatados" | "conservas" | "congelados"`, but only `conservas` is active: the other two are commented out in `CATEGORIES` and every current product is `conservas`. Adding a new category requires updating `ProductCategory` in `src/types/index.ts`, the `CATEGORIES` array, `category.<x>` keys in `translations.ts`, and the badge CSS classes in `globals.css`.

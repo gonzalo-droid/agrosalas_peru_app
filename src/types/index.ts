@@ -10,6 +10,14 @@ export interface Product {
   unit: string;
   available: boolean;
   featured?: boolean;
+  /** Nombre botánico, igual en todos los idiomas (se muestra en cursiva). */
+  scientificName?: string;
+  /** Otros nombres comerciales o regionales con los que lo buscan los compradores. */
+  alsoKnownAs?: string[];
+  /** Párrafo de origen y características (en español; inglés en productsI18n). */
+  about?: string;
+  /** Platos o usos típicos por mercado. */
+  uses?: string[];
 }
 
 export interface ContactFormData {
