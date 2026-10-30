@@ -29,7 +29,7 @@ Next.js 16 App Router. All routes live under `src/app/`. The project splits conc
 
 **Server / Client split**
 - Pages (`page.tsx`) are server components — they own `generateMetadata` via `pageMetadata()` and render the page shell/header.
-- Interactive parts are extracted into a co-located `*Client.tsx` file (e.g. `catalogo/CatalogoClient.tsx`). Any page that wraps a client component using `useSearchParams` must wrap it in `<Suspense>`.
+- Interactive parts are extracted into a co-located `*Client.tsx` file (e.g. `products/CatalogoClient.tsx`). Any page that wraps a client component using `useSearchParams` must wrap it in `<Suspense>`.
 
 **Styling**
 - TailwindCSS 3 with a custom palette: `brand-*` (green) and `earth-*` (yellow/amber) defined in `tailwind.config.ts`.
@@ -50,15 +50,15 @@ Next.js 16 App Router. All routes live under `src/app/`. The project splits conc
 - Base URL lives only in `src/lib/site.ts` (`BASE_URL`).
 - Page metadata goes through `pageMetadata({ locale, path, title, description })` in `src/lib/seo.ts`: canonical per locale + `hreflang` es/en/x-default + Open Graph locale. Titles must NOT include the brand (`title.template` adds " | Agrosalas Peru"); pass `absoluteTitle: true` only for the home.
 - Default OG image is the route `src/app/og/route.tsx` (`/og?locale=en`); there is no `opengraph-image.tsx`.
-- `catalogo/[id]` is statically generated (`generateStaticParams`) with per-product `generateMetadata`, canonical, Product + Breadcrumb JSON-LD via `components/seo/JsonLd.tsx`. `eventos/[slug]` emits Event + Breadcrumb JSON-LD (location parsed from `city` = "City, Country"). Root layout emits Organization JSON-LD. Sitemap emits one entry per locale with `alternates.languages`.
+- `products/[id]` is statically generated (`generateStaticParams`) with per-product `generateMetadata`, canonical, Product + Breadcrumb JSON-LD via `components/seo/JsonLd.tsx`. `events/[slug]` emits Event + Breadcrumb JSON-LD (location parsed from `city` = "City, Country"). Root layout emits Organization JSON-LD. Sitemap emits one entry per locale with `alternates.languages`.
 
 **Layout**
 - `Navbar` is transparent at the top of the page and transitions to white/opaque on scroll (`scrollY > 20`). It is a client component.
 - WhatsApp/phone `+51 905 600 449` is hardcoded in many places: `WhatsAppButton.tsx`, `ContactPageClient.tsx`, `ProductDetailClient.tsx` (prefilled per-product message), `CtaSection.tsx`, `Footer.tsx`, and the Organization schema in `layout.tsx`. Always use the international form (`wa.me/51905600449`, `tel:+51905600449`) — without `51` WhatsApp routes to +90 (Turkey). `grep -rn 905600449 src` before changing it.
 - Share: `components/ui/ShareButton.tsx` (Web Share API, falls back to copying the URL) is used by both product and event detail pages.
 
-**Events (`/eventos`, files in `src/app/[locale]/eventos/`)**
-- List page splits events into "Próximos" / "Participaciones"; detail `/eventos/[slug]` has a stacked layout (21:9 banner → date/place cards + share → text → gallery with `components/ui/Lightbox.tsx` → "Otros eventos").
+**Events (`/events`, files in `src/app/[locale]/events/`)**
+- List page splits events into "Próximos" / "Participaciones"; detail `/events/[slug]` has a stacked layout (21:9 banner → date/place cards + share → text → gallery with `components/ui/Lightbox.tsx` → "Otros eventos").
 - Data is in `src/data/events.ts`, but pages/components must read it **only** through `src/lib/events.ts` (`getEvents`, `getEventBySlug`, async). That module is the swap point for a future admin/remote source, and it throws on duplicate slugs (build fails).
 - Pure logic lives in `src/lib/eventUtils.ts` (date-range formatting with a fixed month table, `isUpcoming`, `splitEvents`, `pickOtherEvents`, `todayInLima`). Keep it free of runtime imports (type-only) so `node --test` can load it without the `@/` alias.
 - "Upcoming" = `(endDate ?? startDate) >= today` in **America/Lima**, computed on the server; both pages use `revalidate = 86400`, so an event moves to "past" within a day without a redeploy. Never compute it in client components (hydration mismatch).
@@ -87,7 +87,9 @@ Categories are typed as `"enlatados" | "conservas" | "congelados"`, but only `co
 3. Add the English text to `EN` in `src/i18n/eventsI18n.ts` under the **same slug** (missing → Spanish is shown).
 4. Detail page, sitemap entry and "Otros eventos" are generated automatically. The slug is the public URL — don't rename it once published.
 
-**Gotcha:** the product id is also the public URL slug (`/catalogo/<id>`), so renaming an id breaks already-shared or indexed links unless you add a redirect in `next.config.ts` (it must cover both `/catalogo/<old>` and `/en/catalogo/<old>`, since config redirects run before the proxy). Spelling is **"Frijol"** everywhere (ids, names, descriptions, image files) — don't reintroduce "Frejol".
+**Route paths are English** (`/products`, `/events`, `/about`, `/contact`) in both locales; only ids/slugs stay in Spanish. The old `/catalogo` and `/eventos` paths 308-redirect via `next.config.ts`, and the catalog filter param is `?category=` (legacy `?categoria=` is still read).
+
+**Gotcha:** the product id is also the public URL slug (`/products/<id>`), so renaming an id breaks already-shared or indexed links unless you add a redirect in `next.config.ts` (it must cover `/products/<old>`, `/es/products/<old>` and `/en/products/<old>`, since config redirects run before the proxy). Spelling is **"Frijol"** everywhere (ids, names, descriptions, image files) — don't reintroduce "Frejol".
 
 ## Conventions
 

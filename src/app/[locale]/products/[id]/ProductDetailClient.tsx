@@ -43,7 +43,7 @@ export function ProductDetailClient({ product, related }: Props) {
       <div className="bg-gradient-to-br from-brand-800 to-brand-700 pt-32 pb-12">
         <div className="container-section">
           <LocaleLink
-            href="/catalogo"
+            href="/products"
             className="inline-flex items-center gap-2 text-brand-100 hover:text-white text-sm font-medium mb-4 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -166,7 +166,7 @@ export function ProductDetailClient({ product, related }: Props) {
                   return (
                     <LocaleLink
                       key={p.id}
-                      href={`/catalogo/${p.id}`}
+                      href={`/products/${p.id}`}
                       className="card group flex flex-col"
                     >
                       <div className="relative h-48 bg-gradient-to-br from-brand-50 to-brand-100 overflow-hidden">

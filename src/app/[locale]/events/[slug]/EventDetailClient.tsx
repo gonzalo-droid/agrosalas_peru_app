@@ -48,7 +48,7 @@ export function EventDetailClient({ event, isUpcoming, others }: Props) {
       <div className="bg-gradient-to-br from-brand-800 to-brand-700 pt-32 pb-12">
         <div className="container-section">
           <LocaleLink
-            href="/eventos"
+            href="/events"
             className="inline-flex items-center gap-2 text-brand-100 hover:text-white text-sm font-medium mb-4 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />

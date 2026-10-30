@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = await resolveLocale(params);
   return pageMetadata({
     locale,
-    path: "/eventos",
+    path: "/events",
     title: translate(locale, "meta.events.title"),
     description: translate(locale, "meta.events.description"),
   });

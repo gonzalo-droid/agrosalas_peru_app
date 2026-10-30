@@ -36,7 +36,7 @@ export function ProductsPreview() {
 
         {/* CTA */}
         <div className="text-center">
-          <LocaleLink href="/catalogo" className="btn-primary">
+          <LocaleLink href="/products" className="btn-primary">
             {t("products.viewCatalog")}
             <ArrowRight className="w-4 h-4" />
           </LocaleLink>

@@ -1,6 +1,6 @@
 import type { EventItem } from "@/types";
 
-// Eventos en los que participa Agrosalas. Lista vacía → /eventos muestra "Pronto publicaremos nuestros eventos".
+// Eventos en los que participa Agrosalas. Lista vacía → /events muestra "Pronto publicaremos nuestros eventos".
 // Imágenes de cada evento: public/images/event/<slug>/cover.jpg y 01.jpg, 02.jpg, …
 // Texto en inglés: src/i18n/eventsI18n.ts, con el mismo slug.
 // No importar este archivo desde páginas o componentes: usar src/lib/events.ts.

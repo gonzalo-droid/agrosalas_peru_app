@@ -7,7 +7,7 @@ export const OG_LOCALE: Record<Locale, string> = { es: "es_PE", en: "en_US" };
 
 export type OgImage = { url: string; width?: number; height?: number; alt?: string };
 
-/** "/" → "https://www.agrosalasperu.com"; "/en/catalogo" → "https://www.agrosalasperu.com/en/catalogo". */
+/** "/" → "https://www.agrosalasperu.com"; "/en/products" → "https://www.agrosalasperu.com/en/products". */
 export function absoluteUrl(path: string): string {
   return path === "/" ? BASE_URL : `${BASE_URL}${path}`;
 }
@@ -40,7 +40,7 @@ export function ogImage(locale: Locale): OgImage {
 
 type PageMetaInput = {
   locale: Locale;
-  /** Ruta interna sin prefijo de idioma: "/", "/catalogo/garbanzo". */
+  /** Ruta interna sin prefijo de idioma: "/", "/products/garbanzo". */
   path: string;
   /** Sin la marca: el template del layout agrega " | Agrosalas Peru". */
   title: string;

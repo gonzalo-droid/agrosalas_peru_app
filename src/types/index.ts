@@ -33,7 +33,7 @@ export interface CompanyValue {
 }
 
 export interface EventItem {
-  slug: string;        // URL /eventos/<slug> y carpeta public/images/event/<slug>/
+  slug: string;        // URL /events/<slug> y carpeta public/images/event/<slug>/
   title: string;       // ES
   startDate: string;   // "YYYY-MM-DD"
   endDate?: string;    // "YYYY-MM-DD"; ausente = evento de un día
