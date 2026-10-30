@@ -56,7 +56,8 @@ export default async function ProductDetailPage({ params }: Params) {
     "@context": "https://schema.org",
     "@type": "Product",
     name: text.name,
-    description: text.description,
+    ...(text.alsoKnownAs?.length && { alternateName: text.alsoKnownAs }),
+    description: text.about ? `${text.description} ${text.about}` : text.description,
     url: url(`/products/${product.id}`),
     ...(product.image && { image: `${BASE_URL}${product.image}` }),
     brand: {

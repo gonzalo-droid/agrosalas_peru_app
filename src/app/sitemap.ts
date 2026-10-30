@@ -7,11 +7,12 @@ import { absoluteUrl, languageAlternates } from "@/lib/seo";
 type Freq = MetadataRoute.Sitemap[number]["changeFrequency"];
 
 // Una entrada por idioma; cada una declara todas las versiones (hreflang).
+// Sin lastModified: la fecha del build marcaba todo como modificado en cada
+// deploy y Google termina ignorando ese dato.
 function entries(path: string, changeFrequency: Freq, priority: number): MetadataRoute.Sitemap {
   const languages = languageAlternates(path);
   return locales.map((l) => ({
     url: absoluteUrl(localizedPath(path, l)),
-    lastModified: new Date(),
     changeFrequency,
     priority,
     alternates: { languages },

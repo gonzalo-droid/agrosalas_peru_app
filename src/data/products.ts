@@ -12,6 +12,21 @@ export const products: Product[] = [
     image: "/images/products/frijol-castilla.png",
     unit: "Conserva 425 gr",
     available: true,
+    scientificName: "Vigna unguiculata",
+    alsoKnownAs: [
+      "Black-eyed pea",
+      "Cowpea",
+      "Frijol de ojo negro",
+      "Frijol carita",
+    ],
+    about:
+      "Legumbre de grano color crema con una mancha negra característica, el «ojo». Es de origen africano y se cultiva en la costa norte del Perú, donde se adapta bien al clima cálido y seco. Tiene piel delgada, textura suave y un sabor ligeramente terroso que absorbe bien los aliños.",
+    uses: [
+      "Ensaladas frías con cebolla, tomate y limón",
+      "Hoppin’ John y Texas caviar (sur de EE. UU.)",
+      "Guisos y menestras con arroz",
+      "Acarajé y frituras de frijol (Brasil, África occidental)",
+    ],
   },
   {
     id: "frijol-rojo",
@@ -24,6 +39,21 @@ export const products: Product[] = [
     image: "/images/products/frijol-rojo.png",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Phaseolus vulgaris",
+    alsoKnownAs: [
+      "Light red kidney bean",
+      "Habichuela roja",
+      "Poroto rojo",
+      "Frijol riñón",
+    ],
+    about:
+      "Frijol de forma arriñonada y color rojo claro, de piel firme que mantiene el grano entero durante la cocción. Es una de las legumbres más consumidas en el Caribe hispano y en Estados Unidos, y aporta proteína vegetal, fibra y hierro.",
+    uses: [
+      "Habichuelas guisadas (Puerto Rico, República Dominicana)",
+      "Chili con carne",
+      "Red beans and rice (Luisiana)",
+      "Ensaladas y bowls",
+    ],
   },
   {
     id: "frijol-canario",
@@ -36,6 +66,21 @@ export const products: Product[] = [
     image: "/images/products/frijol-canario.png",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Phaseolus vulgaris",
+    alsoKnownAs: [
+      "Peruano bean",
+      "Mayocoba",
+      "Frijol peruano",
+      "Canary bean",
+    ],
+    about:
+      "Frijol de color amarillo pálido, típico de la costa y los valles interandinos del Perú. En México y Estados Unidos se vende como «frijol peruano» o «mayocoba». Al cocinarse queda muy cremoso y de sabor suave, por eso es el frijol preferido para los platos peruanos de menestra.",
+    uses: [
+      "Frejoles con seco o con arroz (Perú)",
+      "Tacu tacu",
+      "Frijoles refritos (México)",
+      "Sopas y cremas",
+    ],
   },
 
   {
@@ -48,6 +93,21 @@ export const products: Product[] = [
     image: "/images/products/frijol-negro.png",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Phaseolus vulgaris",
+    alsoKnownAs: [
+      "Black turtle bean",
+      "Habichuela negra",
+      "Caraota negra",
+      "Poroto negro",
+    ],
+    about:
+      "Frijol pequeño de piel negra brillante y pulpa blanca, con sabor intenso y textura firme. Es básico en las cocinas de Cuba, Venezuela, Brasil, México y Centroamérica. Su color oscuro se debe a antocianinas, los mismos antioxidantes de las uvas y los arándanos.",
+    uses: [
+      "Moros y cristianos (Cuba)",
+      "Feijoada (Brasil)",
+      "Pabellón criollo (Venezuela)",
+      "Sopa de frijol negro, burritos y tacos",
+    ],
   },
 
   {
@@ -60,6 +120,22 @@ export const products: Product[] = [
     image: "",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Cajanus cajan",
+    alsoKnownAs: [
+      "Pigeon pea",
+      "Green pigeon peas",
+      "Gandules",
+      "Guandú",
+      "Frijol de palo",
+    ],
+    about:
+      "El gandul es una leguminosa arbustiva originaria de la India que se adaptó muy bien al norte del Perú, en Piura y Lambayeque. Se cosecha en verde, cuando el grano está tierno, y se conserva en agua con sal para mantener su color y su sabor característico, ligeramente dulce y herbáceo.",
+    uses: [
+      "Arroz con gandules (Puerto Rico)",
+      "Sancocho y sopa de gandules",
+      "Ensaladas",
+      "Guisos con cerdo o pollo",
+    ],
     featured: true,
   },
   {
@@ -73,6 +149,20 @@ export const products: Product[] = [
     image: "",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Cajanus cajan",
+    alsoKnownAs: [
+      "Pigeon peas with coconut",
+      "Guandules con coco",
+      "Gandules con coco",
+    ],
+    about:
+      "Gandul verde cocido en leche de coco, una combinación clásica de las cocinas del Caribe. El coco le da cremosidad y un aroma dulce que acompaña bien al sabor herbáceo del grano. Llega listo para calentar y servir.",
+    uses: [
+      "Moro de guandules con coco (República Dominicana)",
+      "Arroz con guandú y coco (Panamá, Caribe colombiano)",
+      "Acompañamiento de pescados y mariscos",
+      "Base para guisos tropicales",
+    ],
     featured: true,
   },
   {
@@ -86,6 +176,21 @@ export const products: Product[] = [
     image: "/images/products/gandul-seco.png",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Cajanus cajan",
+    alsoKnownAs: [
+      "Dry pigeon peas",
+      "Gandul maduro",
+      "Toor dal",
+      "Guandú seco",
+    ],
+    about:
+      "Gandul cosechado con el grano ya maduro y seco, de color más oscuro y sabor más intenso que el gandul verde. Es muy rico en proteína vegetal y en la India es la base del dal, uno de los platos más consumidos del país.",
+    uses: [
+      "Toor dal y sambar (India)",
+      "Sopas y potajes",
+      "Guisos con arroz",
+      "Menestras de la cocina norteña peruana",
+    ],
     featured: true,
   },
 
@@ -100,6 +205,21 @@ export const products: Product[] = [
     image: "/images/products/pallar-americano.png",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Phaseolus lunatus",
+    alsoKnownAs: [
+      "Lima bean",
+      "Butter bean",
+      "Frijol lima",
+      "Garrofó",
+    ],
+    about:
+      "El pallar se domesticó en el Perú hace miles de años: aparece en restos arqueológicos de la costa y en la cerámica moche. Es un grano grande, plano y de color crema, de textura mantecosa al cocinarse, que se cultiva sobre todo en Ica y en la costa norte.",
+    uses: [
+      "Pallares guisados con arroz (Perú)",
+      "Ensalada de pallares",
+      "Succotash (EE. UU.)",
+      "Purés y cremas",
+    ],
     featured: true,
   },
   {
@@ -112,6 +232,20 @@ export const products: Product[] = [
     image: "/images/products/pallar-bebe.png",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Phaseolus lunatus",
+    alsoKnownAs: [
+      "Baby lima bean",
+      "Pallar pequeño",
+      "Frijol lima bebé",
+    ],
+    about:
+      "Variedad de pallar de grano pequeño y piel fina. Se cocina más rápido que el pallar grande y queda tierno y cremoso, con un sabor suave y algo dulce. Es la presentación más usada en ensaladas y guarniciones.",
+    uses: [
+      "Ensaladas frías y templadas",
+      "Guarnición de carnes y pescados",
+      "Succotash y sopas de verduras",
+      "Cremas y untables",
+    ],
   },
 
   {
@@ -124,6 +258,21 @@ export const products: Product[] = [
     image: "/images/products/pallar-salmuera.png",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Phaseolus lunatus",
+    alsoKnownAs: [
+      "Lima beans in brine",
+      "Butter beans",
+      "Garrofó",
+      "Frijol lima",
+    ],
+    about:
+      "Pallar grande conservado en salmuera, listo para usar. El pallar de Ica, la zona productora más conocida del Perú, cuenta con denominación de origen reconocida por INDECOPI. En España una variedad de pallar, el garrofó, es ingrediente de la paella valenciana.",
+    uses: [
+      "Paella valenciana (garrofó)",
+      "Pallares guisados (Perú)",
+      "Ensaladas mediterráneas",
+      "Butter beans al horno con tomate (Reino Unido)",
+    ],
     featured: true,
   },
 
@@ -138,6 +287,21 @@ export const products: Product[] = [
     image: "/images/products/pimiento-morron.png",
     unit: "Conserva 290g",
     available: true,
+    scientificName: "Capsicum annuum",
+    alsoKnownAs: [
+      "Roasted red pepper",
+      "Pimiento rojo",
+      "Pimiento asado",
+      "Bell pepper",
+    ],
+    about:
+      "Pimiento rojo de pulpa gruesa y sabor dulce, sin picor. Se conserva en tiras o entero para mantener su color intenso y su textura carnosa. Es un ingrediente habitual en la cocina española, latinoamericana y mediterránea, tanto para dar sabor como para decorar.",
+    uses: [
+      "Arroz con pollo y paella",
+      "Ensaladas y antipastos",
+      "Salsa romesco y cremas",
+      "Pizzas, sándwiches y rellenos de aceitunas",
+    ],
   },
   {
     id: "zarandaja",
@@ -150,6 +314,22 @@ export const products: Product[] = [
     image: "/images/products/zarandaja.png",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Lablab purpureus",
+    alsoKnownAs: [
+      "Hyacinth bean",
+      "Lablab bean",
+      "Val bean",
+      "Frijol zarandaja",
+      "Cancate",
+    ],
+    about:
+      "Legumbre tradicional del norte del Perú, sobre todo de Piura y Lambayeque, donde también se le llama cancate. Es un grano pequeño, de sabor suave y textura firme, poco conocido fuera de la región y de la India, donde se le llama «val». Su escasa oferta internacional la vuelve un producto diferencial.",
+    uses: [
+      "Menestra de zarandaja con arroz (Piura, Lambayeque)",
+      "Acompañamiento de seco de cabrito y cebiche",
+      "Ensaladas frías",
+      "Curry de val (India)",
+    ],
   },
   {
     id: "garbanzo",
@@ -161,6 +341,20 @@ export const products: Product[] = [
     image: "/images/products/garbanzo.png",
     unit: "Conserva 425g",
     available: true,
+    scientificName: "Cicer arietinum",
+    alsoKnownAs: [
+      "Chickpea",
+      "Garbanzo bean",
+      "Chana",
+    ],
+    about:
+      "Una de las legumbres más antiguas que se cultivan, originaria de Medio Oriente. Su grano redondo, de color beige y sabor a nuez, mantiene su forma al cocinarse. Es alto en proteína y fibra y es la base de platos de la cocina mediterránea, árabe, india y latinoamericana.",
+    uses: [
+      "Hummus y falafel",
+      "Cocido y potajes (España)",
+      "Chana masala (India)",
+      "Ensaladas y garbanzos tostados",
+    ],
   },
 ];
 

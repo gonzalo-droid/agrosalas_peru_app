@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { LocaleLink } from "@/components/ui/LocaleLink";
-import { ArrowLeft, CheckCircle2, FileText, Package } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ChefHat, FileText, Leaf, Package } from "lucide-react";
 import type { Product } from "@/types";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { getProductText } from "@/i18n/productsI18n";
@@ -152,6 +152,72 @@ export function ProductDetailClient({ product, related }: Props) {
               </div>
             </div>
           </div>
+
+          {/* About: origen, nombres comerciales y usos */}
+          {(text.about || text.alsoKnownAs?.length || text.uses?.length) && (
+            <div className="mt-16 bg-white rounded-2xl p-6 md:p-10 border border-gray-100 shadow-sm">
+              <div className="flex items-center gap-2 mb-6">
+                <Leaf className="w-5 h-5 text-brand-600" />
+                <h2 className="text-xl md:text-2xl font-extrabold text-gray-900">
+                  {t("detail.about")}
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+                <div className="lg:col-span-2 space-y-6">
+                  {text.about && (
+                    <p className="text-gray-600 leading-relaxed">{text.about}</p>
+                  )}
+                  {text.uses && text.uses.length > 0 && (
+                    <div>
+                      <h3 className="flex items-center gap-2 text-sm font-bold text-gray-900 mb-3">
+                        <ChefHat className="w-4 h-4 text-brand-600" />
+                        {t("detail.uses")}
+                      </h3>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {text.uses.map((use) => (
+                          <li key={use} className="flex gap-2 text-sm text-gray-600">
+                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0" />
+                            {use}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                <dl className="space-y-5">
+                  {product.scientificName && (
+                    <div>
+                      <dt className="text-xs text-gray-400 font-medium mb-1">
+                        {t("detail.scientificName")}
+                      </dt>
+                      <dd className="text-sm font-semibold text-gray-800 italic">
+                        {product.scientificName}
+                      </dd>
+                    </div>
+                  )}
+                  {text.alsoKnownAs && text.alsoKnownAs.length > 0 && (
+                    <div>
+                      <dt className="text-xs text-gray-400 font-medium mb-2">
+                        {t("detail.alsoKnownAs")}
+                      </dt>
+                      <dd className="flex flex-wrap gap-2">
+                        {text.alsoKnownAs.map((name) => (
+                          <span
+                            key={name}
+                            className="text-xs font-medium text-brand-800 bg-brand-50 border border-brand-100 rounded-full px-3 py-1"
+                          >
+                            {name}
+                          </span>
+                        ))}
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+              </div>
+            </div>
+          )}
 
           {/* Related */}
           {related.length > 0 && (
