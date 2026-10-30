@@ -3,7 +3,20 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // La imagen OG por defecto pasó de /opengraph-image a /og (por idioma).
   async redirects() {
-    return [{ source: "/opengraph-image", destination: "/og", permanent: true }];
+    // Rutas renombradas a inglés: los links viejos (ya indexados) siguen funcionando.
+    // Los redirects de config corren antes del proxy, así que cubren cada prefijo.
+    const renamed = [
+      ["catalogo", "products"],
+      ["eventos", "events"],
+    ];
+    return [
+      { source: "/opengraph-image", destination: "/og", permanent: true },
+      ...renamed.flatMap(([from, to]) => [
+        { source: `/${from}/:path*`, destination: `/${to}/:path*`, permanent: true },
+        { source: `/es/${from}/:path*`, destination: `/${to}/:path*`, permanent: true },
+        { source: `/en/${from}/:path*`, destination: `/en/${to}/:path*`, permanent: true },
+      ]),
+    ];
   },
   images: {
     remotePatterns: [

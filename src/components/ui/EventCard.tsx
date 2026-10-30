@@ -19,7 +19,7 @@ export function EventCard({ event, isUpcoming }: Props) {
 
   return (
     <LocaleLink
-      href={`/eventos/${event.slug}`}
+      href={`/events/${event.slug}`}
       className="card group flex flex-col focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
     >
       <div className="relative aspect-[4/3] bg-gradient-to-br from-brand-50 to-brand-100 overflow-hidden">

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   return pageMetadata({
     locale,
-    path: `/catalogo/${product.id}`,
+    path: `/products/${product.id}`,
     title: text.name,
     description: text.shortDescription,
     images: product.image
@@ -57,7 +57,7 @@ export default async function ProductDetailPage({ params }: Params) {
     "@type": "Product",
     name: text.name,
     description: text.description,
-    url: url(`/catalogo/${product.id}`),
+    url: url(`/products/${product.id}`),
     ...(product.image && { image: `${BASE_URL}${product.image}` }),
     brand: {
       "@type": "Brand",
@@ -89,13 +89,13 @@ export default async function ProductDetailPage({ params }: Params) {
         "@type": "ListItem",
         position: 2,
         name: translate(locale, "meta.breadcrumb.catalog"),
-        item: url("/catalogo"),
+        item: url("/products"),
       },
       {
         "@type": "ListItem",
         position: 3,
         name: text.name,
-        item: url(`/catalogo/${product.id}`),
+        item: url(`/products/${product.id}`),
       },
     ],
   };

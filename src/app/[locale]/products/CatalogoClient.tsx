@@ -16,7 +16,8 @@ export function CatalogoClient() {
   const router       = useRouter();
   const { t, locale, href } = useLanguage();
 
-  const initialCategory = (searchParams.get("categoria") ?? "all") as FilterValue;
+  // "categoria" es el nombre anterior del parámetro; se acepta para links viejos.
+  const initialCategory = (searchParams.get("category") ?? searchParams.get("categoria") ?? "all") as FilterValue;
 
   const [activeCategory, setActiveCategory] = useState<FilterValue>(initialCategory);
   const [search, setSearch]                 = useState("");
@@ -24,12 +25,10 @@ export function CatalogoClient() {
   const handleCategory = (value: FilterValue) => {
     setActiveCategory(value);
     const params = new URLSearchParams(searchParams.toString());
-    if (value === "all") {
-      params.delete("categoria");
-    } else {
-      params.set("categoria", value);
-    }
-    router.replace(`${href("/catalogo")}?${params.toString()}`, { scroll: false });
+    params.delete("categoria");
+    if (value === "all") params.delete("category");
+    else params.set("category", value);
+    router.replace(`${href("/products")}?${params.toString()}`, { scroll: false });
   };
 
   const filtered = useMemo(() => {

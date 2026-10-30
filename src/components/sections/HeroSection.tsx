@@ -45,7 +45,7 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <LocaleLink href="/catalogo" className="btn-primary text-base px-8 py-4">
+            <LocaleLink href="/products" className="btn-primary text-base px-8 py-4">
               {t("hero.ctaCatalog")}
               <ArrowRight className="w-5 h-5" />
             </LocaleLink>

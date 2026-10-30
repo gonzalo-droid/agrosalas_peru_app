@@ -23,10 +23,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...entries("/", "monthly", 1.0),
-    ...entries("/catalogo", "weekly", 0.9),
-    ...products.flatMap((p) => entries(`/catalogo/${p.id}`, "monthly", 0.8)),
-    ...entries("/eventos", "monthly", 0.7),
-    ...events.flatMap((e) => entries(`/eventos/${e.slug}`, "yearly", 0.6)),
+    ...entries("/products", "weekly", 0.9),
+    ...products.flatMap((p) => entries(`/products/${p.id}`, "monthly", 0.8)),
+    ...entries("/events", "monthly", 0.7),
+    ...events.flatMap((e) => entries(`/events/${e.slug}`, "yearly", 0.6)),
     ...entries("/about", "yearly", 0.7),
     ...entries("/contact", "yearly", 0.7),
   ];

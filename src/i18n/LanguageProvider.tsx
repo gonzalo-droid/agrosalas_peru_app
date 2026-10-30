@@ -7,7 +7,7 @@ import { translate } from "./translations";
 type Ctx = {
   locale: Locale;
   t: (key: string) => string;
-  /** Ruta interna ("/catalogo") → ruta pública en el idioma actual ("/en/catalogo"). */
+  /** Ruta interna ("/products") → ruta pública en el idioma actual ("/en/products"). */
   href: (path: string) => string;
 };
 

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = await resolveLocale(params);
   return pageMetadata({
     locale,
-    path: "/catalogo",
+    path: "/products",
     title: translate(locale, "meta.catalog.title"),
     description: translate(locale, "meta.catalog.description"),
   });

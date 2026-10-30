@@ -19,7 +19,7 @@ export function ProductCard({ product }: Props) {
 
   return (
     <LocaleLink
-      href={`/catalogo/${product.id}`}
+      href={`/products/${product.id}`}
       className="card group flex flex-col focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
     >
       {/* Image */}

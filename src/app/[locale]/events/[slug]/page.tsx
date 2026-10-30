@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   return pageMetadata({
     locale,
-    path: `/eventos/${event.slug}`,
+    path: `/events/${event.slug}`,
     title: text.title,
     description: text.summary,
     images: event.cover.trim() ? [{ url: event.cover, alt: text.title }] : undefined,
@@ -71,7 +71,7 @@ export default async function EventDetailPage({ params }: Params) {
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     inLanguage: locale,
-    url: url(`/eventos/${event.slug}`),
+    url: url(`/events/${event.slug}`),
     ...(images.length > 0 && { image: images }),
     location: {
       "@type": "Place",
@@ -89,8 +89,8 @@ export default async function EventDetailPage({ params }: Params) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: translate(locale, "meta.breadcrumb.home"), item: url("/") },
-      { "@type": "ListItem", position: 2, name: translate(locale, "meta.breadcrumb.events"), item: url("/eventos") },
-      { "@type": "ListItem", position: 3, name: text.title, item: url(`/eventos/${event.slug}`) },
+      { "@type": "ListItem", position: 2, name: translate(locale, "meta.breadcrumb.events"), item: url("/events") },
+      { "@type": "ListItem", position: 3, name: text.title, item: url(`/events/${event.slug}`) },
     ],
   };
 

@@ -8,7 +8,7 @@ export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }
 
-/** "/en/catalogo" → "/catalogo"; "/es" → "/"; "/catalogo" → "/catalogo". */
+/** "/en/products" → "/products"; "/es" → "/"; "/products" → "/products". */
 export function stripLocale(pathname: string): string {
   for (const l of locales) {
     if (pathname === `/${l}`) return "/";
