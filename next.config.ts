@@ -11,11 +11,18 @@ const nextConfig: NextConfig = {
     ];
     return [
       { source: "/opengraph-image", destination: "/og", permanent: true },
-      ...renamed.flatMap(([from, to]) => [
-        { source: `/${from}/:path*`, destination: `/${to}/:path*`, permanent: true },
-        { source: `/es/${from}/:path*`, destination: `/${to}/:path*`, permanent: true },
-        { source: `/en/${from}/:path*`, destination: `/en/${to}/:path*`, permanent: true },
-      ]),
+      // La ruta raíz va aparte: con `:path*` vacío Vercel genera "/products/"
+      // y agrega un segundo redirect para quitar la barra final.
+      ...renamed.flatMap(([from, to]) =>
+        [
+          [`/${from}`, `/${to}`],
+          [`/es/${from}`, `/${to}`],
+          [`/en/${from}`, `/en/${to}`],
+        ].flatMap(([src, dest]) => [
+          { source: src, destination: dest, permanent: true },
+          { source: `${src}/:path+`, destination: `${dest}/:path+`, permanent: true },
+        ]),
+      ),
     ];
   },
   images: {
